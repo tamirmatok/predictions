@@ -6,7 +6,7 @@
 //
 
 
-package predictions.schema.generated;
+package schema.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -26,10 +26,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}PRD-actions"/>
- *         &lt;element ref="{}PRD-activation" minOccurs="0"/>
+ *         &lt;element ref="{}PRD-name"/>
+ *         &lt;element ref="{}PRD-range" minOccurs="0"/>
  *       &lt;/sequence>
- *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="type" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *             &lt;enumeration value="boolean"/>
+ *             &lt;enumeration value="decimal"/>
+ *             &lt;enumeration value="float"/>
+ *             &lt;enumeration value="string"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -39,89 +48,89 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "prdActions",
-    "prdActivation"
+    "prdName",
+    "prdRange"
 })
-@XmlRootElement(name = "PRD-rule")
-public class PRDRule {
+@XmlRootElement(name = "PRD-env-property")
+public class PRDEnvProperty {
 
-    @XmlElement(name = "PRD-actions", required = true)
-    protected PRDActions prdActions;
-    @XmlElement(name = "PRD-activation")
-    protected PRDActivation prdActivation;
-    @XmlAttribute(name = "name", required = true)
-    protected String name;
-
-    /**
-     * Gets the value of the prdActions property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PRDActions }
-     *     
-     */
-    public PRDActions getPRDActions() {
-        return prdActions;
-    }
+    @XmlElement(name = "PRD-name", required = true)
+    protected String prdName;
+    @XmlElement(name = "PRD-range")
+    protected PRDRange prdRange;
+    @XmlAttribute(name = "type", required = true)
+    protected String type;
 
     /**
-     * Sets the value of the prdActions property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PRDActions }
-     *     
-     */
-    public void setPRDActions(PRDActions value) {
-        this.prdActions = value;
-    }
-
-    /**
-     * Gets the value of the prdActivation property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PRDActivation }
-     *     
-     */
-    public PRDActivation getPRDActivation() {
-        return prdActivation;
-    }
-
-    /**
-     * Sets the value of the prdActivation property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PRDActivation }
-     *     
-     */
-    public void setPRDActivation(PRDActivation value) {
-        this.prdActivation = value;
-    }
-
-    /**
-     * Gets the value of the name property.
+     * Gets the value of the prdName property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getName() {
-        return name;
+    public String getPRDName() {
+        return prdName;
     }
 
     /**
-     * Sets the value of the name property.
+     * Sets the value of the prdName property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setName(String value) {
-        this.name = value;
+    public void setPRDName(String value) {
+        this.prdName = value;
+    }
+
+    /**
+     * Gets the value of the prdRange property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PRDRange }
+     *     
+     */
+    public PRDRange getPRDRange() {
+        return prdRange;
+    }
+
+    /**
+     * Sets the value of the prdRange property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PRDRange }
+     *     
+     */
+    public void setPRDRange(PRDRange value) {
+        this.prdRange = value;
+    }
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
     }
 
 }

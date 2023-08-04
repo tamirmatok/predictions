@@ -6,7 +6,7 @@
 //
 
 
-package predictions.schema.generated;
+package schema.generated;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

@@ -6,7 +6,7 @@
 //
 
 
-package predictions.schema.generated;
+package schema.generated;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "PRD-multiply")
-public class PRDMultiply {
+@XmlRootElement(name = "PRD-divide")
+public class PRDDivide {
 
     @XmlAttribute(name = "arg2", required = true)
     protected String arg2;
