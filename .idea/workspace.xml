@@ -1,41 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Add schema generated">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/SchemaBasedJAXB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/XmlLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/engineInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/Xml.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/userInterface.java" afterDir="false" />
+    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Remove Xml Loader">
+      <change afterPath="$PROJECT_DIR$/src/engine/world/Entities.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/world/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/world/EnvProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/world/Environment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/world/Range.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/world/Rules.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/world/Termination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/world/World.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDActivation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDActivation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDBySecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDBySecond.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDByTicks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDByTicks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDDivide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDDivide.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDElse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDElse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDEntities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDEnvProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDEnvProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDEvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDEvironment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDMultiply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDMultiply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDTermination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDTermination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDThen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDThen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/schema/generated/PRDWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/schema/generated/PRDWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/engineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/engineInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,20 +40,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="engine.world" />
       <recent name="userInterface" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -93,7 +72,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1691136524825</updated>
-      <workItem from="1691136526065" duration="23252000" />
+      <workItem from="1691136526065" duration="24099000" />
+      <workItem from="1691170659498" duration="4059000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -116,7 +96,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691139309029</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Load jaxb">
+      <created>1691162531548</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691162531548</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Remove Xml Loader">
+      <created>1691162626938</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691162626938</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,7 +131,9 @@
     <MESSAGE value="initProject" />
     <MESSAGE value="Add init documents" />
     <MESSAGE value="Add schema generated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add schema generated" />
+    <MESSAGE value="Load jaxb" />
+    <MESSAGE value="Remove Xml Loader" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove Xml Loader" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -148,19 +144,29 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/engine/Engine.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ui/Xml.java</url>
           <line>15</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ui/UserInterfaceImpl.java</url>
-          <line>56</line>
+          <line>60</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/engine/world/World.java</url>
+          <line>13</line>
           <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ui/UserInterfaceImpl.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ui/UserInterfaceImpl.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

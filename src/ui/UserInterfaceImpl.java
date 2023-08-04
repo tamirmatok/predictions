@@ -53,8 +53,7 @@ public class UserInterfaceImpl implements userInterface {
                 try {
                     loadXmlFile();
                     //TODO: DELERE -> JUST VALIDATE THAT jaxbWorld load successfully
-                    //PUT HERE BREAK POINT
-                    PRDWorld jaxbWorld = engine.getJaxbWorld();
+                    System.out.println("jaxbWorld loaded successfully");
                 }
                 catch (JAXBException | IOException e) {
                     System.out.println(e.getMessage());
