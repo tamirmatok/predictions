@@ -15,19 +15,32 @@ public class JaxbConverter {
     public static PropertyDefinition convertProperty(PRDProperty prdProperty) {
         String propertyType = prdProperty.getType();
         switch (propertyType) {
+            // Decimal and float has optinal range value.
             case "decimal":
-                int from = (int) prdProperty.getPRDRange().getFrom();
-                int to = (int) prdProperty.getPRDRange().getTo();
-                return new IntegerPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomInteger(from, to));
-//            case "float":
+                if (prdProperty.getPRDValue().isRandomInitialize()){
+                    if (prdProperty.getPRDRange() == null){
+                        int value = Integer.parseInt(prdProperty.getPRDValue().getInit());
+                        return new IntegerPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createFixed(value));
+                    }
+                    else { // we should set range
+                        int from = (int) prdProperty.getPRDRange().getFrom();
+                        int to = (int) prdProperty.getPRDRange().getTo();
+                        return new IntegerPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomInteger(from, to));
+                    }
+                }
+//            case "boolean":
+//                if (prdProperty.getPRDValue().isRandomInitialize()){
+////                    return new BooleanPropertyDefinition()
+//                }
 //                break;
 //            case "boolean":
 //                break;
-//            case "string":
+//            case "":
 //                break;
-            default:
-                throw new java.lang.IllegalArgumentException("Unexpected argument value: " + propertyType);
+//            default:
+//                throw new java.lang.IllegalArgumentException("Unexpected argument value: " + propertyType);
         }
+        return null;
     }
     public static EntityDefinition convertEntity(PRDEntity prdEntity){
         EntityDefinition entityDefinition = new EntityDefinitionImpl(prdEntity.getName(), prdEntity.getPRDPopulation());
@@ -36,4 +49,6 @@ public class JaxbConverter {
         }
         return entityDefinition;
     }
+
+
 }

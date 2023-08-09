@@ -1,88 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="create World">
-      <change afterPath="$PROJECT_DIR$/src/engine/action/api/AbstractAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/action/api/Action.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/action/api/ActionType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/IncreaseAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/KillAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/api/EngineInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/entity/EntityDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/entity/EntityDefinitionImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/environment/api/EnvVariablesManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/environment/impl/EnvVariableManagerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/property/api/AbstractPropertyDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/property/api/PropertyDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/property/api/PropertyType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/property/impl/IntegerPropertyDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/property/impl/StringPropertyDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGeneratorFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/fixed/FixedValueGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/api/AbstractRandomValueGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/bool/RandomBooleanValueGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/AbstractNumericRandomGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomIntegerGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/world/api/WorldDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/world/impl/WorldDefinitionImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/context/Context.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/context/ContextImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstanceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/environment/api/ActiveEnvironment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/environment/impl/ActiveEnvironmentImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/property/PropertyInstance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/property/PropertyInstanceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/api/WorldInstanceInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/file/system/api/fileSystemInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/file/system/impl/FileSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/file/system/xml/api/xmlLoaderInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/impl/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/rule/Activation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/rule/Rule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/rule/RuleImpl.java" afterDir="false" />
+    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Adding initial design">
+      <change afterPath="$PROJECT_DIR$/src/engine/definition/property/impl/BooleanPropertyDefinition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/definition/property/impl/DoublePropertyDefinition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/SchemaBasedJAXB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/jaxb/SchemaBasedJAXB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/engineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/engineInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/Entities.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/Entity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/EnvProperty.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/Environment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/Range.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/Rules.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/Termination.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/world/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/world/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDActivation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDActivation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDBySecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDBySecond.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDByTicks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDByTicks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDCondition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDDivide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDDivide.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDElse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDElse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDEntities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDEnvProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDEnvProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDEvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDEvironment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDMultiply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDMultiply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDProperty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDRule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDTermination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDTermination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDThen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDThen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schema/generated/PRDWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/schema/generated/PRDWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Xml.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/file/system/xml/impl/XmlLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +19,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -148,26 +74,6 @@
       <module name="predictions" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="engine.file.system.xml.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.Main" />
-      <module name="predictions" />
-      <extension name="coverage">
-        <pattern>
           <option name="PATTERN" value="ui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
@@ -195,7 +101,7 @@
       <workItem from="1691324212271" duration="1366000" />
       <workItem from="1691524978401" duration="1255000" />
       <workItem from="1691566325338" duration="7780000" />
-      <workItem from="1691577156090" duration="9573000" />
+      <workItem from="1691577156090" duration="11849000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -239,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691180153075</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adding initial design">
+      <created>1691593575881</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691593575881</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +176,8 @@
     <MESSAGE value="Load jaxb" />
     <MESSAGE value="Remove Xml Loader" />
     <MESSAGE value="create World" />
-    <option name="LAST_COMMIT_MESSAGE" value="create World" />
+    <MESSAGE value="Adding initial design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding initial design" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -283,14 +197,10 @@
           <line>12</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java</url>
-          <line>36</line>
-          <properties class="engine.execution.instance.world.impl.WorldInstance" method="setEntities">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="78" />
+          <line>42</line>
+          <option name="timeStamp" value="82" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
