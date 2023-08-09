@@ -1,9 +1,8 @@
 package ui;
-import engine.Engine;
-import schema.generated.PRDWorld;
+import engine.impl.Engine;
+import engine.file.system.xml.impl.XmlLoader;
 
 import javax.xml.bind.JAXBException;
-import java.io.File;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -12,7 +11,6 @@ public class UserInterfaceImpl implements userInterface {
 
     private final Engine engine;
     private int userChoice;
-
 
     public UserInterfaceImpl() {
         engine = new Engine();
@@ -50,14 +48,7 @@ public class UserInterfaceImpl implements userInterface {
     public void choiceHandler(int choice) {
         switch (choice) {
             case 1:
-                try {
-                    loadXmlFile();
-                    //TODO: DELERE -> JUST VALIDATE THAT jaxbWorld load successfully
-                    System.out.println("jaxbWorld loaded successfully");
-                }
-                catch (JAXBException | IOException e) {
-                    System.out.println(e.getMessage());
-                }
+                loadXmlFile();
                 break;
             case 2:
 //                System.out.println("show simulation state");
@@ -77,22 +68,20 @@ public class UserInterfaceImpl implements userInterface {
         }
 
     }
-
-    public void  loadXmlFile() throws JAXBException, IOException {
+    public void  loadXmlFile() {
         Scanner scanner = new Scanner(System.in);
-        Xml xml = new Xml();
+        boolean systemLoaded = false;
         do {
-            System.out.println("please enter system xml file path");
-            xml.setPath(scanner.nextLine());
-
-            if (xml.isValidXMLPath()){
-                engine.loadSystemFromXmlFile(xml.getFile());
-            }
-            else{
-                System.out.println("Invalid path. please try again");
+            try {
+                System.out.println("please enter system xml file path");
+                String xmlFilePath = scanner.nextLine();
+                engine.loadSystemWorldFromXmlFile(xmlFilePath);
+                systemLoaded = true;
+            } catch (JAXBException | IOException e) {
+                System.out.println(e.getMessage());
             }
         }
-        while (!xml.isValidXMLPath());
+        while (!systemLoaded);
 
         System.out.println("xml file load successfully");
     }

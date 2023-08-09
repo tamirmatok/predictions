@@ -1,14 +1,11 @@
-package engine;
-
-import engine.world.World;
-import schema.generated.PRDWorld;
-
-import javax.xml.bind.JAXBException;
-import java.io.File;
-import java.io.IOException;
-
-public interface engineInterface {
-
-    void loadSystemFromXmlFile(File xmlFile) throws JAXBException, IOException;
-
-}
+//package engine;
+//
+//import javax.xml.bind.JAXBException;
+//import java.io.File;
+//import java.io.IOException;
+//
+//public interface engineInterface {
+//
+//    void loadSystemFromXmlFile(File xmlFile) throws JAXBException, IOException;
+//
+//}

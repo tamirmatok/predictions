@@ -1,0 +1,34 @@
+package engine.execution.context;
+
+import engine.execution.instance.enitty.EntityInstance;
+import engine.execution.instance.enitty.manager.EntityInstanceManager;
+import engine.execution.instance.environment.api.ActiveEnvironment;
+import engine.execution.instance.property.PropertyInstance;
+
+public class ContextImpl implements Context {
+
+    private EntityInstance primaryEntityInstance;
+    private EntityInstanceManager entityInstanceManager;
+    private ActiveEnvironment activeEnvironment;
+
+    public ContextImpl(EntityInstance primaryEntityInstance, EntityInstanceManager entityInstanceManager, ActiveEnvironment activeEnvironment) {
+        this.primaryEntityInstance = primaryEntityInstance;
+        this.entityInstanceManager = entityInstanceManager;
+        this.activeEnvironment = activeEnvironment;
+    }
+
+    @Override
+    public EntityInstance getPrimaryEntityInstance() {
+        return primaryEntityInstance;
+    }
+
+    @Override
+    public void removeEntity(EntityInstance entityInstance) {
+        entityInstanceManager.killEntity(entityInstance.getId());
+    }
+
+    @Override
+    public PropertyInstance getEnvironmentVariable(String name) {
+        return activeEnvironment.getProperty(name);
+    }
+}
