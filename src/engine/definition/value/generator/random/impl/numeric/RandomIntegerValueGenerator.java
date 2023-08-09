@@ -1,8 +1,8 @@
 package engine.definition.value.generator.random.impl.numeric;
 
-public class RandomIntegerGenerator extends AbstractNumericRandomGenerator<Integer> {
+public class RandomIntegerValueGenerator extends AbstractNumericRandomGenerator<Integer> {
 
-    public RandomIntegerGenerator(Integer from, Integer to) {
+    public RandomIntegerValueGenerator(Integer from, Integer to) {
         super(from, to);
     }
 

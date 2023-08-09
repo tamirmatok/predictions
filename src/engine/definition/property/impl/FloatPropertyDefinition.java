@@ -4,9 +4,9 @@ import engine.definition.property.api.AbstractPropertyDefinition;
 import engine.definition.property.api.PropertyType;
 import engine.definition.value.generator.api.ValueGenerator;
 
-public class DoublePropertyDefinition extends AbstractPropertyDefinition<Double> {
+public class FloatPropertyDefinition extends AbstractPropertyDefinition<Float> {
 
-    public DoublePropertyDefinition(String name, ValueGenerator<Double> valueGenerator) {
+    public FloatPropertyDefinition(String name, ValueGenerator<Float> valueGenerator) {
         super(name, PropertyType.FLOAT, valueGenerator);
     }
 

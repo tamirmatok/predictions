@@ -29,6 +29,7 @@ public class WorldInstance implements WorldInstanceInterface {
     @Override
     public void setWorld(PRDWorld prdWorld) {
         setEntities(prdWorld.getPRDEntities());
+        System.out.println("Stop");
 //        setEnvironment(prdWorld.getPRDEvironment());
 //        setRules(prdWorld.getPRDRules());
 //        setTermination(prdWorld.getPRDTermination());

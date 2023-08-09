@@ -2,7 +2,9 @@ package engine.definition.value.generator.api;
 
 import engine.definition.value.generator.fixed.FixedValueGenerator;
 import engine.definition.value.generator.random.impl.bool.RandomBooleanValueGenerator;
-import engine.definition.value.generator.random.impl.numeric.RandomIntegerGenerator;
+import engine.definition.value.generator.random.impl.numeric.RandomFloatValueGenerator;
+import engine.definition.value.generator.random.impl.numeric.RandomIntegerValueGenerator;
+import engine.definition.value.generator.random.impl.string.RandomStringValueGenerater;
 
 public interface ValueGeneratorFactory {
 
@@ -15,7 +17,15 @@ public interface ValueGeneratorFactory {
     }
 
     static ValueGenerator<Integer> createRandomInteger(Integer from, Integer to) {
-        return new RandomIntegerGenerator(from, to);
+        return new RandomIntegerValueGenerator(from, to);
+    }
+
+    static ValueGenerator<Float> createRandomFloat(Float from, Float to) {
+        return new RandomFloatValueGenerator(from, to);
+    }
+
+    static ValueGenerator<String> createRandomString() {
+        return new RandomStringValueGenerater();
     }
 
 }

@@ -36,7 +36,7 @@
 				</PRD-property>
 				<PRD-property type="string">
 					<PRD-name>p4</PRD-name>
-					<PRD-value random-initialize="false" init="example"/>
+					<PRD-value random-initialize="true"/>
 				</PRD-property>
 			</PRD-properties>
 		</PRD-entity>
