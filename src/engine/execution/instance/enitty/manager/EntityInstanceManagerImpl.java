@@ -42,6 +42,18 @@ public class EntityInstanceManagerImpl implements EntityInstanceManager {
     }
 
     @Override
+    public EntityInstance getInstanceByName(String name) {
+
+        for (EntityInstance entityInstance : instances) {
+            EntityDefinition entityDefinition = entityInstance.getEntityDefinition();
+            if (entityDefinition.getName().equals(name)) {
+                return entityInstance;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void killEntity(int id) {
         // some implementation...
     }

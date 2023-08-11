@@ -1,9 +1,7 @@
 package ui;
+import dto.impl.MessageDTO;
 import engine.impl.Engine;
-import engine.file.system.xml.impl.XmlLoader;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,14 +9,20 @@ public class UserInterfaceImpl implements userInterface {
 
     private final Engine engine;
     private int userChoice;
+    private boolean systemLoaded;
+
+    private boolean exit;
 
     public UserInterfaceImpl() {
         engine = new Engine();
         userChoice = 0;
+        systemLoaded = false;
+        exit = false;
     }
 
     @Override
     public void printMenu() {
+        System.out.println("Please select one of the following options:");
         System.out.println("1. load system xml file");
         System.out.println("2. show simulation state");
         System.out.println("3. run simulation");
@@ -36,10 +40,11 @@ public class UserInterfaceImpl implements userInterface {
                 if (userChoice >= 1 && userChoice <= 5) {
                     return userChoice;
                 }
-                System.out.println("Invalid number, please select valid number");
+                System.out.println("Invalid choice - number should be between 1 to 5");
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid choice, please select valid number");
+
+                System.out.println("Invalid input - please select a valid number");
             }
         }
     }
@@ -48,7 +53,7 @@ public class UserInterfaceImpl implements userInterface {
     public void choiceHandler(int choice) {
         switch (choice) {
             case 1:
-                loadXmlFile();
+                SendLoadXmlFileRequest();
                 break;
             case 2:
 //                System.out.println("show simulation state");
@@ -60,7 +65,7 @@ public class UserInterfaceImpl implements userInterface {
 //                System.out.println("show past simulation results");
                 break;
             case 5:
-//                System.out.println("exit");
+                exit = true;
                 break;
             default:
 //                System.out.println("Invalid choice");
@@ -68,21 +73,39 @@ public class UserInterfaceImpl implements userInterface {
         }
 
     }
-    public void  loadXmlFile() {
+
+    @Override
+    public void startInterface() {
+        while (!exit) {
+            printMenu();
+            int choice = getUserChoice();
+            choiceHandler(choice);
+            if (choice == 5) {
+                exit = true;
+            }
+        }
+    }
+
+    public void SendLoadXmlFileRequest() {
         Scanner scanner = new Scanner(System.in);
-        boolean systemLoaded = false;
+        systemLoaded = false;
         do {
-            try {
-                System.out.println("please enter system xml file path");
-                String xmlFilePath = scanner.nextLine();
-                engine.loadSystemWorldFromXmlFile(xmlFilePath);
+            System.out.println("Please enter system XML file path or enter 5 to exit: ");
+            String path = scanner.nextLine();
+            if (path.equals("5")) {
+                exit = true;
+                return;
+            }
+            MessageDTO dto = engine.loadSystemWorldFromXmlFile(path);
+            if (dto.isSuccess()) {
+                System.out.println(("XML file loaded successfully !"));
                 systemLoaded = true;
-            } catch (JAXBException | IOException e) {
-                System.out.println(e.getMessage());
+            } else {
+                if (dto.getMessage() != null) {
+                    System.out.println(("Failed to load XML file - " + dto.getMessage()));
+                }
             }
         }
         while (!systemLoaded);
-
-        System.out.println("xml file load successfully");
     }
 }

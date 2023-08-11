@@ -1,19 +1,79 @@
 package engine.definition.world.impl;
 
+import engine.definition.entity.EntityDefinition;
+import engine.definition.environment.api.EnvVariablesManager;
+import engine.definition.environment.impl.EnvVariableManagerImpl;
+import engine.definition.property.api.PropertyDefinition;
 import engine.definition.world.api.WorldDefinition;
-import engine.execution.instance.enitty.manager.EntityInstanceManager;
-import engine.execution.instance.enitty.manager.EntityInstanceManagerImpl;
+import engine.execution.instance.termination.impl.Termination;
+import engine.factory.impl.JaxbConverter;
+import engine.rule.Rule;
+import engine.schema.generated.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class WorldDefinitionImpl implements WorldDefinition {
-    EntityInstanceManager entityInstanceManager;
+    private final HashMap<String, EntityDefinition> entityDefinitions;
+    private final EnvVariablesManager envVariableManager;
+    private final ArrayList<Rule> rules;
+
+//    private final Termination termination;
 
     public WorldDefinitionImpl() {
-        this.entityInstanceManager = new EntityInstanceManagerImpl();
+        this.entityDefinitions = new HashMap<String, EntityDefinition>();
+        this.envVariableManager = new EnvVariableManagerImpl();
+        this.rules = new ArrayList<>();
+//        this.termination = new Termination();
     }
 
     @Override
-    public EntityInstanceManager getEntityInstanceManager() {
+    public void loadWorldDefintion(PRDWorld prdWorld) {
+        for (PRDEntity prdEntity : prdWorld.getPRDEntities().getPRDEntity()) {
+            EntityDefinition entityDefinition = JaxbConverter.convertEntity(prdEntity);
+            this.addEntityDefinition(entityDefinition);
+        }
+        for (PRDEnvProperty prdEnvProperty : prdWorld.getPRDEvironment().getPRDEnvProperty()) {
+            PropertyDefinition propertyDefinition = JaxbConverter.convertEnvProperty(prdEnvProperty);
+            this.addEnvPropertyDefinition(propertyDefinition);
+        }
+        for (PRDRule prdRule : prdWorld.getPRDRules().getPRDRule()) {
+            Rule rule = JaxbConverter.convertRule(prdRule, this.entityDefinitions);
+            addRule(rule);
+        }
+        //TODO: ADD TERMINATION
+//        this.termination.setTerminationCondition(JaxbConverter.convertTermination(prdWorld.getPRDTermination()));
 
-        return this.entityInstanceManager;
+
     }
+
+    public HashMap<String, EntityDefinition> getEntityDefinitions() {
+        return entityDefinitions;
+    }
+
+    public EnvVariablesManager getEnvVariablesManager() {
+        return envVariableManager;
+    }
+
+    public ArrayList<Rule> getRules() {
+        return rules;
+    }
+
+    public void addEntityDefinition(EntityDefinition entityDefinition) {
+        entityDefinitions.put(entityDefinition.getName(),entityDefinition);
+    }
+
+    public void addEnvPropertyDefinition(PropertyDefinition propertyDefinition) {
+        envVariableManager.addEnvironmentVariable(propertyDefinition);
+    }
+
+    public void addRule(Rule rule) {
+        rules.add(rule);
+    }
+
+    @Override
+    public String printWorldDefinition() {
+        return null;
+    }
+
 }

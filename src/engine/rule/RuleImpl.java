@@ -14,6 +14,7 @@ public class RuleImpl implements Rule {
     public RuleImpl(String name) {
         this.name = name;
         actions = new ArrayList<>();
+
     }
 
     @Override
@@ -34,5 +35,10 @@ public class RuleImpl implements Rule {
     @Override
     public void addAction(Action action) {
         actions.add(action);
+    }
+
+    @Override
+    public void setActivation(Activation activation) {
+        this.activation = activation;
     }
 }

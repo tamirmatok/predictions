@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Adding initial design">
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomFloatValueGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java" afterDir="false" />
+    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Entities load">
+      <change afterPath="$PROJECT_DIR$/src/dto/api/AbstractDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dto/impl/MessageDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dto/impl/SimulationDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/expression/ExpressionInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/termination/api/terminationInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/termination/impl/Termination.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/rule/ActivationImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/property/impl/DoublePropertyDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/property/impl/FloatPropertyDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGeneratorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGeneratorFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomIntegerGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomIntegerValueGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/world/World.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/Engine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/api/EngineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/api/EngineInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/world/api/WorldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/world/api/WorldDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/world/impl/WorldDefinitionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/world/impl/WorldDefinitionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/engineInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstanceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstanceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/world/api/WorldInstanceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/api/WorldInstanceInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ex1-cigarets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test/ex1-cigarets.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/master-ex1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test/master-ex1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/impl/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/impl/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/rule/Rule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/rule/Rule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/rule/RuleImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/rule/RuleImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/userInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/userInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +39,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -108,7 +126,8 @@
       <workItem from="1691324212271" duration="1366000" />
       <workItem from="1691524978401" duration="1255000" />
       <workItem from="1691566325338" duration="7780000" />
-      <workItem from="1691577156090" duration="19456000" />
+      <workItem from="1691577156090" duration="19815000" />
+      <workItem from="1691680731655" duration="38256000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -166,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691596213878</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Entities load">
+      <created>1691605379830</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1691605379830</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,7 +217,8 @@
     <MESSAGE value="Remove Xml Loader" />
     <MESSAGE value="create World" />
     <MESSAGE value="Adding initial design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding initial design" />
+    <MESSAGE value="Entities load" />
+    <option name="LAST_COMMIT_MESSAGE" value="Entities load" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -202,39 +229,9 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/engine/Engine.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java</url>
           <line>35</line>
           <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="89" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGeneratorFactory.java</url>
@@ -243,13 +240,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="102" />
+          <line>28</line>
+          <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="103" />
+          <line>42</line>
+          <option name="timeStamp" value="106" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -261,5 +258,10 @@
         <PinnedItemInfo parentTag="schema.generated.PRDWorld" memberName="prdEvironment" />
       </pinned-members>
     </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((IncreaseAction)((java.util.ArrayList)((RuleImpl)rule).actions).get(0)).entityDefinition" custom="engine.rule.RuleImpl,engine.action.impl.IncreaseAction,java.util.ArrayList" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

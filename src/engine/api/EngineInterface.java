@@ -1,8 +1,8 @@
 package engine.api;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
+import dto.impl.MessageDTO;
 
 public interface EngineInterface {
-    void loadSystemWorldFromXmlFile(String xmlFilePath) throws JAXBException, IOException;
+    MessageDTO loadSystemWorldFromXmlFile(String xmlFilePath);
+    MessageDTO getSimulationState();
 }

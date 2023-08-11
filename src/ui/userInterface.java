@@ -9,7 +9,7 @@ public interface userInterface {
     int getUserChoice();
 
     void choiceHandler(int choice);
-
+    void startInterface();
 
 
 }

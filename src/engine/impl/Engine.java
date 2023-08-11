@@ -1,28 +1,39 @@
 package engine.impl;
 
+import dto.impl.MessageDTO;
 import engine.api.EngineInterface;
-import engine.definition.world.api.WorldDefinition;
 import engine.definition.world.impl.WorldDefinitionImpl;
 import engine.execution.instance.world.impl.WorldInstance;
 import engine.file.system.impl.FileSystem;
 import engine.schema.generated.PRDWorld;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
-
 public class Engine implements EngineInterface {
 
     FileSystem fileSystem;
+    WorldDefinitionImpl worldDefinition;
     WorldInstance worldInstance;
 
     public Engine() {
         this.fileSystem = new FileSystem();
-        this.worldInstance = new WorldInstance(new WorldDefinitionImpl());
+        this.worldDefinition = new WorldDefinitionImpl();
+
     };
     @Override
-    public void loadSystemWorldFromXmlFile(String xmlFilePath) throws JAXBException, IOException {
-        this.fileSystem.loadXmlFile(xmlFilePath);
-        PRDWorld prdWorld = this.fileSystem.loadJaxbWorldFromXmlFile();
-        worldInstance.setWorld(prdWorld);
+    public MessageDTO loadSystemWorldFromXmlFile(String xmlFilePath){
+        try {
+            this.fileSystem.loadXmlFile(xmlFilePath);
+            PRDWorld prdWorld = this.fileSystem.loadJaxbWorldFromXmlFile();
+            this.worldDefinition.loadWorldDefintion(prdWorld);
+
+        } catch (Exception e) {
+            return new MessageDTO(false, e.getMessage());
+        }
+        return new MessageDTO(true, "Success: Xml file loaded successfully");
     }
+
+    @Override
+    public MessageDTO getSimulationState() {
+        return null;
+    }
+
 }
