@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Load world definition impl">
-      <change afterPath="$PROJECT_DIR$/src/dto/impl/PrdWorldDTO.java" afterDir="false" />
+    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Implement option 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/api/AbstractDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/api/AbstractDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/impl/SimulationDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/api/EngineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/api/EngineInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/world/api/WorldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/world/api/WorldDefinition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/definition/world/impl/WorldDefinitionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/world/impl/WorldDefinitionImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/impl/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/impl/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +29,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2TVmGEyHvzwSltuLG4JfPEw1xnU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -113,7 +110,7 @@
       <workItem from="1691577156090" duration="19815000" />
       <workItem from="1691680731655" duration="44846000" />
       <workItem from="1691769841097" duration="16604000" />
-      <workItem from="1691838436768" duration="15845000" />
+      <workItem from="1691838436768" duration="17724000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -192,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691847478379</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Implement option 2">
+      <created>1691854670979</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1691854670979</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,7 +224,8 @@
     <MESSAGE value="Entities load" />
     <MESSAGE value="load jaxb" />
     <MESSAGE value="Load world definition impl" />
-    <option name="LAST_COMMIT_MESSAGE" value="Load world definition impl" />
+    <MESSAGE value="Implement option 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement option 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

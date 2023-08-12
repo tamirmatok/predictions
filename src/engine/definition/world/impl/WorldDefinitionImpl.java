@@ -35,7 +35,7 @@ public class WorldDefinitionImpl implements WorldDefinition {
         }
         for (PRDEnvProperty prdEnvProperty : prdWorld.getPRDEvironment().getPRDEnvProperty()) {
             if (envVariableManager.getEnvVariable(prdEnvProperty.getPRDName()) != null) {
-                throw new RuntimeException("Environment variable with name " + prdEnvProperty.getPRDName() + " already exists");
+                throw new IllegalArgumentException("Environment variable with name " + prdEnvProperty.getPRDName() + " already exists");
             }
             PropertyDefinition propertyDefinition = JaxbConverter.convertEnvProperty(prdEnvProperty);
             this.addEnvPropertyDefinition(propertyDefinition);

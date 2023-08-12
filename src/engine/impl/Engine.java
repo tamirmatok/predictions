@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class Engine implements EngineInterface {
 
     private final FileSystem fileSystem;
-    private final WorldDefinitionImpl worldDefinition;
+    private  WorldDefinitionImpl worldDefinition;
     private WorldInstance worldInstance;
     private boolean isWorldLoaded = false;
     private PRDWorld prdWorld;
@@ -35,11 +35,8 @@ public class Engine implements EngineInterface {
             isWorldLoaded = true;
 
         } catch (Exception e) {
-            MessageDTO message = new MessageDTO(false, e.toString());
-
-            //TODO: REMOVE WHEN DEVELOPING PROCESS FINISHED - FOR DEBUGGING PURPOSES ONLY
-            System.out.println(Arrays.toString(e.getStackTrace()));
-            return message;
+            this.resetWorld();
+            return new MessageDTO(false, e.toString());
         }
         return new MessageDTO(true, "Xml file loaded successfully");
     }
@@ -51,5 +48,10 @@ public class Engine implements EngineInterface {
             return new PrdWorldDTO(false, new PRDWorld());
         }
         return new PrdWorldDTO(true, prdWorld);
+    }
+
+    private void resetWorld(){
+        this.prdWorld = new PRDWorld();
+        this.worldDefinition = new WorldDefinitionImpl();
     }
 }
