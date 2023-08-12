@@ -1,10 +1,11 @@
-package engine.file.system.impl;
+package engine.system.file.impl;
 
-import engine.file.system.xml.impl.XmlLoader;
+import engine.system.file.api.fileSystemInterface;
+import engine.system.file.xml.impl.XmlLoader;
 import engine.schema.generated.PRDWorld;
 import engine.schema.jaxb.SchemaBasedJAXB;
 
-public class FileSystem implements engine.file.system.api.fileSystemInterface {
+public class FileSystem implements fileSystemInterface {
 
     XmlLoader xmlLoader;
 

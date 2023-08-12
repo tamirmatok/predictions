@@ -1,4 +1,4 @@
-package engine.file.system.xml.impl;
+package engine.system.file.xml.impl;
 import java.io.File;
 
 
@@ -28,8 +28,6 @@ public class XmlLoader {
         return this.file;
     }
     public boolean isValidXMLPath() {
-        return file.exists() && file.isFile();
+        return file.exists() && file.isFile() && filePath.endsWith(".xml");
     }
-
-
 }

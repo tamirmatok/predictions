@@ -31,4 +31,9 @@ public class EnvVariableManagerImpl implements EnvVariablesManager {
     public Collection<PropertyDefinition> getEnvVariables() {
         return propNameToPropDefinition.values();
     }
+
+    public PropertyDefinition getEnvVariable(String name) {
+        return propNameToPropDefinition.get(name);
+    }
+
 }

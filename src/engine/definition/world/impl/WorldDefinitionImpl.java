@@ -18,13 +18,13 @@ public class WorldDefinitionImpl implements WorldDefinition {
     private final EnvVariablesManager envVariableManager;
     private final ArrayList<Rule> rules;
 
-//    private final Termination termination;
+    private Termination termination;
 
     public WorldDefinitionImpl() {
         this.entityDefinitions = new HashMap<String, EntityDefinition>();
         this.envVariableManager = new EnvVariableManagerImpl();
         this.rules = new ArrayList<>();
-//        this.termination = new Termination();
+        this.termination = null;
     }
 
     @Override
@@ -34,17 +34,18 @@ public class WorldDefinitionImpl implements WorldDefinition {
             this.addEntityDefinition(entityDefinition);
         }
         for (PRDEnvProperty prdEnvProperty : prdWorld.getPRDEvironment().getPRDEnvProperty()) {
+            if (envVariableManager.getEnvVariable(prdEnvProperty.getPRDName()) != null) {
+                throw new RuntimeException("Environment variable with name " + prdEnvProperty.getPRDName() + " already exists");
+            }
             PropertyDefinition propertyDefinition = JaxbConverter.convertEnvProperty(prdEnvProperty);
             this.addEnvPropertyDefinition(propertyDefinition);
         }
         for (PRDRule prdRule : prdWorld.getPRDRules().getPRDRule()) {
             Rule rule = JaxbConverter.convertRule(prdRule, this.entityDefinitions);
-            addRule(rule);
+            this.addRule(rule);
         }
-        //TODO: ADD TERMINATION
-//        this.termination.setTerminationCondition(JaxbConverter.convertTermination(prdWorld.getPRDTermination()));
-
-
+        this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
+        System.out.println("finish");
     }
 
     public HashMap<String, EntityDefinition> getEntityDefinitions() {

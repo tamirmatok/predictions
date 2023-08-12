@@ -12,6 +12,10 @@ public interface ValueGeneratorFactory {
         return new FixedValueGenerator<>(value);
     }
 
+    static <T> ValueGenerator<T> createFixed(T value, T from, T to) {
+        return new FixedValueGenerator<>(value, from, to);
+    }
+
     static ValueGenerator<Boolean> createRandomBoolean() {
         return new RandomBooleanValueGenerator();
     }

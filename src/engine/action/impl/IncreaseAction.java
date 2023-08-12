@@ -22,7 +22,7 @@ public class IncreaseAction extends AbstractAction {
     public void invoke(Context context) {
         PropertyInstance propertyInstance = context.getPrimaryEntityInstance().getPropertyByName(property);
         if (!verifyNumericPropertyTYpe(propertyInstance)) {
-            throw new IllegalArgumentException("increase action can't operate on a none number property [" + property);
+            throw new IllegalArgumentException("increase action can't operate on a none number property " + property);
         }
 
         Integer v = PropertyType.DECIMAL.convert(propertyInstance.getValue());

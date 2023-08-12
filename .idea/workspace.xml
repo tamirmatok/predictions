@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Entities load">
-      <change afterPath="$PROJECT_DIR$/src/dto/api/AbstractDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dto/impl/MessageDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dto/impl/SimulationDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/expression/ExpressionInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/termination/api/terminationInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/instance/termination/impl/Termination.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/rule/ActivationImpl.java" afterDir="false" />
+    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="load jaxb">
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/SetAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/calculation/CalculationAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/calculation/Operation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/api/ConditionAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/api/ConditionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/Condition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/MultipleCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/MultipleConditionAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/SingleCondition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/SingleConditionAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/system/expression/api/ExpressionCalculatorInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/engine/system/expression/impl/ExpressionCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/Engine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/api/EngineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/api/EngineInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/world/api/WorldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/world/api/WorldDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/impl/MessageDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/impl/MessageDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/api/ActionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/api/ActionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/IncreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/IncreaseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/expression/ExpressionInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/environment/api/EnvVariablesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/environment/api/EnvVariablesManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/environment/impl/EnvVariableManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/environment/impl/EnvVariableManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGeneratorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGeneratorFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/fixed/FixedValueGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/fixed/FixedValueGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/definition/world/impl/WorldDefinitionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/world/impl/WorldDefinitionImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/engineInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstanceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstanceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/world/api/WorldInstanceInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/api/WorldInstanceInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/file/system/api/fileSystemInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/system/file/api/fileSystemInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/file/system/impl/FileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/system/file/impl/FileSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/file/system/xml/api/xmlLoaderInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/system/file/xml/api/xmlLoaderInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/file/system/xml/impl/XmlLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/system/file/xml/impl/XmlLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/impl/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/impl/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/rule/Rule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/rule/Rule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/rule/RuleImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/rule/RuleImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/UserInterfaceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/userInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/userInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +42,7 @@
       <list>
         <option value="Python Script" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -75,6 +77,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="engine.system.expression.api" />
       <recent name="engine.world" />
       <recent name="userInterface" />
     </key>
@@ -88,6 +91,7 @@
       <recent name="$PROJECT_DIR$/documents" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="engine.system.expression" />
       <recent name="schema.jaxb" />
       <recent name="engine" />
       <recent name="engine.definition" />
@@ -127,7 +131,9 @@
       <workItem from="1691524978401" duration="1255000" />
       <workItem from="1691566325338" duration="7780000" />
       <workItem from="1691577156090" duration="19815000" />
-      <workItem from="1691680731655" duration="38256000" />
+      <workItem from="1691680731655" duration="44846000" />
+      <workItem from="1691769841097" duration="16604000" />
+      <workItem from="1691838436768" duration="8569000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -192,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691605379830</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="load jaxb">
+      <created>1691762872059</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1691762872059</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +231,8 @@
     <MESSAGE value="create World" />
     <MESSAGE value="Adding initial design" />
     <MESSAGE value="Entities load" />
-    <option name="LAST_COMMIT_MESSAGE" value="Entities load" />
+    <MESSAGE value="load jaxb" />
+    <option name="LAST_COMMIT_MESSAGE" value="load jaxb" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -235,7 +249,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGeneratorFactory.java</url>
-          <line>27</line>
+          <line>31</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -248,20 +262,26 @@
           <line>42</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java</url>
+          <line>146</line>
+          <option name="timeStamp" value="142" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="schema.generated.PRDEntity" memberName="prdPopulation" />
         <PinnedItemInfo parentTag="engine.world.EnvProperty$Type" memberName="name" />
+        <PinnedItemInfo parentTag="dto.impl.MessageDTO" memberName="data" />
         <PinnedItemInfo parentTag="ui.Xml" memberName="file" />
         <PinnedItemInfo parentTag="schema.generated.PRDWorld" memberName="prdEvironment" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="((IncreaseAction)((java.util.ArrayList)((RuleImpl)rule).actions).get(0)).entityDefinition" custom="engine.rule.RuleImpl,engine.action.impl.IncreaseAction,java.util.ArrayList" />
-      </configuration>
-    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/predictions$Main.ic" NAME="Main Coverage Results" MODIFIED="1691832922339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ui.*</FILTER>
+    </SUITE>
   </component>
 </project>

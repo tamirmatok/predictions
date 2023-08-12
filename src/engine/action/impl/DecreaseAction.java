@@ -13,7 +13,7 @@ public class DecreaseAction extends AbstractAction {
     private final String byExpression;
 
     public DecreaseAction(EntityDefinition entityDefinition, String property, String byExpression) {
-        super(ActionType.INCREASE, entityDefinition);
+        super(ActionType.DECREASE, entityDefinition);
         this.property = property;
         this.byExpression = byExpression;
     }
