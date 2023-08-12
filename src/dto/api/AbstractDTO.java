@@ -21,21 +21,8 @@ public abstract class AbstractDTO<T> {
         return success;
     }
 
-    public T getData() {
-        return data;
-    }
-
     public String getTimestamp() {
         return timestamp;
-    }
-
-    // FOR this to happen make sure that each data given has to string method
-    public String printDTO() {
-        return "AbstractDTO{" +
-                "timestamp='" + timestamp + '\'' +
-                ", success=" + success +
-                ", data=" + data +
-                '}';
     }
 
 }

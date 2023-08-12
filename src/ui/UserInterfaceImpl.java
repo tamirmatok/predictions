@@ -1,6 +1,10 @@
 package ui;
 import dto.impl.MessageDTO;
+import dto.impl.PrdWorldDTO;
 import engine.impl.Engine;
+import engine.schema.generated.PRDBySecond;
+import engine.schema.generated.PRDByTicks;
+import engine.schema.generated.PRDWorld;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -22,7 +26,7 @@ public class UserInterfaceImpl implements userInterface {
 
     @Override
     public void printMenu() {
-        System.out.println("Please select one of the following options:");
+        System.out.println("\nPlease select one of the following options:");
         System.out.println("1. load system xml file");
         System.out.println("2. show simulation state");
         System.out.println("3. run simulation");
@@ -53,10 +57,10 @@ public class UserInterfaceImpl implements userInterface {
     public void choiceHandler(int choice) {
         switch (choice) {
             case 1:
-                SendLoadXmlFileRequest();
+                this.sendLoadXmlFileRequest();
                 break;
             case 2:
-//                System.out.println("show simulation state");
+                this.sendGetSimulationStateRequest();
                 break;
             case 3:
 //                System.out.println("run simulation");
@@ -74,6 +78,67 @@ public class UserInterfaceImpl implements userInterface {
 
     }
 
+    private void sendGetSimulationStateRequest() {
+        PrdWorldDTO prdWorldDTO = engine.getSimulationState();
+        if (prdWorldDTO.isSuccess()) {
+            this.printPRDWorld(prdWorldDTO.getPrdWorld());
+        } else {
+            System.out.println("Failed to get simulation state");
+        }
+    }
+
+    private void printPRDWorld(PRDWorld prdWorld) {
+        System.out.println("\n------------------------Simulation Definition------------------------");
+        System.out.println("Entities:");
+        prdWorld.getPRDEntities().getPRDEntity().forEach(entity -> {
+            System.out.println("\tEntity name: " + entity.getName());
+            System.out.println("\t\tEntity population: " + entity.getPRDPopulation());
+            System.out.println("\t\tEntity properties:");
+            entity.getPRDProperties().getPRDProperty().forEach(property -> {
+                System.out.println("\t\tProperty name: " + property.getPRDName());
+                System.out.println("\t\t\tProperty value: " + property.getType());
+                if (property.getPRDRange() != null){
+                    System.out.println("\t\t\tProperty range: " + property.getPRDRange().getFrom() + "-" + property.getPRDRange().getTo());
+                }
+                System.out.println("\t\t\tRandom initialize: " + property.getPRDValue().isRandomInitialize());
+            });
+        });
+        System.out.println("Rules:");
+        prdWorld.getPRDRules().getPRDRule().forEach(rule -> {
+            String tickCount = "1 default";
+            String probability = "1 default";
+            int ruleActionCount = rule.getPRDActions().getPRDAction().size();
+
+            if (rule.getPRDActivation() != null) {
+                if (rule.getPRDActivation().getTicks() != null)
+                    tickCount = rule.getPRDActivation().getTicks().toString();
+                if (rule.getPRDActivation().getProbability() != null) {
+                    probability = rule.getPRDActivation().getProbability().toString();
+                }
+            }
+            System.out.println("\tRule name: " + rule.getName());
+            System.out.println("\t\tActivation: ");
+            System.out.println("\t\t\tTick Counts: " + tickCount);
+            System.out.println("\t\t\tProbability: " + probability);
+            System.out.println("\t\tNumber of actions: " + ruleActionCount);
+            System.out.println("\t\tAction names:");
+            rule.getPRDActions().getPRDAction().forEach(action -> {
+                System.out.println("\t\t\t" + action.getType());
+            });
+        });
+
+        System.out.println("Termination:");
+        prdWorld.getPRDTermination().getPRDByTicksOrPRDBySecond().forEach(termination -> {
+            if (termination instanceof PRDByTicks) {
+                System.out.println("\tBy ticks: " + ((PRDByTicks) termination).getCount());
+            } else if (termination instanceof PRDBySecond){
+                System.out.println("\tBy seconds: " + ((PRDBySecond) termination).getCount());
+            }
+        });
+        System.out.println("------------------------Simulation Definition------------------------");
+
+    }
+
     @Override
     public void startInterface() {
         while (!exit) {
@@ -86,7 +151,7 @@ public class UserInterfaceImpl implements userInterface {
         }
     }
 
-    public void SendLoadXmlFileRequest() {
+    public void sendLoadXmlFileRequest() {
         Scanner scanner = new Scanner(System.in);
         systemLoaded = false;
         do {

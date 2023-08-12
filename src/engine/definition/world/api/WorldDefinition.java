@@ -16,6 +16,4 @@ public interface WorldDefinition {
     void addEntityDefinition(EntityDefinition entityDefinition);
     void addEnvPropertyDefinition(PropertyDefinition propertyDefinition);
     public void addRule(Rule rule);
-    String printWorldDefinition();
-
 }

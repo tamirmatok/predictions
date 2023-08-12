@@ -45,7 +45,6 @@ public class WorldDefinitionImpl implements WorldDefinition {
             this.addRule(rule);
         }
         this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
-        System.out.println("finish");
     }
 
     public HashMap<String, EntityDefinition> getEntityDefinitions() {
@@ -73,8 +72,12 @@ public class WorldDefinitionImpl implements WorldDefinition {
     }
 
     @Override
-    public String printWorldDefinition() {
-        return null;
+    public String toString() {
+        return "World Definition:\n" +
+                "Entity Definitions:" + entityDefinitions + "\n" +
+                "Env Variables:" + envVariableManager + "\n" +
+                "Rules: " + rules + "\n" +
+                "Termination = " + termination + "\n";
     }
 
 }
