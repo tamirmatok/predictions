@@ -10,4 +10,6 @@ public class BooleanPropertyDefinition extends AbstractPropertyDefinition<Boolea
         super(name, PropertyType.BOOLEAN, valueGenerator);
     }
 
+
+
 }

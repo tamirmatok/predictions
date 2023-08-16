@@ -10,4 +10,5 @@ public class RandomIntegerValueGenerator extends AbstractNumericRandomGenerator<
     public Integer generateValue() {
         return from + random.nextInt(to);
     }
+
 }

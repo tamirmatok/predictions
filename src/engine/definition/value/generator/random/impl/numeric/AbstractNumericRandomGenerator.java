@@ -12,4 +12,12 @@ public abstract class AbstractNumericRandomGenerator<T> extends AbstractRandomVa
         this.to = to;
     }
 
+    public T getFrom() {
+        return from;
+    }
+
+    public T getTo() {
+        return to;
+    }
+
 }

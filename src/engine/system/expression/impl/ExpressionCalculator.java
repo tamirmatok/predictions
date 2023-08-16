@@ -3,33 +3,30 @@
 //import engine.definition.property.api.PropertyDefinition;
 //import engine.definition.property.api.PropertyType;
 //import engine.system.expression.api.ExpressionCalculatorInterface;
+//import engine.system.functions.SystemFunctions;
 //import javafx.beans.property.Property;
 //
 //import java.util.ArrayList;
 //
 //public class ExpressionCalculator implements ExpressionCalculatorInterface {
 //    String expression;
-//    ArrayList<String> systemFunctionNames;
-//
-//
+//    SystemFunctions systemFunctions;
 //    public ExpressionCalculator(String expression){
 //        this.expression = expression;
-//        systemFunctionNames = new ArrayList<>();
-//        this.initSystemFunctionNames();
+//        this.systemFunctions = new SystemFunctions();
 //    }
 //
 //    @Override
-//    public PropertyType calculate(String expression) {
+//    public Object calculate(String expression) {
 //        validateExpression(expression);
-//        for (String systemFunctionName : systemFunctionNames) {
+//        for (String systemFunctionName : systemFunctions.getSystemFunctionNames()) {
 //            // Check if it is a system function
 //            if (expression.startsWith(systemFunctionName)) {
 //                return this.calcSystemFunctionExpression(systemFunctionName, expression);
 //            }
-//            else if {
-//                // Check if it is a property in the context of the main entity
-//
-//            }
+////            else if (eck if it is a property in the context of the main entity
+////
+////            }
 //
 //        }
 //        return null;
@@ -82,18 +79,6 @@
 //            default:
 //                throw new IllegalArgumentException("System function " + systemFunctionName + " is not supported");
 //        }
-//    }
-//
-//    private void initSystemFunctionNames(){
-//        systemFunctionNames.add("increase");
-//        systemFunctionNames.add("decrease");
-//        systemFunctionNames.add("calculation");
-//        systemFunctionNames.add("condition");
-//        systemFunctionNames.add("set");
-//        systemFunctionNames.add("kill");
-//        systemFunctionNames.add("clear");
-//        systemFunctionNames.add("replace");
-//        systemFunctionNames.add("proximity");
 //    }
 //
 //}

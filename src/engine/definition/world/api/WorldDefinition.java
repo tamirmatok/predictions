@@ -3,9 +3,11 @@ package engine.definition.world.api;
 import engine.definition.entity.EntityDefinition;
 import engine.definition.environment.api.EnvVariablesManager;
 import engine.definition.property.api.PropertyDefinition;
+import engine.execution.instance.termination.impl.Termination;
 import engine.rule.Rule;
 import engine.schema.generated.PRDWorld;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface WorldDefinition {
@@ -15,5 +17,9 @@ public interface WorldDefinition {
     EnvVariablesManager getEnvVariablesManager();
     void addEntityDefinition(EntityDefinition entityDefinition);
     void addEnvPropertyDefinition(PropertyDefinition propertyDefinition);
-    public void addRule(Rule rule);
+    void addRule(Rule rule);
+
+    ArrayList<Rule> getRules();
+    public Termination getTermination();
+
 }

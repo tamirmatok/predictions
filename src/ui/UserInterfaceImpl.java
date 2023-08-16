@@ -1,10 +1,9 @@
 package ui;
 import dto.impl.MessageDTO;
+import dto.impl.PRDEnvDTO;
 import dto.impl.PrdWorldDTO;
 import engine.impl.Engine;
-import engine.schema.generated.PRDBySecond;
-import engine.schema.generated.PRDByTicks;
-import engine.schema.generated.PRDWorld;
+import engine.schema.generated.*;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -63,7 +62,8 @@ public class UserInterfaceImpl implements userInterface {
                 this.sendGetSimulationStateRequest();
                 break;
             case 3:
-//                System.out.println("run simulation");
+                this.sendSetEnvVariablesRequests();
+                this.sendRunSimulationRequest();
                 break;
             case 4:
 //                System.out.println("show past simulation results");
@@ -76,6 +76,50 @@ public class UserInterfaceImpl implements userInterface {
                 break;
         }
 
+    }
+
+    private void sendRunSimulationRequest() {
+        MessageDTO messageDTO = engine.runSimulation();
+    }
+
+
+    private void sendSetEnvVariablesRequests() {
+        PRDEnvDTO prdEnvDTO = engine.getEnvState();
+        if (!prdEnvDTO.isSuccess()) {
+            System.out.println("Failed to get environment state - please load system XML file first");
+        }
+        else {
+            PRDEvironment prdEnvironment = prdEnvDTO.getPRDEnv();
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please enter a value for each environment variable");
+            for (PRDEnvProperty prdEnvProperty : prdEnvironment.getPRDEnvProperty()) {
+                boolean envVariablesSet = false;
+                do {
+                    System.out.println("Env variable name: " + prdEnvProperty.getPRDName());
+                    System.out.println("Env variable type: " + prdEnvProperty.getType());
+                    if (prdEnvProperty.getPRDRange() != null) {
+                        System.out.println("Env variable range: " + prdEnvProperty.getPRDRange().getFrom() + "-" + prdEnvProperty.getPRDRange().getTo());
+                        System.out.println("Please enter a value between the range: ");
+                    } else {
+                        System.out.println("Please enter a value: ");
+                    }
+                    Object value = scanner.nextLine();
+                    MessageDTO messageDTO = this.sentSetEnvVariableRequest(prdEnvProperty.getPRDName(), value);
+                    if (messageDTO.isSuccess()) {
+                        System.out.println(messageDTO.getMessage());
+                        envVariablesSet = true;
+                    } else {
+                        System.out.println("Failed to set environment variable " + prdEnvProperty.getPRDName() + " to " + value);
+                        System.out.println(messageDTO.getMessage());
+                        System.out.println("Please try again");
+                    }
+                }
+                while (!envVariablesSet);
+            }
+        }
+    }
+    MessageDTO sentSetEnvVariableRequest(String envVariableName, Object value) {
+        return engine.setEnvVariable(envVariableName, value);
     }
 
     private void sendGetSimulationStateRequest() {

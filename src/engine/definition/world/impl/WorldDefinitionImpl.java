@@ -71,6 +71,10 @@ public class WorldDefinitionImpl implements WorldDefinition {
         rules.add(rule);
     }
 
+    public Termination getTermination(){
+        return this.termination;
+    }
+
     @Override
     public String toString() {
         return "World Definition:\n" +

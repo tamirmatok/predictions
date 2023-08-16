@@ -1,10 +1,12 @@
 package engine.impl;
 
 import dto.impl.MessageDTO;
+import dto.impl.PRDEnvDTO;
 import dto.impl.PrdWorldDTO;
 import engine.api.EngineInterface;
 import engine.definition.world.impl.WorldDefinitionImpl;
 import engine.execution.instance.world.impl.WorldInstance;
+import engine.schema.generated.PRDEvironment;
 import engine.system.file.impl.FileSystem;
 import engine.schema.generated.PRDWorld;
 
@@ -38,6 +40,7 @@ public class Engine implements EngineInterface {
             this.resetWorld();
             return new MessageDTO(false, e.toString());
         }
+        this.worldInstance = new WorldInstance(this.worldDefinition);
         return new MessageDTO(true, "Xml file loaded successfully");
     }
 
@@ -50,8 +53,32 @@ public class Engine implements EngineInterface {
         return new PrdWorldDTO(true, prdWorld);
     }
 
+    @Override
+    public PRDEnvDTO getEnvState() {
+        if (!isWorldLoaded) {
+            return new PRDEnvDTO(false, new PRDEvironment());
+        }
+        else{
+            return new PRDEnvDTO(true, prdWorld.getPRDEvironment());
+        }
+    }
+
+    @Override
+    public MessageDTO setEnvVariable(String envVariableName, Object value) {
+        return this.worldInstance.setEnvVariable(envVariableName, value);
+    }
+
     private void resetWorld(){
         this.prdWorld = new PRDWorld();
         this.worldDefinition = new WorldDefinitionImpl();
+    }
+
+    public MessageDTO runSimulation() {
+        try {
+            return this.worldInstance.run();
+        }
+        catch(Exception e){
+            return new MessageDTO(false, e.getMessage());
+        }
     }
 }
