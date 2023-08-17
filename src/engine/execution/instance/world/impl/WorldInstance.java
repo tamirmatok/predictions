@@ -32,8 +32,8 @@ public class WorldInstance implements WorldInstanceInterface {
     private ArrayList<Rule> rules;
     private Termination termination;
     private int countTick;
-    private ArrayList<Rule> rulesOnRun;
-    private ArrayList<Action> actionsOnRun;
+    private final ArrayList<Rule> rulesOnRun;
+    private final ArrayList<Action> actionsOnRun;
 
     public WorldInstance(WorldDefinition worldDefinition) {
         this.worldDefinition = worldDefinition;
@@ -139,7 +139,7 @@ public class WorldInstance implements WorldInstanceInterface {
     private boolean isGoodEntity(EntityInstance entity) {
         // Implementation isGoodEntity method logic
         //TODO
-        return false;
+        return true;
     }
 
     private void resetTick() {
