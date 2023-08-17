@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Load world instance">
-      <change afterPath="$PROJECT_DIR$/src/engine/execution/expression/impl/ExpressionCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/IncreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/IncreaseAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/definition/property/api/PropertyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/property/api/PropertyType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstanceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/EntityInstanceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/system/expression/api/ExpressionCalculatorInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/expression/api/ExpressionCalculatorInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/system/expression/impl/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/expression/impl/Expression.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/system/expression/impl/ExpressionCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/system/functions/SystemFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/system/functions/SystemFunctions.java" afterDir="false" />
-    </list>
+    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Load world instance" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +18,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="origin/david" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -39,6 +27,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -103,6 +92,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
