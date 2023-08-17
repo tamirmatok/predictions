@@ -8,4 +8,19 @@ public class RandomBooleanValueGenerator extends AbstractRandomValueGenerator<Bo
     public Boolean generateValue() {
         return random.nextDouble() < 0.5;
     }
+
+    @Override
+    public Boolean getFrom() {
+        return null;
+    }
+
+    @Override
+    public Boolean getTo() {
+        return null;
+    }
+
+    @Override
+    public boolean hasRange() {
+        return false;
+    }
 }

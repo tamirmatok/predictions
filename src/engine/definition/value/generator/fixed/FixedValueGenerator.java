@@ -31,6 +31,21 @@ public class FixedValueGenerator<T> implements ValueGenerator<T> {
         return fixedValue;
     }
 
+    @Override
+    public boolean hasRange() {
+        return isRangeSet;
+    }
+
+    @Override
+    public T getFrom() {
+        return from;
+    }
+
+    @Override
+    public T getTo() {
+        return to;
+    }
+
     public void validateFixedValueInRange() {
         if (fixedValue instanceof Integer) {
             Integer integerFixedValue = (Integer) fixedValue;
@@ -49,4 +64,5 @@ public class FixedValueGenerator<T> implements ValueGenerator<T> {
             }
         }
     }
+
 }

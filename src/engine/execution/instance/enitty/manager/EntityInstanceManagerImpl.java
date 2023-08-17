@@ -42,6 +42,17 @@ public class EntityInstanceManagerImpl implements EntityInstanceManager {
     }
 
     @Override
+    public List<EntityInstance> getInstancesByDefinition(EntityDefinition entityDefinition) {
+        List<EntityInstance> definitionEntityInstances = new ArrayList<>();
+        for (EntityInstance entityInstance: instances) {
+            if (entityInstance.getEntityDefinition().equals(entityDefinition)) {
+                definitionEntityInstances.add(entityInstance);
+            }
+        }
+        return definitionEntityInstances;
+    }
+
+    @Override
     public EntityInstance getInstanceByName(String name) {
 
         for (EntityInstance entityInstance : instances) {

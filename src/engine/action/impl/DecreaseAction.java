@@ -30,13 +30,13 @@ public class DecreaseAction extends AbstractAction {
         switch (propertyType){
             case FLOAT:
                 Float floatVal = PropertyType.FLOAT.convert(propertyInstance.getValue());
-                Float by = (Float) expressionCalculator.calculate(byExpression);
+                Float by = (Float) expressionCalculator.calculate();
                 Float result = floatVal - by;
                 propertyInstance.updateValue(result);
                 break;
             case DECIMAL:
                 Double intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
-                Double byDouble = (Double) expressionCalculator.calculate(byExpression);
+                Double byDouble = (Double) expressionCalculator.calculate();
                 Double resultDouble = intVal - byDouble;
                 propertyInstance.updateValue(resultDouble);
                 break;

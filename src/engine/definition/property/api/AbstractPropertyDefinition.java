@@ -30,4 +30,14 @@ public abstract class AbstractPropertyDefinition<T> implements PropertyDefinitio
     }
 
 
+    @Override
+    public String toString() {
+        return "PropertyDefinition{" + "name=" + name + ", propertyType=" + propertyType + ", valueGenerator=" + valueGenerator + '}';
+    }
+
+    @Override
+    public ValueGenerator<T> getValueGenerator() {
+        return valueGenerator;
+    }
+
 }

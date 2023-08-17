@@ -6,7 +6,6 @@ public interface PropertyDefinition {
     String getName();
     PropertyType getType();
     Object generateValue();
-
-
+    ValueGenerator getValueGenerator();
 
 }

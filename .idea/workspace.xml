@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="Load world instance" />
+    <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="add workspace.xml">
+      <change afterPath="$PROJECT_DIR$/src/dto/impl/simulation/EntityReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dto/impl/simulation/Simulation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dto/impl/simulation/SimulationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/DecreaseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/IncreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/IncreaseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/SetAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/SetAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/calculation/CalculationAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/calculation/CalculationAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/condition/api/ConditionAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/api/ConditionAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/MultipleCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/MultipleCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/MultipleConditionAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/MultipleConditionAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/SingleCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/SingleCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/SingleConditionAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/action/impl/condition/impl/SingleConditionAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/property/api/AbstractPropertyDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/property/api/AbstractPropertyDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/property/api/PropertyDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/property/api/PropertyDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/api/ValueGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/fixed/FixedValueGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/fixed/FixedValueGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/bool/RandomBooleanValueGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/bool/RandomBooleanValueGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/AbstractNumericRandomGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/AbstractNumericRandomGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomFloatValueGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomFloatValueGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomIntegerValueGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/numeric/RandomIntegerValueGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/definition/value/generator/random/impl/string/RandomStringValueGenerater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/context/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/context/Context.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/context/ContextImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/context/ContextImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/expression/api/ExpressionCalculatorInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/expression/api/ExpressionCalculatorInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/expression/impl/ExpressionCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/expression/impl/ExpressionCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/enitty/manager/EntityInstanceManagerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/property/PropertyInstanceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/property/PropertyInstanceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/factory/impl/JaxbConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/system/functions/SystemFunctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/system/functions/SystemFunctions.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,11 +78,10 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/tamirmatok/mta/java/predictions/src/engine&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
@@ -120,6 +152,7 @@
       <workItem from="1691942068848" duration="1897000" />
       <workItem from="1692174300653" duration="294000" />
       <workItem from="1692175906270" duration="18282000" />
+      <workItem from="1692279405926" duration="3096000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -285,9 +318,34 @@
           <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/engine/execution/expression/impl/ExpressionCalculator.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/engine/execution/expression/impl/ExpressionCalculator.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/engine/system/functions/SystemFunctions.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="205" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ui/UserInterfaceImpl.java</url>
           <line>65</line>
-          <option name="timeStamp" value="154" />
+          <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/engine/execution/instance/world/impl/WorldInstance.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="209" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -295,6 +353,7 @@
       <pinned-members>
         <PinnedItemInfo parentTag="schema.generated.PRDEntity" memberName="prdPopulation" />
         <PinnedItemInfo parentTag="engine.world.EnvProperty$Type" memberName="name" />
+        <PinnedItemInfo parentTag="engine.execution.instance.property.PropertyInstanceImpl" memberName="value" />
         <PinnedItemInfo parentTag="dto.impl.MessageDTO" memberName="data" />
         <PinnedItemInfo parentTag="ui.Xml" memberName="file" />
         <PinnedItemInfo parentTag="engine.definition.world.impl.WorldDefinitionImpl" memberName="rules" />
@@ -303,7 +362,7 @@
     </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/predictions$Main.ic" NAME="Main Coverage Results" MODIFIED="1691832922339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/predictions$Main.ic" NAME="Main Coverage Results" MODIFIED="1692265479766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>ui.*</FILTER>
     </SUITE>
   </component>

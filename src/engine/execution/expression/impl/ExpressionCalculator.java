@@ -23,7 +23,7 @@ public class ExpressionCalculator implements ExpressionCalculatorInterface {
     }
 
     @Override
-    public Object calculate(String expression) {
+    public Object calculate() {
         validateExpression(expression);
         // case 1: if it is a system function expression
         for (String systemFunctionName : systemFunctions.getSystemFunctionNames()) {

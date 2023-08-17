@@ -31,4 +31,14 @@ public class ContextImpl implements Context {
     public PropertyInstance getEnvironmentVariable(String name) {
         return activeEnvironment.getProperty(name);
     }
+
+
+    public EntityInstanceManager getEntityInstanceManager() {
+        return entityInstanceManager;
+    }
+
+    @Override
+    public ActiveEnvironment getActiveEnvironment() {
+        return activeEnvironment;
+    }
 }

@@ -157,7 +157,7 @@ public class JaxbConverter {
                 String entityName = prdAction.getEntity();
                 String propName = prdAction.getProperty();
                 String valueExpression = prdAction.getValue();
-                return new SetAction(entityDefinition, entityName, propName, valueExpression);
+                return new SetAction(entityDefinition, propName, valueExpression);
             case "kill":
                 return new KillAction(entityDefinition);
             //TODO: implement;

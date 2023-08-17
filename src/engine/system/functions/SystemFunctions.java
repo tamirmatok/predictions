@@ -20,9 +20,10 @@ public class SystemFunctions {
     }
 
     public Object environment(PropertyInstance propertyInstance){
-        return propertyInstance.getValue();
+        PropertyType propertyType = propertyInstance.getPropertyDefinition().getType();
+        return propertyType.convert(propertyInstance.getValue());
     }
-    public PropertyType random(Integer to){
-        return PropertyType.DECIMAL.convert(random.nextInt(to));
+    public Object random(Integer to){
+        return (Integer) random.nextInt(to);
     }
 }

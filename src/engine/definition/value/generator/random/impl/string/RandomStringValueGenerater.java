@@ -52,4 +52,19 @@ public class RandomStringValueGenerater extends AbstractRandomValueGenerator<Str
         }
         return randomString.toString();
     }
+
+    @Override
+    public String getFrom() {
+        return null;
+    }
+
+    @Override
+    public String getTo() {
+        return null;
+    }
+
+    @Override
+    public boolean hasRange() {
+        return false;
+    }
 }

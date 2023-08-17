@@ -30,14 +30,14 @@ public class IncreaseAction extends AbstractAction {
         switch (propertyType){
             case FLOAT:
                 Float floatVal = PropertyType.FLOAT.convert(propertyInstance.getValue());
-                Float by = (Float) expressionCalculator.calculate(byExpression);
+                Float by = (Float) expressionCalculator.calculate();
                 Float result = floatVal + by;
                 propertyInstance.updateValue(result);
                 break;
             case DECIMAL:
-                Double intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
-                Double byDouble = (Double) expressionCalculator.calculate(byExpression);
-                Double resultDouble = intVal + byDouble;
+                Integer intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
+                Integer byInt = (Integer) expressionCalculator.calculate();
+                Integer resultDouble = intVal + byInt;
                 propertyInstance.updateValue(resultDouble);
                 break;
             default:

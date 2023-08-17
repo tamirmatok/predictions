@@ -12,12 +12,19 @@ public abstract class AbstractNumericRandomGenerator<T> extends AbstractRandomVa
         this.to = to;
     }
 
+    @Override
     public T getFrom() {
         return from;
     }
 
+    @Override
     public T getTo() {
         return to;
+    }
+
+    @Override
+    public boolean hasRange() {
+        return true;
     }
 
 }

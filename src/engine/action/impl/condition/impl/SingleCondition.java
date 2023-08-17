@@ -1,6 +1,9 @@
 package engine.action.impl.condition.impl;
 
 import engine.action.impl.condition.api.ConditionType;
+import engine.definition.property.api.PropertyType;
+import engine.execution.context.Context;
+import engine.execution.expression.impl.ExpressionCalculator;
 
 public class SingleCondition extends Condition{
 
@@ -44,6 +47,44 @@ public class SingleCondition extends Condition{
             throw new IllegalArgumentException("Single condition error - Invalid operator: " + operator);
         }
     }
+
+
+    public boolean calcCondition(Context context) {
+        PropertyType propertyType = context.getPrimaryEntityInstance().getPropertyByName(propertyName).getPropertyDefinition().getType();
+        ExpressionCalculator expressionCalculator = new ExpressionCalculator(valueExpression, context, propertyType);
+
+        Object properyValue = context.getPrimaryEntityInstance().getPropertyByName(propertyName).getValue();
+        Object expressionValue = expressionCalculator.calculate();
+
+        switch (operator){
+            case "=": {
+                return properyValue.equals(expressionValue);
+            }
+            case "!=": {
+                return !properyValue.equals(expressionValue);
+            }
+            case "bt":{
+                switch (propertyType){
+                    case DECIMAL:
+                        return (Integer)properyValue > (Integer)expressionValue;
+                    case FLOAT:
+                        return (Float)properyValue > (Float)expressionValue;
+                }
+            }
+            case "lt":{
+                switch (propertyType){
+                    case DECIMAL:
+                        return (Integer)properyValue > (Integer)expressionValue;
+                    case FLOAT:
+                        return (Float)properyValue > (Float)expressionValue;
+                }
+            }
+            default:{
+                throw new IllegalArgumentException("Invalid operator: " + operator);
+            }
+        }
+    }
+
 
     public String getEntityName() {
         return entityName;

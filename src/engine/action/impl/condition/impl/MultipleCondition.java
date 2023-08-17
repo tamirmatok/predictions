@@ -1,6 +1,7 @@
 package engine.action.impl.condition.impl;
 
 import engine.action.impl.condition.api.ConditionType;
+import engine.execution.context.Context;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,60 @@ public class MultipleCondition extends Condition{
             throw new IllegalArgumentException("Multiple condition error - Invalid logical operator");
         }
     }
+
+
+    public boolean calcCondition(Context context) {
+        boolean result = this.initResult();
+
+        for (Condition condition : innerConditions) {
+            switch (condition.getConditionType()){
+                case SINGLE: {
+                    SingleCondition singleCondition = (SingleCondition) condition;
+                    boolean conditionResult = singleCondition.calcCondition(context);
+                    result = updateResult(result, conditionResult);
+                    break;
+                }
+                case MULTIPLE:
+                    MultipleCondition multipleCondition = (MultipleCondition) condition;
+                    boolean conditionResult = multipleCondition.calcCondition(context);
+                    result = updateResult(result, conditionResult);
+                    break;
+            }
+            if (!result && logical.equals("and")){
+                return false;
+            }
+        }
+        return result;
+    }
+
+    private boolean initResult(){
+        switch (logical) {
+            case "and": {
+                return true;
+            }
+            case "or": {
+                return false;
+            }
+            default: {
+                throw new IllegalArgumentException("Multiple condition error - Invalid logical operator");
+            }
+        }
+    }
+
+    private boolean updateResult(boolean result, boolean conditionResult){
+        switch (logical) {
+            case "and": {
+                return (result && conditionResult);
+            }
+            case "or": {
+                return (result || conditionResult);
+            }
+            default: {
+                throw new IllegalArgumentException("Multiple condition error - Invalid logical operator");
+            }
+        }
+    }
+
 
     public ArrayList<Condition> getInnerConditions() {
         return innerConditions;
