@@ -5,6 +5,7 @@ import engine.action.api.ActionType;
 import engine.definition.entity.EntityDefinition;
 import engine.definition.property.api.PropertyType;
 import engine.execution.context.Context;
+import engine.execution.expression.impl.ExpressionCalculator;
 import engine.execution.instance.property.PropertyInstance;
 
 public class DecreaseAction extends AbstractAction {
@@ -22,13 +23,26 @@ public class DecreaseAction extends AbstractAction {
     public void invoke(Context context) {
         PropertyInstance propertyInstance = context.getPrimaryEntityInstance().getPropertyByName(property);
         if (!verifyNumericPropertyTYpe(propertyInstance)) {
-            throw new IllegalArgumentException("increase action can't operate on a none number property " + property);
+            throw new IllegalArgumentException("decrease action can't operate on a none number property " + property);
         }
-
-        Integer v = PropertyType.DECIMAL.convert(propertyInstance.getValue());
-        //TODO: validate byExpression;
-        Integer result = v - Integer.parseInt(byExpression);
-        propertyInstance.updateValue(result);
+        PropertyType propertyType = propertyInstance.getPropertyDefinition().getType();
+        ExpressionCalculator expressionCalculator = new ExpressionCalculator(byExpression, context, propertyType);
+        switch (propertyType){
+            case FLOAT:
+                Float floatVal = PropertyType.FLOAT.convert(propertyInstance.getValue());
+                Float by = (Float) expressionCalculator.calculate(byExpression);
+                Float result = floatVal - by;
+                propertyInstance.updateValue(result);
+                break;
+            case DECIMAL:
+                Double intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
+                Double byDouble = (Double) expressionCalculator.calculate(byExpression);
+                Double resultDouble = intVal - byDouble;
+                propertyInstance.updateValue(resultDouble);
+                break;
+            default:
+                throw new IllegalArgumentException("decrease action can't operate on a none number property " + property);
+        }
     }
 
     private boolean verifyNumericPropertyTYpe(PropertyInstance propertyValue) {

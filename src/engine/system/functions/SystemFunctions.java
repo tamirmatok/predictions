@@ -3,6 +3,7 @@ package engine.system.functions;
 import engine.definition.environment.api.EnvVariablesManager;
 import engine.definition.property.api.PropertyType;
 import engine.execution.instance.environment.api.ActiveEnvironment;
+import engine.execution.instance.property.PropertyInstance;
 
 import java.util.Random;
 
@@ -18,11 +19,10 @@ public class SystemFunctions {
         return functionNames;
     }
 
-    private Object environment(ActiveEnvironment activeEnvironment, String envVarName){
-        return activeEnvironment.getProperty(envVarName).getValue();
+    public Object environment(PropertyInstance propertyInstance){
+        return propertyInstance.getValue();
     }
-
-//    private PropertyType random(int to){
-//        return PropertyType.DECIMAL.convert(random.nextInt(to));
-//    }
+    public PropertyType random(Integer to){
+        return PropertyType.DECIMAL.convert(random.nextInt(to));
+    }
 }

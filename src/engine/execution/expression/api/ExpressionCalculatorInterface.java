@@ -1,6 +1,4 @@
-package engine.system.expression.api;
-
-import engine.definition.property.api.PropertyType;
+package engine.execution.expression.api;
 
 public interface ExpressionCalculatorInterface {
       Object calculate(String expression);
