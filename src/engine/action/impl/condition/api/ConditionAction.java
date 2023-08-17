@@ -36,4 +36,5 @@ public abstract class ConditionAction extends AbstractAction {
     public void setThenActions(ArrayList<Action> thenActions) {
         this.thenActions = thenActions;
     }
+
 }

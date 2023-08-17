@@ -5,6 +5,8 @@ import engine.action.impl.condition.api.ConditionAction;
 import engine.action.impl.condition.api.ConditionType;
 import engine.definition.entity.EntityDefinition;
 import engine.execution.context.Context;
+import engine.execution.context.ContextImpl;
+import engine.execution.instance.enitty.EntityInstance;
 
 import java.util.ArrayList;
 
@@ -21,8 +23,22 @@ public class MultipleConditionAction extends ConditionAction {
     public MultipleCondition getMultipleCondition() {
         return multipleCondition;
     }
+
     @Override
     public void invoke(Context context) {
-
+        ArrayList<Action> actionsOnRun;
+        if (multipleCondition.calcCondition(context)) {
+            actionsOnRun = new ArrayList<Action>(this.getThenActions());
+        }
+        else {
+            actionsOnRun = new ArrayList<Action>(this.getElseActions());
+        }
+        for (Action action : actionsOnRun) {
+            EntityDefinition newContextEntityDefinition = action.getContextEntity();
+            for (EntityInstance entity: context.getEntityInstanceManager().getInstancesByDefinition(newContextEntityDefinition)) {
+                Context newContext = new ContextImpl(entity, context.getEntityInstanceManager(), context.getActiveEnvironment());
+                action.invoke(newContext);
+            }
+        }
     }
 }

@@ -13,5 +13,4 @@ public class PrdWorldDTO extends AbstractDTO<PRDWorld> {
         return data;
     }
 
-
 }

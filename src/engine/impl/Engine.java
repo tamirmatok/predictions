@@ -75,7 +75,7 @@ public class Engine implements EngineInterface {
 
     public MessageDTO runSimulation() {
         try {
-            return this.worldInstance.run();
+            return this.worldInstance.runSimulation();
         }
         catch(Exception e){
             return new MessageDTO(false, e.getMessage());

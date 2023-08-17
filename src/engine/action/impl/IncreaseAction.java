@@ -5,6 +5,7 @@ import engine.action.api.ActionType;
 import engine.definition.entity.EntityDefinition;
 import engine.definition.property.api.PropertyType;
 import engine.execution.context.Context;
+import engine.execution.expression.impl.ExpressionCalculator;
 import engine.execution.instance.property.PropertyInstance;
 
 public class IncreaseAction extends AbstractAction {
@@ -24,19 +25,24 @@ public class IncreaseAction extends AbstractAction {
         if (!verifyNumericPropertyTYpe(propertyInstance)) {
             throw new IllegalArgumentException("increase action can't operate on a none number property " + property);
         }
-
-        Integer v = PropertyType.DECIMAL.convert(propertyInstance.getValue());
-
-        // something that evaluates expression to a number, say the result is 5...
-        // now you can also access the environment variables through the active environment...
-        // PropertyInstance blaPropertyInstance = activeEnvironment.getProperty("bla");
-        int x = 5;
-
-        // actual calculation
-        int result = x + v;
-
-        // updating result on the property
-        propertyInstance.updateValue(result);
+        PropertyType propertyType = propertyInstance.getPropertyDefinition().getType();
+        ExpressionCalculator expressionCalculator = new ExpressionCalculator(byExpression, context, propertyType);
+        switch (propertyType){
+            case FLOAT:
+                Float floatVal = PropertyType.FLOAT.convert(propertyInstance.getValue());
+                Float by = (Float) expressionCalculator.calculate();
+                Float result = floatVal + by;
+                propertyInstance.updateValue(result);
+                break;
+            case DECIMAL:
+                Integer intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
+                Integer byInt = (Integer) expressionCalculator.calculate();
+                Integer resultInt = intVal + byInt;
+                propertyInstance.updateValue(resultInt);
+                break;
+            default:
+                throw new IllegalArgumentException("increase action can't operate on a none number property " + property);
+        }
     }
 
     private boolean verifyNumericPropertyTYpe(PropertyInstance propertyValue) {
