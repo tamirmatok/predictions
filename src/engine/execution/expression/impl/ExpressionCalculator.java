@@ -80,7 +80,6 @@ public class ExpressionCalculator implements ExpressionCalculatorInterface {
         switch (systemFunctionName) {
             case "environment":
                 return systemFunctions.environment(context.getEnvironmentVariable(innerExpression));
-
             case "random":
                 Integer to = Integer.parseInt(innerExpression);
                 return systemFunctions.random(to);

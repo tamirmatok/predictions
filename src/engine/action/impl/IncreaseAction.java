@@ -37,8 +37,8 @@ public class IncreaseAction extends AbstractAction {
             case DECIMAL:
                 Integer intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
                 Integer byInt = (Integer) expressionCalculator.calculate();
-                Integer resultDouble = intVal + byInt;
-                propertyInstance.updateValue(resultDouble);
+                Integer resultInt = intVal + byInt;
+                propertyInstance.updateValue(resultInt);
                 break;
             default:
                 throw new IllegalArgumentException("increase action can't operate on a none number property " + property);

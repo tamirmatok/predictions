@@ -1,18 +1,18 @@
 package dto.impl.simulation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EntityReport {
     String entityName;
     int initialPopulation;
     int finalPopulation;
-    ArrayList<String> propertyNames;
+    HashMap<String,String> propertyNameToPropertyValue;
 
-    public EntityReport(String entityName, int initialPopulation, int finalPopulation, ArrayList<String> propertyNames) {
+    public EntityReport(String entityName, int initialPopulation) {
         this.entityName = entityName;
         this.initialPopulation = initialPopulation;
-        this.finalPopulation = finalPopulation;
-        this.propertyNames = propertyNames;
+        this.propertyNameToPropertyValue = new HashMap<String,String>();
     }
 
     public String getEntityName() {
@@ -27,8 +27,16 @@ public class EntityReport {
         return finalPopulation;
     }
 
-    public ArrayList<String> getPropertyNames() {
-        return propertyNames;
+    public void setFinalPopulation(int finalPopulation) {
+        this.finalPopulation = finalPopulation;
+    }
+
+    public HashMap<String,String> getPropertyNameToPropertyValue() {
+        return propertyNameToPropertyValue;
+    }
+
+    public void addProperty(String propertyName, String propertyValue) {
+        propertyNameToPropertyValue.put(propertyName, propertyValue);
     }
 
 }
