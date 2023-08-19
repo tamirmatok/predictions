@@ -66,7 +66,21 @@ public class WorldDefinitionImpl implements WorldDefinition {
             for (PRDEntity prdEntity : prdEntities.getPRDEntity()) {
                 if (prdEntity.getName().equals(prdAction.getEntity())) {
                     entityFound = true;
-                    break;
+                }
+                if (entityFound){
+                    boolean propertyFound = false;
+                    String propertyName = prdAction.getProperty();
+                    if (propertyName != null){
+                        for (PRDProperty prdProperty: prdEntity.getPRDProperties().getPRDProperty()){
+                            if (prdProperty.getPRDName().equals(propertyName)){
+                                propertyFound = true;
+                            }
+                        }
+                        if (!propertyFound){
+                            throw new IllegalArgumentException("Rule " + prdRule.getName() + " -   un exist property '"+ propertyName + "'" + "for entity '" + prdEntity.getName());
+                        }
+                    }
+
                 }
             }
             if (!entityFound) {
