@@ -31,11 +31,8 @@ public class SingleConditionAction extends ConditionAction {
             actionsOnRun = new ArrayList<Action>(this.getElseActions());
         }
         for (Action action : actionsOnRun) {
-            EntityDefinition newContextEntityDefinition = action.getContextEntity();
-            for (EntityInstance entity: context.getEntityInstanceManager().getInstancesByDefinition(newContextEntityDefinition)) {
-                Context newContext = new ContextImpl(entity, context.getEntityInstanceManager(), context.getActiveEnvironment());
-                action.invoke(newContext);
-            }
+            Context newContext = new ContextImpl(context.getPrimaryEntityInstance(), context.getEntityInstanceManager(), context.getActiveEnvironment());
+            action.invoke(newContext);
         }
     }
 

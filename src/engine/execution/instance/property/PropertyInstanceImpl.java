@@ -21,16 +21,16 @@ public class PropertyInstanceImpl implements PropertyInstance {
         if (valueGenerator.hasRange()) {
             switch(propertyType){
                 case DECIMAL:
-                    Integer min = (Integer) propertyDefinition.getValueGenerator().getFrom();
-                    Integer max = (Integer) propertyDefinition.getValueGenerator().getTo();
+                    Integer min = Integer.parseInt(propertyDefinition.getValueGenerator().getFrom().toString());
+                    Integer max = Integer.parseInt(propertyDefinition.getValueGenerator().getTo().toString());
                     Integer val = Integer.parseInt(value.toString());
                     if (val < min || val > max) {
                         throw new IllegalArgumentException("Value " + value + " is not in range [" + min + ", " + max + "]");
                     }
                     break;
                 case FLOAT:
-                    Float minD = (Float) propertyDefinition.getValueGenerator().getFrom();
-                    Float maxD = (Float) propertyDefinition.getValueGenerator().getTo();
+                    Float minD = Float.parseFloat(propertyDefinition.getValueGenerator().getFrom().toString());
+                    Float maxD = Float.parseFloat(propertyDefinition.getValueGenerator().getTo().toString());
                     Float valf = Float.parseFloat(value.toString());
                     if (valf < minD || valf > maxD) {
                         throw new IllegalArgumentException("Value " + value + " is not in range [" + minD + ", " + maxD + "]");
@@ -46,6 +46,9 @@ public class PropertyInstanceImpl implements PropertyInstance {
             if (propertyType == PropertyType.DECIMAL) {
                 this.value = Integer.parseInt(value.toString());
             } else if (propertyType == PropertyType.BOOLEAN) {
+                if (!value.toString().equalsIgnoreCase("true") && !value.toString().equalsIgnoreCase("false")){
+                    throw new Exception("boolean should be true or false");
+                }
                 this.value = Boolean.parseBoolean(value.toString());
             } else if (propertyType == PropertyType.FLOAT) {
                 this.value = Double.parseDouble(value.toString());

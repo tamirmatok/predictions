@@ -214,7 +214,7 @@ public class JaxbConverter {
             throw new IllegalArgumentException("Multiple condition error - Logical operator cannot be null or empty");
         }
         MultipleCondition multipleCondition = (MultipleCondition) getCondition(prdCondition);
-        return new MultipleConditionAction(entityDefinition, multipleCondition, thenActions, thenActions);
+        return new MultipleConditionAction(entityDefinition, multipleCondition, thenActions, elseActions);
     }
 
 

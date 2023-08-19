@@ -42,21 +42,27 @@ public class CalculationAction extends AbstractAction {
                 result = arg1 * arg2;
                 break;
             case "divide":
-                result = arg1 / arg2;
+                if (arg2 != 0) {
+                    result = arg1 / arg2;
+                }
                 break;
             default:
                 throw new IllegalArgumentException("opertation" + operation.getOperation() + "can't operate on a none number property " + resultProp);
         }
-        switch (propertyType) {
-            case DECIMAL:
-                Integer resultInt = Integer.parseInt(result.toString());
-                context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(resultInt);
-                break;
-            case FLOAT:
-                context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(result);
-                break;
-            default:
-                throw new IllegalArgumentException("opertation" + operation.getOperation() + "can't operate on a none number property " + resultProp);
+        if (result != null) {
+            switch (propertyType) {
+                case DECIMAL:
+                    Integer resultInt = Math.round(Float.parseFloat(result.toString()));
+                    context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(resultInt);
+                    break;
+                case FLOAT:
+                    Float resultFloat = Float.parseFloat(result.toString());
+                    context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(resultFloat);
+                    break;
+                default:
+                    throw new IllegalArgumentException("opertation" + operation.getOperation() + "can't operate on a none number property " + resultProp);
+            }
         }
     }
+
 }

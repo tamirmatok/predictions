@@ -29,16 +29,30 @@ public class DecreaseAction extends AbstractAction {
         ExpressionCalculator expressionCalculator = new ExpressionCalculator(byExpression, context, propertyType);
         switch (propertyType){
             case FLOAT:
-                Float floatVal = PropertyType.FLOAT.convert(propertyInstance.getValue());
-                Float by = (Float) expressionCalculator.calculate();
+                Float floatVal = Float.parseFloat(propertyInstance.getValue().toString());
+                Float by = Float.parseFloat(expressionCalculator.calculate().toString());
                 Float result = floatVal - by;
-                propertyInstance.updateValue(result);
+                if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
+                    float from = Float.parseFloat(propertyInstance.getPropertyDefinition().getValueGenerator().getFrom().toString());
+                    if (from < result) {
+                        propertyInstance.updateValue(result);
+                    }
+                } else {
+                    propertyInstance.updateValue(result);
+                }
                 break;
             case DECIMAL:
-                Double intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
-                Double byDouble = (Double) expressionCalculator.calculate();
-                Double resultDouble = intVal - byDouble;
-                propertyInstance.updateValue(resultDouble);
+                Integer intVal =Integer.parseInt(propertyInstance.getValue().toString());
+                Integer byInt = Integer.parseInt((expressionCalculator.calculate().toString()));
+                Integer resultInt = intVal - byInt;
+                if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
+                    int from = Integer.parseInt(propertyInstance.getPropertyDefinition().getValueGenerator().getFrom().toString());
+                    if (from < resultInt) {
+                        propertyInstance.updateValue(resultInt);
+                    }
+                } else {
+                    propertyInstance.updateValue(resultInt);
+                }
                 break;
             default:
                 throw new IllegalArgumentException("decrease action can't operate on a none number property " + property);

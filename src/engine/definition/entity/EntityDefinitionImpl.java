@@ -8,7 +8,7 @@ import java.util.List;
 public class EntityDefinitionImpl implements EntityDefinition {
 
     private final String name;
-    private final int population;
+    private int population;
     private final List<PropertyDefinition> properties;
 
     public EntityDefinitionImpl(String name, int population) {
@@ -25,6 +25,11 @@ public class EntityDefinitionImpl implements EntityDefinition {
     @Override
     public int getPopulation() {
         return population;
+    }
+
+
+    public void setPopulation(int population){
+        this.population = population;
     }
 
     @Override

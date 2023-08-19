@@ -66,17 +66,17 @@ public class SingleCondition extends Condition{
             case "bt":{
                 switch (propertyType){
                     case DECIMAL:
-                        return (Integer)properyValue > (Integer)expressionValue;
+                        return Integer.parseInt(properyValue.toString()) > Integer.parseInt(expressionValue.toString());
                     case FLOAT:
-                        return (Float)properyValue > (Float)expressionValue;
+                        return Float.parseFloat(properyValue.toString()) > Float.parseFloat(expressionValue.toString());
                 }
             }
             case "lt":{
                 switch (propertyType){
                     case DECIMAL:
-                        return (Integer)properyValue > (Integer)expressionValue;
+                        return Integer.parseInt(properyValue.toString()) < Integer.parseInt(expressionValue.toString());
                     case FLOAT:
-                        return (Float)properyValue > (Float)expressionValue;
+                        return Float.parseFloat(properyValue.toString()) < Float.parseFloat(expressionValue.toString());
                 }
             }
             default:{

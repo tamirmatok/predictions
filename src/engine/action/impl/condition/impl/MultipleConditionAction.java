@@ -16,7 +16,7 @@ public class MultipleConditionAction extends ConditionAction {
 
 
     public MultipleConditionAction(EntityDefinition entityDefinition, MultipleCondition multipleCondition, ArrayList<Action> thenActions, ArrayList<Action> elseActions) {
-        super(entityDefinition,thenActions, elseActions);
+        super(entityDefinition, thenActions, elseActions);
         this.multipleCondition = multipleCondition;
     }
 
@@ -29,16 +29,12 @@ public class MultipleConditionAction extends ConditionAction {
         ArrayList<Action> actionsOnRun;
         if (multipleCondition.calcCondition(context)) {
             actionsOnRun = new ArrayList<Action>(this.getThenActions());
-        }
-        else {
+        } else {
             actionsOnRun = new ArrayList<Action>(this.getElseActions());
         }
         for (Action action : actionsOnRun) {
-            EntityDefinition newContextEntityDefinition = action.getContextEntity();
-            for (EntityInstance entity: context.getEntityInstanceManager().getInstancesByDefinition(newContextEntityDefinition)) {
-                Context newContext = new ContextImpl(entity, context.getEntityInstanceManager(), context.getActiveEnvironment());
-                action.invoke(newContext);
-            }
+            Context newContext = new ContextImpl(context.getPrimaryEntityInstance(), context.getEntityInstanceManager(), context.getActiveEnvironment());
+            action.invoke(newContext);
         }
     }
 }

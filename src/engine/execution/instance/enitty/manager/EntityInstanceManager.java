@@ -8,7 +8,7 @@ import java.util.List;
 public interface EntityInstanceManager {
 
     EntityInstance create(EntityDefinition entityDefinition);
-    List<EntityInstance> getInstances();
+    List<EntityInstance> getEntityInstances();
 
     List<EntityInstance> getInstancesByDefinition(EntityDefinition entityDefinition);
     EntityInstance getInstanceByName(String name);

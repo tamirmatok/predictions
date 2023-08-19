@@ -8,13 +8,15 @@ import engine.schema.jaxb.SchemaBasedJAXB;
 public class FileSystem implements fileSystemInterface {
 
     XmlLoader xmlLoader;
+    String xmlFilePath;
 
-    public FileSystem() {
+    public FileSystem(String xmlFilePath) {
         this.xmlLoader = new XmlLoader();
+        this.xmlFilePath = xmlFilePath;
     }
 
     @Override
-    public void loadXmlFile(String xmlFilePath) {
+    public void loadXmlFile() {
         this.xmlLoader.load(xmlFilePath);
     }
 

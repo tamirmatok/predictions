@@ -41,4 +41,8 @@ public class EntityInstanceImpl implements EntityInstance {
     public EntityDefinition getEntityDefinition() {
         return this.entityDefinition;
     }
+
+    public HashMap<String, PropertyInstance> getProperties() {
+        return (HashMap<String, PropertyInstance>) properties;
+    }
 }

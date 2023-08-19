@@ -7,12 +7,30 @@ public class EntityReport {
     String entityName;
     int initialPopulation;
     int finalPopulation;
-    HashMap<String,String> propertyNameToPropertyValue;
+    ArrayList<PropertyValueCount> propertyValueCounts;
 
-    public EntityReport(String entityName, int initialPopulation) {
+    public EntityReport(String entityName, int initialPopulation, ArrayList<String> propertyNames) {
         this.entityName = entityName;
         this.initialPopulation = initialPopulation;
-        this.propertyNameToPropertyValue = new HashMap<String,String>();
+        this.propertyValueCounts = new ArrayList<PropertyValueCount>();
+        this.setCounts(propertyNames);
+    }
+
+
+
+    private void setCounts(ArrayList<String> propertyNames) {
+        for (String propertyName: propertyNames){
+            PropertyValueCount propertyValueCount = new PropertyValueCount(propertyName);
+            propertyValueCounts.add(propertyValueCount);
+        }
+    }
+
+    public void reportPropertyValue(String propertyName, String value){
+        for (PropertyValueCount propertyValueCount: propertyValueCounts){
+            if (propertyValueCount.getPropertyName().equals(propertyName)){
+                propertyValueCount.addValue(value);
+            }
+        }
     }
 
     public String getEntityName() {
@@ -31,12 +49,9 @@ public class EntityReport {
         this.finalPopulation = finalPopulation;
     }
 
-    public HashMap<String,String> getPropertyNameToPropertyValue() {
-        return propertyNameToPropertyValue;
+    public ArrayList<PropertyValueCount> getPropertyValueCounts() {
+        return propertyValueCounts;
     }
 
-    public void addProperty(String propertyName, String propertyValue) {
-        propertyNameToPropertyValue.put(propertyName, propertyValue);
-    }
 
 }

@@ -2,25 +2,48 @@ package ui;
 import dto.impl.MessageDTO;
 import dto.impl.PRDEnvDTO;
 import dto.impl.PrdWorldDTO;
+import dto.impl.PropertiesDTO;
+import dto.impl.simulation.EntityReport;
+import dto.impl.simulation.PropertyValueCount;
+import dto.impl.simulation.SimulationDTO;
+import dto.impl.simulation.SimulationReport;
 import engine.impl.Engine;
 import engine.schema.generated.*;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.IntStream;
 
 public class UserInterfaceImpl implements userInterface {
 
     private final Engine engine;
     private int userChoice;
     private boolean systemLoaded;
-
     private boolean exit;
+
+    private boolean backToMainMenuPressed;
+
+    int backToMainMenuIndex;
+
 
     public UserInterfaceImpl() {
         engine = new Engine();
         userChoice = 0;
         systemLoaded = false;
         exit = false;
+        backToMainMenuPressed = false;
+        backToMainMenuIndex = -1;
+    }
+
+    @Override
+    public void startInterface() {
+        while (!exit) {
+            printMenu();
+            int choice = getUserChoice(1,5);
+            choiceHandler(choice);
+            if (choice == 5) {
+                exit = true;
+            }
+        }
     }
 
     @Override
@@ -33,17 +56,17 @@ public class UserInterfaceImpl implements userInterface {
         System.out.println("5. exit");
 
     }
-    @Override
-    public int getUserChoice() {
+
+    public int getUserChoice(int from, int to) {
         while (true) {
-        Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
             try {
                 System.out.print("Please enter your choice: ");
                 userChoice = scanner.nextInt();
-                if (userChoice >= 1 && userChoice <= 5) {
+                if (userChoice >= from && userChoice <= to) {
                     return userChoice;
                 }
-                System.out.println("Invalid choice - number should be between 1 to 5");
+                System.out.println("Invalid choice - number should be between " + from + " to " + to);
 
             } catch (InputMismatchException e) {
 
@@ -62,74 +85,275 @@ public class UserInterfaceImpl implements userInterface {
                 this.sendGetSimulationStateRequest();
                 break;
             case 3:
-                this.sendSetEnvVariablesRequests();
                 this.sendRunSimulationRequest();
                 break;
             case 4:
-//                System.out.println("show past simulation results");
+                this.presentSimulationReports();
                 break;
             case 5:
                 exit = true;
                 break;
-            default:
-//                System.out.println("Invalid choice");
-                break;
         }
+    }
 
+    private SimulationDTO sendGetSimulationReportRequest() {
+        return engine.getSimulationReports();
     }
 
     private void sendRunSimulationRequest() {
-        MessageDTO messageDTO = engine.runSimulation();
+        this.sendSetEnvVariablesRequests();
+        if (!backToMainMenuPressed) {
+            System.out.println("Simulation is running... please wait !");
+            MessageDTO messageDTO = engine.startSimulation();
+            if (messageDTO.isSuccess()) {
+                System.out.println("Simulation run finish successfully!");
+                System.out.println("Termination cause : " + messageDTO.getMessage());
+            } else {
+                System.out.println("Engine Error: " + messageDTO.getMessage());
+            }
+        }
+        else {
+            backToMainMenuPressed = false;
+        }
     }
 
 
     private void sendSetEnvVariablesRequests() {
+        Scanner scanner = new Scanner(System.in);
+        MessageDTO messageDTO = engine.resetActiveEnvironment();
         PRDEnvDTO prdEnvDTO = engine.getEnvState();
-        if (!prdEnvDTO.isSuccess()) {
+        if (!prdEnvDTO.isSuccess() || !messageDTO.isSuccess()) {
             System.out.println("Failed to get environment state - please load system XML file first");
+            backToMainMenuPressed = true;
         }
         else {
             PRDEvironment prdEnvironment = prdEnvDTO.getPRDEnv();
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Please enter a value for each environment variable");
-            for (PRDEnvProperty prdEnvProperty : prdEnvironment.getPRDEnvProperty()) {
-                boolean envVariablesSet = false;
-                do {
-                    System.out.println("Env variable name: " + prdEnvProperty.getPRDName());
-                    System.out.println("Env variable type: " + prdEnvProperty.getType());
+            System.out.println("\n------------------------Set env properties------------------------");
+            System.out.println("Please select env property to set a value (default is random initialize)");
+            int index;
+            boolean donePressed = false;
+            backToMainMenuPressed = false;
+            do {
+                index = 0;
+                for (PRDEnvProperty prdEnvProperty : prdEnvironment.getPRDEnvProperty()) {
+                    System.out.println((index + 1) + " - Env property name: " + prdEnvProperty.getPRDName());
+                    index++;
+                }
+                System.out.println((prdEnvironment.getPRDEnvProperty().size() + 1) + " - Save and done");
+                System.out.println((prdEnvironment.getPRDEnvProperty().size() + 2) + " - Cancel and get back to main menu");
+                int doneIndex = prdEnvironment.getPRDEnvProperty().size() + 1;
+                int getBackToMenuIndex = prdEnvironment.getPRDEnvProperty().size() + 2;
+                int choice = getUserChoice(1, getBackToMenuIndex);
+                if (choice == doneIndex) {
+                    donePressed = true;
+                    PropertiesDTO propertiesDTO = engine.setEnvVariables();
+                    if (!propertiesDTO.isSuccess()) {
+                        System.out.println("Failed to init env properties");
+                    } else {
+                        HashMap<String, String> data = propertiesDTO.getData();
+                        System.out.println("\nEnv properties been set successfully");
+                        System.out.println("\n------------------------Set env properties------------------------\n");
+                        System.out.println("\n*********** Env properties initialize summarize ***********\n");
+                        for (String properyName : data.keySet()) {
+                            System.out.println("\tEnv property name: " + properyName + ", Env property value: " + data.get(properyName));
+                        }
+                        System.out.println("\n*********** Env properties initialize summarize ***********\n");
+                    }
+                }
+                else if (choice == getBackToMenuIndex) {
+                    backToMainMenuPressed = true;
+                    System.out.println("Env properties didn't initialized.");
+                    System.out.println("\n------------------------Set env properties------------------------\n");
+                } else {
+                    PRDEnvProperty prdEnvProperty = prdEnvironment.getPRDEnvProperty().get(choice - 1);
+                    System.out.println("\n---------------- Env properties initialize - " + prdEnvProperty.getPRDName() +  " ----------------");
+                    System.out.println("You chose to set property " + prdEnvProperty.getPRDName() + ".");
+                    System.out.println("\tProperty type: " + prdEnvProperty.getType());
                     if (prdEnvProperty.getPRDRange() != null) {
-                        System.out.println("Env variable range: " + prdEnvProperty.getPRDRange().getFrom() + "-" + prdEnvProperty.getPRDRange().getTo());
-                        System.out.println("Please enter a value between the range: ");
+                        String from;
+                        String to;
+                        if (prdEnvProperty.getType().equals("decimal")){
+                            from = String.valueOf((int) prdEnvProperty.getPRDRange().getFrom());
+                            to = String.valueOf((int) prdEnvProperty.getPRDRange().getTo());
+                        }
+                        else {
+                            from =  String.valueOf(prdEnvProperty.getPRDRange().getFrom());
+                            to =  String.valueOf(prdEnvProperty.getPRDRange().getTo());
+                        }
+                        System.out.println("\tProperty range: " + from + "-" + to);
+                        System.out.println("Please enter a value of type " + prdEnvProperty.getType() +  " between the range: ");
                     } else {
                         System.out.println("Please enter a value: ");
                     }
                     Object value = scanner.nextLine();
-                    MessageDTO messageDTO = this.sentSetEnvVariableRequest(prdEnvProperty.getPRDName(), value);
-                    if (messageDTO.isSuccess()) {
+                    messageDTO = engine.setEnvVariable(prdEnvProperty.getPRDName(), value);
+                    if (!messageDTO.isSuccess()) {
+                        System.out.println("\n*********** Set " + prdEnvProperty.getPRDName() + " problem" + " ***********\n");
+                        System.out.println("Failed to set environment property " + prdEnvProperty.getPRDName() + " to " + value);
                         System.out.println(messageDTO.getMessage());
-                        envVariablesSet = true;
+                        System.out.println("Please try again (: ");
+                        System.out.println("\n*********** Set " + prdEnvProperty.getPRDName() + " problem" + " ***********");
+                        System.out.println("\n---------------- Env properties initialize - " + prdEnvProperty.getPRDName() +  " ----------------\n");
                     } else {
-                        System.out.println("Failed to set environment variable " + prdEnvProperty.getPRDName() + " to " + value);
                         System.out.println(messageDTO.getMessage());
-                        System.out.println("Please try again");
+                        System.out.println("\n---------------- Env properties initialize - " + prdEnvProperty.getPRDName() +  "----------------\n");
                     }
                 }
-                while (!envVariablesSet);
             }
+            while (!donePressed && !backToMainMenuPressed);
         }
     }
+
+
+    private void presentSimulationReports() {
+        SimulationDTO simulationDTO = this.sendGetSimulationReportRequest();
+        if (!simulationDTO.isSuccess()) {
+            System.out.println(simulationDTO.getErrorMessage());
+
+        } else if (simulationDTO.getData().size() == 0) {
+            System.out.println("No simulation records found.");
+            System.out.println("\n--------------Simulation reports----------------");
+
+        } else {
+            do {
+                int backToMenuIndex = simulationDTO.getSimulations().size() + 1;
+                System.out.println("Please select number of simulation: ");
+                for (SimulationReport simulationReport : simulationDTO.getSimulations()) {
+                    System.out.println(simulationReport.getSimulationId() + " - " + simulationReport.getTimestamp());
+                }
+                System.out.println(backToMenuIndex + " - Back to main menu");
+                int userChoice = getUserChoice(1, simulationDTO.getSimulations().size() + 1);
+                if (userChoice != backToMenuIndex) {
+                    SimulationReport simulationReport = simulationDTO.getSimulations().get(userChoice - 1);
+                    System.out.println("\n-------------Simulation view-------------");
+                    System.out.println("Please select view method:\n1. Quantity\n2. Histogram of property\n3. Back to main menu");
+                    userChoice = getUserChoice(1, 3);
+                    System.out.println("\n-------------Simulation view-------------");
+
+                    switch(userChoice){
+                        case 1:
+                            this.printQuantityViewReport(simulationReport);
+                            break;
+                        case 2:
+                            this.HistogramViewReport(simulationReport);
+                            break;
+                        case 3:
+                            backToMainMenuPressed = true;
+                    }
+                } else {
+                    backToMainMenuPressed = true;
+                }
+            }
+            while (!backToMainMenuPressed);
+        }
+    }
+
+
+    private void HistogramViewReport(SimulationReport simulationReport) {
+        System.out.println("\n----------- Simulation Histogram view -----------");
+        PropertyValueCount chosenPropertyValueCount = getPropertyToView(simulationReport);
+
+        if (!backToMainMenuPressed && chosenPropertyValueCount != null) {
+            String propertyName = chosenPropertyValueCount.getPropertyName();
+            System.out.println("\n--- " + propertyName + " Histogram" + " ---");
+            HashMap<String, Integer> valueCounts = chosenPropertyValueCount.getPropertyValueCount();
+
+            // Sort By value count to present it
+            List<Map.Entry<String, Integer>> entryList = new ArrayList<>(valueCounts.entrySet());
+            entryList.sort(Map.Entry.comparingByValue());
+
+            LinkedHashMap<String, Integer> sortedValueCounts = new LinkedHashMap<>();
+            for (Map.Entry<String, Integer> entry : entryList) {
+                sortedValueCounts.put(entry.getKey(), entry.getValue());
+            }
+
+            // Print the sorted HashMap
+            for (Map.Entry<String, Integer> entry : sortedValueCounts.entrySet()) {
+                int count = entry.getValue();
+                String propertyValue = entry.getKey();
+                System.out.print(propertyValue + " |");
+                for (int i = count; i > 0; i--) {
+                    System.out.print("*");
+                }
+                System.out.println("--> " + count);
+            }
+        }
+        else{
+            System.out.println("\n----------- Simulation Histogram view -----------");
+        }
+    }
+
+
+    private PropertyValueCount getPropertyToView(SimulationReport simulationReport) {
+        System.out.println("Please select entity name you would like to view");
+        backToMainMenuIndex = simulationReport.getEntityReports().size() + 1;
+
+        for (int i = 1; i <= simulationReport.getEntityReports().size() + 1; i++) {
+            if (i == backToMainMenuIndex) {
+                System.out.println(i + ". Back to main menu");
+            }
+            else {
+                EntityReport entityReport = simulationReport.getEntityReports().get(i-1);
+                System.out.println(i + ". " + entityReport.getEntityName());
+            }
+        }
+        int userChoice = getUserChoice(1, simulationReport.getEntityReports().size() + 1);
+
+        if (userChoice != backToMainMenuIndex) {
+            EntityReport chosenEntityReport = simulationReport.getEntityReports().get(userChoice - 1);
+            if (chosenEntityReport.getFinalPopulation() == 0) {
+                System.out.println("Entity final population is 0, no histogram could be made.");
+                return null;
+            }
+            System.out.println("Please select property name: ");
+            backToMainMenuIndex = chosenEntityReport.getPropertyValueCounts().size() + 1;
+            for (int i = 1; i <= chosenEntityReport.getPropertyValueCounts().size() + 1; i++) {
+                if (i == backToMainMenuIndex) {
+                    System.out.println(i + ". Back to main menu");
+                }
+                else {
+                    PropertyValueCount propertyValueCount = chosenEntityReport.getPropertyValueCounts().get(i-1);
+                    System.out.println(i + ". " + propertyValueCount.getPropertyName());
+                }
+            }
+            userChoice = getUserChoice(1, chosenEntityReport.getPropertyValueCounts().size() + 1);
+            if (userChoice != backToMainMenuIndex) {
+                return chosenEntityReport.getPropertyValueCounts().get(userChoice - 1);
+            }
+        }
+        backToMainMenuPressed = true;
+        return null;
+    }
+
+
+
+
+    private void printQuantityViewReport(SimulationReport simulationReport){
+        System.out.println("\n--- Simulation quantity view ---");
+        for (EntityReport entityReport : simulationReport.getEntityReports()) {
+            System.out.println("Entity name: " + entityReport.getEntityName());
+            System.out.println("\tInitial Population: " + entityReport.getInitialPopulation());
+            System.out.println("\tFinal population: " + entityReport.getFinalPopulation());
+        }
+        System.out.println("\n--- Simulation Report ---");
+    }
+
+
+
     MessageDTO sentSetEnvVariableRequest(String envVariableName, Object value) {
         return engine.setEnvVariable(envVariableName, value);
     }
+
 
     private void sendGetSimulationStateRequest() {
         PrdWorldDTO prdWorldDTO = engine.getSimulationState();
         if (prdWorldDTO.isSuccess()) {
             this.printPRDWorld(prdWorldDTO.getPrdWorld());
         } else {
-            System.out.println("Failed to get simulation state");
+            System.out.println("no world loaded");
         }
     }
+
 
     private void printPRDWorld(PRDWorld prdWorld) {
         System.out.println("\n------------------------Simulation Definition------------------------");
@@ -183,26 +407,14 @@ public class UserInterfaceImpl implements userInterface {
 
     }
 
-    @Override
-    public void startInterface() {
-        while (!exit) {
-            printMenu();
-            int choice = getUserChoice();
-            choiceHandler(choice);
-            if (choice == 5) {
-                exit = true;
-            }
-        }
-    }
 
     public void sendLoadXmlFileRequest() {
         Scanner scanner = new Scanner(System.in);
         systemLoaded = false;
         do {
-            System.out.println("Please enter system XML file path or enter 5 to exit: ");
+            System.out.println("Please enter system XML file path or enter 5 to get back to main menu: ");
             String path = scanner.nextLine();
             if (path.equals("5")) {
-                exit = true;
                 return;
             }
             MessageDTO dto = engine.loadSystemWorldFromXmlFile(path);

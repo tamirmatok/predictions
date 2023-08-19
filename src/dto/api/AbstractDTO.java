@@ -7,7 +7,9 @@ import java.util.Map;
 
 public abstract class AbstractDTO<T> {
     private final String timestamp;
-    private Boolean success;
+    private final Boolean success;
+
+    private final String errorMessage;
 
     public T data;
 
@@ -15,6 +17,14 @@ public abstract class AbstractDTO<T> {
         this.success = success;
         this.timestamp = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now());
         this.data = data;
+        this.errorMessage = null;
+    }
+
+    public AbstractDTO(String errorMessage){
+        success = false;
+        this.timestamp = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss").format(LocalDateTime.now());
+        this.errorMessage = errorMessage;
+
     }
 
     public boolean isSuccess() {
@@ -23,6 +33,14 @@ public abstract class AbstractDTO<T> {
 
     public String getTimestamp() {
         return timestamp;
+    }
+
+    public T getData(){
+        return data;
+    }
+
+    public String getErrorMessage(){
+        return errorMessage;
     }
 
 }

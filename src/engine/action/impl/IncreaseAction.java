@@ -27,18 +27,32 @@ public class IncreaseAction extends AbstractAction {
         }
         PropertyType propertyType = propertyInstance.getPropertyDefinition().getType();
         ExpressionCalculator expressionCalculator = new ExpressionCalculator(byExpression, context, propertyType);
-        switch (propertyType){
+        switch (propertyType) {
             case FLOAT:
                 Float floatVal = PropertyType.FLOAT.convert(propertyInstance.getValue());
                 Float by = (Float) expressionCalculator.calculate();
                 Float result = floatVal + by;
-                propertyInstance.updateValue(result);
+                if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
+                    float to = Float.parseFloat(propertyInstance.getPropertyDefinition().getValueGenerator().getTo().toString());
+                    if (to > result) {
+                        propertyInstance.updateValue(result);
+                    }
+                } else {
+                    propertyInstance.updateValue(result);
+                }
                 break;
             case DECIMAL:
                 Integer intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
                 Integer byInt = (Integer) expressionCalculator.calculate();
                 Integer resultInt = intVal + byInt;
-                propertyInstance.updateValue(resultInt);
+                if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
+                    int to = Integer.parseInt(propertyInstance.getPropertyDefinition().getValueGenerator().getTo().toString());
+                    if (to > resultInt) {
+                        propertyInstance.updateValue(resultInt);
+                    }
+                } else {
+                    propertyInstance.updateValue(resultInt);
+                }
                 break;
             default:
                 throw new IllegalArgumentException("increase action can't operate on a none number property " + property);

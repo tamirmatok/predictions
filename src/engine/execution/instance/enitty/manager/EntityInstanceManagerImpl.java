@@ -13,11 +13,11 @@ import java.util.List;
 public class EntityInstanceManagerImpl implements EntityInstanceManager {
 
     private int count;
-    private List<EntityInstance> instances;
+    private List<EntityInstance> entityInstances;
 
     public EntityInstanceManagerImpl() {
         count = 0;
-        instances = new ArrayList<>();
+        entityInstances = new ArrayList<>();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class EntityInstanceManagerImpl implements EntityInstanceManager {
 
         count++;
         EntityInstance newEntityInstance = new EntityInstanceImpl(entityDefinition, count);
-        instances.add(newEntityInstance);
+        entityInstances.add(newEntityInstance);
 
         for (PropertyDefinition propertyDefinition : entityDefinition.getProps()) {
             Object value = propertyDefinition.generateValue();
@@ -37,14 +37,14 @@ public class EntityInstanceManagerImpl implements EntityInstanceManager {
     }
 
     @Override
-    public List<EntityInstance> getInstances() {
-        return instances;
+    public List<EntityInstance> getEntityInstances() {
+        return entityInstances;
     }
 
     @Override
     public List<EntityInstance> getInstancesByDefinition(EntityDefinition entityDefinition) {
         List<EntityInstance> definitionEntityInstances = new ArrayList<>();
-        for (EntityInstance entityInstance: instances) {
+        for (EntityInstance entityInstance: entityInstances) {
             if (entityInstance.getEntityDefinition().equals(entityDefinition)) {
                 definitionEntityInstances.add(entityInstance);
             }
@@ -55,7 +55,7 @@ public class EntityInstanceManagerImpl implements EntityInstanceManager {
     @Override
     public EntityInstance getInstanceByName(String name) {
 
-        for (EntityInstance entityInstance : instances) {
+        for (EntityInstance entityInstance : entityInstances) {
             EntityDefinition entityDefinition = entityInstance.getEntityDefinition();
             if (entityDefinition.getName().equals(name)) {
                 return entityInstance;
@@ -64,8 +64,31 @@ public class EntityInstanceManagerImpl implements EntityInstanceManager {
         return null;
     }
 
+    public EntityInstance getEntityInstanceById(int id){
+        for (EntityInstance entityInstance: entityInstances){
+            if (entityInstance.getId() == id){
+                return entityInstance;
+            }
+        }
+        return null;
+    }
+
     @Override
-    public void killEntity(int id) {
-        // some implementation...
+    public void killEntity(int id){
+        try {
+            EntityInstance entityInstanceToKill = this.getEntityInstanceById(id);
+            int currentPopulation = entityInstanceToKill.getEntityDefinition().getPopulation();
+            entityInstanceToKill.getEntityDefinition().setPopulation(currentPopulation - 1);
+            for (int i=0;i< entityInstances.size(); i++){
+                EntityInstance entityInstance = entityInstances.get(i);
+                if (entityInstance.equals(entityInstanceToKill)){
+                    entityInstances.remove(i);
+                    return;
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println("error");
+        }
     }
 }

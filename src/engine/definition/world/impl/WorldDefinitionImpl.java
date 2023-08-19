@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WorldDefinitionImpl implements WorldDefinition {
-    private final HashMap<String, EntityDefinition> entityDefinitions;
-    private final EnvVariablesManager envVariableManager;
-    private final ArrayList<Rule> rules;
+    private HashMap<String, EntityDefinition> entityDefinitions;
+    private EnvVariablesManager envVariableManager;
+    private ArrayList<Rule> rules;
 
     private Termination termination;
 
@@ -27,8 +27,19 @@ public class WorldDefinitionImpl implements WorldDefinition {
         this.termination = null;
     }
 
+
+    private void resetWorld() {
+        this.entityDefinitions = new HashMap<String, EntityDefinition>();
+        this.envVariableManager = new EnvVariableManagerImpl();
+        this.rules = new ArrayList<>();
+        this.termination = null;
+    }
+
+
+    //TODO: remove load defintion and the validation funciton from here
     @Override
     public void loadWorldDefintion(PRDWorld prdWorld) {
+        this.resetWorld();
         for (PRDEntity prdEntity : prdWorld.getPRDEntities().getPRDEntity()) {
             EntityDefinition entityDefinition = JaxbConverter.convertEntity(prdEntity);
             this.addEntityDefinition(entityDefinition);
@@ -41,11 +52,29 @@ public class WorldDefinitionImpl implements WorldDefinition {
             this.addEnvPropertyDefinition(propertyDefinition);
         }
         for (PRDRule prdRule : prdWorld.getPRDRules().getPRDRule()) {
+            validateRuleActions(prdWorld.getPRDEntities(), prdRule);
             Rule rule = JaxbConverter.convertRule(prdRule, this.entityDefinitions);
             this.addRule(rule);
         }
         this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
     }
+
+
+    public void validateRuleActions(PRDEntities prdEntities, PRDRule prdRule) {
+        for (PRDAction prdAction : prdRule.getPRDActions().getPRDAction()) {
+            boolean entityFound = false;
+            for (PRDEntity prdEntity : prdEntities.getPRDEntity()) {
+                if (prdEntity.getName().equals(prdAction.getEntity())) {
+                    entityFound = true;
+                    break;
+                }
+            }
+            if (!entityFound) {
+                throw new IllegalArgumentException("Rule '" + prdRule.getName() + "' contain non exist entity '" + prdAction.getEntity() + "'");
+            }
+        }
+    }
+
 
     public HashMap<String, EntityDefinition> getEntityDefinitions() {
         return entityDefinitions;
@@ -60,7 +89,7 @@ public class WorldDefinitionImpl implements WorldDefinition {
     }
 
     public void addEntityDefinition(EntityDefinition entityDefinition) {
-        entityDefinitions.put(entityDefinition.getName(),entityDefinition);
+        entityDefinitions.put(entityDefinition.getName(), entityDefinition);
     }
 
     public void addEnvPropertyDefinition(PropertyDefinition propertyDefinition) {
@@ -71,7 +100,7 @@ public class WorldDefinitionImpl implements WorldDefinition {
         rules.add(rule);
     }
 
-    public Termination getTermination(){
+    public Termination getTermination() {
         return this.termination;
     }
 
