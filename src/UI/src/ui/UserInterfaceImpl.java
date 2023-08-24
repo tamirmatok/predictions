@@ -33,29 +33,6 @@ public class UserInterfaceImpl implements userInterface {
         backToMainMenuIndex = -1;
     }
 
-    @Override
-    public void startInterface() {
-        while (!exit) {
-            printMenu();
-            int choice = getUserChoice(1,5);
-            choiceHandler(choice);
-            if (choice == 5) {
-                exit = true;
-            }
-        }
-    }
-
-    @Override
-    public void printMenu() {
-        System.out.println("\nPlease select one of the following options:");
-        System.out.println("1. load system xml file");
-        System.out.println("2. show simulation state");
-        System.out.println("3. run simulation");
-        System.out.println("4. show past simulation results");
-        System.out.println("5. exit");
-
-    }
-
     public int getUserChoice(int from, int to) {
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -335,12 +312,6 @@ public class UserInterfaceImpl implements userInterface {
             System.out.println("\tFinal population: " + entityReport.getFinalPopulation());
         }
         System.out.println("\n--- Simulation Report ---");
-    }
-
-
-
-    MessageDTO sentSetEnvVariableRequest(String envVariableName, Object value) {
-        return engine.setEnvVariable(envVariableName, value);
     }
 
 

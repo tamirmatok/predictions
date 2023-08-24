@@ -1,0 +1,20 @@
+.button {
+    -fx-background-color: #33b249;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #77e1ff
+}
+
+
+.label{
+    -fx-font-size: 14px;
+    -fx-background-color: #b2b0b0;
+    -fx-font-weight: bold;
+    -fx-border-color: black;
+    -fx-text-fill: #75050c;
+}
+
+.header {
+}
