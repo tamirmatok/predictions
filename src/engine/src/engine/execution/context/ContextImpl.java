@@ -7,6 +7,7 @@ import engine.execution.instance.property.PropertyInstance;
 
 public class ContextImpl implements Context {
 
+    private  EntityInstance secondaryEntityInstance;
     private EntityInstance primaryEntityInstance;
     private EntityInstanceManager entityInstanceManager;
     private ActiveEnvironment activeEnvironment;
@@ -15,6 +16,14 @@ public class ContextImpl implements Context {
         this.primaryEntityInstance = primaryEntityInstance;
         this.entityInstanceManager = entityInstanceManager;
         this.activeEnvironment = activeEnvironment;
+        this.secondaryEntityInstance = null;
+    }
+
+    public ContextImpl(EntityInstance primaryEntityInstance, EntityInstance secondaryEntityInstance, EntityInstanceManager entityInstanceManager, ActiveEnvironment activeEnvironment) {
+        this.primaryEntityInstance = primaryEntityInstance;
+        this.entityInstanceManager = entityInstanceManager;
+        this.activeEnvironment = activeEnvironment;
+        this.secondaryEntityInstance = secondaryEntityInstance;
     }
 
     @Override

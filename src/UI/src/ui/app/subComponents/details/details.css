@@ -1,11 +1,9 @@
-.button {
-    -fx-background-color: #a8e366;
-    -fx-border-color: black;
+#detailsViewContainer {
+    -fx-spacing: 20px;
+    -fx-padding: 10px;
+    -fx-background-color: #cfefed;
+    -fx-border-color: #000000;
     -fx-background-radius: 2px;
     -fx-border-radius: 2px;
-    -fx-cursor: hand;
-}
-
-.button:hover{
-    -fx-background-color: #77e1ff;
+    -fx-alignment: center;
 }

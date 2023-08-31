@@ -18,6 +18,13 @@ public class SetAction extends AbstractAction {
         this.valueExpression = valueExpression;
     }
 
+
+    public SetAction(EntityDefinition entityDefinition, EntityDefinition secondaryEntityDefinition, String propertyName, String valueExpression) {
+        super(ActionType.SET, entityDefinition, secondaryEntityDefinition);
+        this.propertyName = propertyName;
+        this.valueExpression = valueExpression;
+    }
+
     @Override
     public void invoke(Context context) {
         PropertyType propertyType = context.getPrimaryEntityInstance().getPropertyByName(propertyName).getPropertyDefinition().getType();

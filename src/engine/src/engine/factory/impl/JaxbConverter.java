@@ -96,7 +96,8 @@ public class JaxbConverter {
     }
 
     public static EntityDefinition convertEntity(PRDEntity prdEntity) {
-        EntityDefinition entityDefinition = new EntityDefinitionImpl(prdEntity.getName(), prdEntity.getPRDPopulation());
+        //TODO: take from the user the population and update the value.
+        EntityDefinition entityDefinition = new EntityDefinitionImpl(prdEntity.getName(), 1);
         ArrayList<String> propertyNames = new ArrayList<>();
         for (PRDProperty prdProperty : prdEntity.getPRDProperties().getPRDProperty()) {
             if (propertyNames.contains(prdProperty.getPRDName())) {
@@ -258,22 +259,22 @@ public class JaxbConverter {
         return thenActions;
     }
 
-    public static Termination convertTermination(PRDTermination prdTermination) {
-        int ticks = 0;
-        int seconds = 0;
-        //TODO : VALIDATE IF BOTH OF THE CONDITIONS MUST APPEAR
-        if (prdTermination == null) {
-            throw new IllegalArgumentException("Termination is null");
-        }
-        List<Object> terminationConditions = prdTermination.getPRDByTicksOrPRDBySecond();
-        for (Object terminationCondition : terminationConditions) {
-            if (terminationCondition instanceof PRDByTicks) {
-                ticks = ((PRDByTicks) terminationCondition).getCount();
-            } else if (terminationCondition instanceof PRDBySecond) {
-                seconds = ((PRDBySecond) terminationCondition).getCount();
-            }
-        }
-        return new Termination(ticks, seconds);
-    }
+//    public static Termination convertTermination(PRDTermination prdTermination) {
+//        int ticks = 0;
+//        int seconds = 0;
+//        //TODO : VALIDATE IF BOTH OF THE CONDITIONS MUST APPEAR
+//        if (prdTermination == null) {
+//            throw new IllegalArgumentException("Termination is null");
+//        }
+//        List<Object> terminationConditions = prdTermination.getPRDBySecondOrPRDByTicks();
+//        for (Object terminationCondition : terminationConditions) {
+//            if (terminationCondition instanceof PRDByTicks) {
+//                ticks = ((PRDByTicks) terminationCondition).getCount();
+//            } else if (terminationCondition instanceof PRDBySecond) {
+//                seconds = ((PRDBySecond) terminationCondition).getCount();
+//            }
+//        }
+//        return new Termination(ticks, seconds);
+//    }
 }
 

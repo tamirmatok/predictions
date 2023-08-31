@@ -9,26 +9,67 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="simulation">
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/app.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/controller/AppController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/controller/DetailsComponentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/details.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/detailsComponent.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/controller/HeaderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/EntityCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/entityCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/entityCard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/grid/GridCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/grid/gridCard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/property/controller/PropertyCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/property/propertyCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/property/propertyCard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/controller/HeaderComponentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/master-ex2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/predictions-v2.xsd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DTO/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/src/dto/impl/PRDEnvDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/src/dto/impl/PRDEnvDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/src/ui/UserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/UserInterfaceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/userInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/userInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/app.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/controller/DetailsComponentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/controller/DetailsComponentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/detailsComponent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/detailsComponent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/controller/HeaderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/action/api/AbstractAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/action/api/AbstractAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/action/api/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/action/api/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/action/impl/DecreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/action/impl/DecreaseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/action/impl/IncreaseAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/action/impl/IncreaseAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/action/impl/KillAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/action/impl/KillAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/action/impl/SetAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/action/impl/SetAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/definition/world/impl/WorldDefinitionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/definition/world/impl/WorldDefinitionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/execution/context/ContextImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/execution/context/ContextImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/factory/impl/JaxbConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/factory/impl/JaxbConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/impl/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/impl/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDActivation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDActivation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDBySecond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDBySecond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDByTicks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDByTicks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDDivide.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDDivide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDElse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDElse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEntities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEnvProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEnvProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDEnvironment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDMultiply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDMultiply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDRange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDRule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDRules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDRules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDTermination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDTermination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDThen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDThen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/schema/generated/PRDWorld.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/src/engine/simulator/impl/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/simulator/impl/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/ex1-cigarets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/test/ex1-cigarets.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,11 +126,13 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="ui.app.subComponents.details.controller" />
       <recent name="engine.system.expression.api" />
       <recent name="engine.world" />
       <recent name="userInterface" />
@@ -100,11 +143,11 @@
       <recent name="$PROJECT_DIR$/src/engine" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details" />
-      <recent name="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/controler" />
-      <recent name="$PROJECT_DIR$/src/UI/src/ui/app/header" />
-      <recent name="$PROJECT_DIR$/src/UI/src/ui/screens/details" />
-      <recent name="$PROJECT_DIR$/src/UI/src/ui/app" />
+      <recent name="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity" />
+      <recent name="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/grid" />
+      <recent name="$PROJECT_DIR$/test" />
+      <recent name="$PROJECT_DIR$/src/engine/src/engine" />
+      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ui.app.subComponents.details" />
@@ -114,7 +157,20 @@
       <recent name="engine.definition" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ui.app.Main">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Main" />
+      <module name="UI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ui.Main" />
       <module name="predictions" />
@@ -128,8 +184,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ui.app.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ui.app.Main" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.Main" />
       <module name="UI" />
       <extension name="coverage">
         <pattern>
@@ -143,7 +199,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ui.app.Main" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
@@ -180,7 +236,12 @@
       <workItem from="1692534692919" duration="472000" />
       <workItem from="1692537573188" duration="4784000" />
       <workItem from="1692693082343" duration="571000" />
-      <workItem from="1692777141895" duration="27841000" />
+      <workItem from="1692777141895" duration="48388000" />
+      <workItem from="1693137145460" duration="48000" />
+      <workItem from="1693154997938" duration="232000" />
+      <workItem from="1693155244290" duration="1174000" />
+      <workItem from="1693243767659" duration="15000" />
+      <workItem from="1693460604107" duration="26060000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -315,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692474435292</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="simulation">
+      <created>1692892608609</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1692892608609</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +422,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/engine/src/engine/factory/impl/JaxbConverter.java</url>
-          <line>146</line>
+          <line>147</line>
           <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -378,14 +446,9 @@
           <option name="timeStamp" value="306" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/controller/HeaderController.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="324" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/controller/HeaderController.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="332" />
+          <url>file://$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/controller/HeaderComponentController.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="316" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -407,6 +470,10 @@
         <watch expression="((EntityInstanceManagerImpl)this).instances" custom="engine.execution.instance.enitty.manager.EntityInstanceManagerImpl" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/predictions$Main.ic" NAME="Main Coverage Results" MODIFIED="1692391646365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

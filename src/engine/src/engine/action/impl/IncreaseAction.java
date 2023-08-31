@@ -13,8 +13,14 @@ public class IncreaseAction extends AbstractAction {
     private final String property;
     private final String byExpression;
 
-    public IncreaseAction(EntityDefinition entityDefinition, String property, String byExpression) {
-        super(ActionType.INCREASE, entityDefinition);
+    public IncreaseAction(EntityDefinition mainEntityDefinition, String property, String byExpression) {
+        super(ActionType.INCREASE, mainEntityDefinition);
+        this.property = property;
+        this.byExpression = byExpression;
+    }
+
+    public IncreaseAction(EntityDefinition mainEntityDefinition, EntityDefinition secondaryEntityDefinition, String property, String byExpression) {
+        super(ActionType.DECREASE, mainEntityDefinition, secondaryEntityDefinition);
         this.property = property;
         this.byExpression = byExpression;
     }

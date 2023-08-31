@@ -1,14 +1,14 @@
 package dto.impl;
 
 import dto.api.AbstractDTO;
-import engine.schema.generated.PRDEvironment;
+import engine.schema.generated.PRDEnvironment;
 
-public class PRDEnvDTO extends AbstractDTO<PRDEvironment> {
-    public PRDEnvDTO(boolean success, PRDEvironment data) {
+public class PRDEnvDTO extends AbstractDTO<PRDEnvironment> {
+    public PRDEnvDTO(boolean success, PRDEnvironment data) {
         super(success, data);
     }
 
-    public PRDEvironment getPRDEnv() {
+    public PRDEnvironment getPRDEnv() {
         return data;
     }
 }

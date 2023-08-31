@@ -44,7 +44,7 @@ public class WorldDefinitionImpl implements WorldDefinition {
             EntityDefinition entityDefinition = JaxbConverter.convertEntity(prdEntity);
             this.addEntityDefinition(entityDefinition);
         }
-        for (PRDEnvProperty prdEnvProperty : prdWorld.getPRDEvironment().getPRDEnvProperty()) {
+        for (PRDEnvProperty prdEnvProperty : prdWorld.getPRDEnvironment().getPRDEnvProperty()) {
             if (envVariableManager.getEnvVariable(prdEnvProperty.getPRDName()) != null) {
                 throw new IllegalArgumentException("Environment variable with name " + prdEnvProperty.getPRDName() + " already exists");
             }
@@ -56,7 +56,7 @@ public class WorldDefinitionImpl implements WorldDefinition {
             Rule rule = JaxbConverter.convertRule(prdRule, this.entityDefinitions);
             this.addRule(rule);
         }
-        this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
+//        this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
     }
 
 

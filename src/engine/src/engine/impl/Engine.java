@@ -14,7 +14,7 @@ import engine.execution.instance.environment.api.ActiveEnvironment;
 import engine.execution.instance.property.PropertyInstance;
 import engine.execution.instance.property.PropertyInstanceImpl;
 import engine.execution.instance.world.impl.WorldInstance;
-import engine.schema.generated.PRDEvironment;
+import engine.schema.generated.PRDEnvironment;
 import engine.simulator.impl.Simulator;
 import engine.system.file.impl.FileSystem;
 import engine.schema.generated.PRDWorld;
@@ -68,10 +68,10 @@ public class Engine implements EngineInterface {
     @Override
     public PRDEnvDTO getEnvState() {
         if (!isWorldLoaded) {
-            return new PRDEnvDTO(false, new PRDEvironment());
+            return new PRDEnvDTO(false, new PRDEnvironment());
         }
         else{
-            return new PRDEnvDTO(true, prdWorld.getPRDEvironment());
+            return new PRDEnvDTO(true, prdWorld.getPRDEnvironment());
         }
     }
 

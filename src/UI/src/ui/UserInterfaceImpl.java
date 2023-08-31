@@ -103,7 +103,7 @@ public class UserInterfaceImpl implements userInterface {
             backToMainMenuPressed = true;
         }
         else {
-            PRDEvironment prdEnvironment = prdEnvDTO.getPRDEnv();
+            PRDEnvironment prdEnvironment = prdEnvDTO.getPRDEnv();
             System.out.println("\n------------------------Set env properties------------------------");
             System.out.println("Please select env property to set a value (default is random initialize)");
             int index;
@@ -330,7 +330,6 @@ public class UserInterfaceImpl implements userInterface {
         System.out.println("Entities:");
         prdWorld.getPRDEntities().getPRDEntity().forEach(entity -> {
             System.out.println("\tEntity name: " + entity.getName());
-            System.out.println("\t\tEntity population: " + entity.getPRDPopulation());
             System.out.println("\t\tEntity properties:");
             entity.getPRDProperties().getPRDProperty().forEach(property -> {
                 System.out.println("\t\tProperty name: " + property.getPRDName());
@@ -366,7 +365,7 @@ public class UserInterfaceImpl implements userInterface {
         });
 
         System.out.println("Termination:");
-        prdWorld.getPRDTermination().getPRDByTicksOrPRDBySecond().forEach(termination -> {
+        prdWorld.getPRDTermination().getPRDBySecondOrPRDByTicks().forEach(termination -> {
             if (termination instanceof PRDByTicks) {
                 System.out.println("\tBy ticks: " + ((PRDByTicks) termination).getCount());
             } else if (termination instanceof PRDBySecond){

@@ -5,12 +5,23 @@ import engine.definition.entity.EntityDefinition;
 public abstract class AbstractAction implements Action {
 
     private final ActionType actionType;
-    private final EntityDefinition entityDefinition;
+    private final EntityDefinition mainEntityDefinition;
+    private final EntityDefinition secondaryEntityDefinition;
+
+
 
     protected AbstractAction(ActionType actionType, EntityDefinition entityDefinition) {
         this.actionType = actionType;
-        this.entityDefinition = entityDefinition;
+        this.mainEntityDefinition = entityDefinition;
+        this.secondaryEntityDefinition = null;
     }
+
+    protected AbstractAction(ActionType actionType, EntityDefinition entityDefinition, EntityDefinition secondaryEntityDefinition) {
+        this.actionType = actionType;
+        this.mainEntityDefinition = entityDefinition;
+        this.secondaryEntityDefinition = secondaryEntityDefinition;
+    }
+
 
     @Override
     public ActionType getActionType() {
@@ -18,7 +29,11 @@ public abstract class AbstractAction implements Action {
     }
 
     @Override
-    public EntityDefinition getContextEntity() {
-        return entityDefinition;
+    public EntityDefinition getMainContextEntity() {
+        return mainEntityDefinition;
+    }
+
+    public EntityDefinition getSecondaryEntityDefinition() {
+        return secondaryEntityDefinition;
     }
 }

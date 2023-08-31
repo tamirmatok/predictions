@@ -1,0 +1,26 @@
+#entityCard{
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 5px;
+}
+
+#entityPropertiesList{
+    -fx-background-color: #eea4a4;
+    -fx-background-radius: 5px;
+}
+#propertyCardArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+

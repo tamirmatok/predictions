@@ -54,7 +54,7 @@ public class Simulator implements SimulatorInterface {
 
             // Phase 3: Invoke actions on context entities
             for (Action action : actionsOnRun) {
-                EntityDefinition contextEntity = action.getContextEntity();
+                EntityDefinition contextEntity = action.getMainContextEntity();
                 for (EntityInstance entity : entityInstanceManager.getInstancesByDefinition(contextEntity)) {
                     Context context = new ContextImpl(entity, entityInstanceManager, activeEnvironment);
                     action.invoke(context);

@@ -7,8 +7,12 @@ import engine.execution.context.Context;
 
 public class KillAction extends AbstractAction {
 
-    public KillAction(EntityDefinition entityDefinition) {
-        super(ActionType.KILL, entityDefinition);
+    public KillAction(EntityDefinition mainEntityDefinition) {
+        super(ActionType.KILL, mainEntityDefinition);
+    }
+
+    public KillAction(EntityDefinition mainEntityDefinition, EntityDefinition secondaryEntityDefinition) {
+        super(ActionType.KILL, mainEntityDefinition, secondaryEntityDefinition);
     }
 
     @Override
