@@ -6,6 +6,7 @@ import engine.action.impl.calculation.CalculationAction;
 import engine.action.impl.calculation.Operation;
 import engine.action.impl.condition.api.ConditionAction;
 import engine.action.impl.condition.impl.*;
+import engine.definition.grid.GridDefinition;
 import engine.definition.entity.EntityDefinition;
 import engine.definition.entity.EntityDefinitionImpl;
 import engine.definition.property.api.PropertyDefinition;
@@ -259,22 +260,34 @@ public class JaxbConverter {
         return thenActions;
     }
 
-//    public static Termination convertTermination(PRDTermination prdTermination) {
-//        int ticks = 0;
-//        int seconds = 0;
-//        //TODO : VALIDATE IF BOTH OF THE CONDITIONS MUST APPEAR
-//        if (prdTermination == null) {
-//            throw new IllegalArgumentException("Termination is null");
-//        }
-//        List<Object> terminationConditions = prdTermination.getPRDBySecondOrPRDByTicks();
-//        for (Object terminationCondition : terminationConditions) {
-//            if (terminationCondition instanceof PRDByTicks) {
-//                ticks = ((PRDByTicks) terminationCondition).getCount();
-//            } else if (terminationCondition instanceof PRDBySecond) {
-//                seconds = ((PRDBySecond) terminationCondition).getCount();
-//            }
-//        }
-//        return new Termination(ticks, seconds);
-//    }
+    public static GridDefinition convertGrid(PRDWorld.PRDGrid prdGrid) {
+        if (prdGrid == null) {
+            return null;
+        }
+        int rows = prdGrid.getRows();
+        int cols = prdGrid.getColumns();
+        return new GridDefinition(rows, cols);
+    }
+
+    public static Termination convertTermination(PRDTermination prdTermination) {
+        int ticks = -1;
+        int seconds = -1;
+        //TODO : VALIDATE IF BOTH OF THE CONDITIONS MUST APPEAR
+        if (prdTermination == null) {
+            throw new IllegalArgumentException("Termination is null");
+        }
+        else if (prdTermination.getPRDByUser() != null){
+            return new Termination();
+        }
+        List<Object> terminationConditions = prdTermination.getPRDBySecondOrPRDByTicks();
+        for (Object terminationCondition : terminationConditions) {
+            if (terminationCondition instanceof PRDByTicks) {
+                ticks = ((PRDByTicks) terminationCondition).getCount();
+            } else if (terminationCondition instanceof PRDBySecond) {
+                seconds = ((PRDBySecond) terminationCondition).getCount();
+            }
+        }
+        return new Termination(ticks, seconds);
+    }
 }
 

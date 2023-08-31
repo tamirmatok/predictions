@@ -1,8 +1,7 @@
 package engine.definition.world.impl;
 
+import engine.definition.grid.GridDefinition;
 import engine.definition.entity.EntityDefinition;
-import engine.definition.environment.api.EnvVariablesManager;
-import engine.definition.environment.impl.EnvVariableManagerImpl;
 import engine.definition.property.api.PropertyDefinition;
 import engine.definition.world.api.WorldDefinition;
 import engine.execution.instance.termination.impl.Termination;
@@ -14,49 +13,42 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class WorldDefinitionImpl implements WorldDefinition {
-    private HashMap<String, EntityDefinition> entityDefinitions;
-    private EnvVariablesManager envVariableManager;
-    private ArrayList<Rule> rules;
-
+    private final HashMap<String, EntityDefinition> entityDefinitions;
+    private final HashMap<String, PropertyDefinition> envPropertyNameToEnvPropertyDefinition;
+    private final ArrayList<Rule> rules;
     private Termination termination;
+    private GridDefinition gridDefinition;
 
-    public WorldDefinitionImpl() {
+
+    public WorldDefinitionImpl(PRDWorld prdWorld) {
         this.entityDefinitions = new HashMap<String, EntityDefinition>();
-        this.envVariableManager = new EnvVariableManagerImpl();
+        this.envPropertyNameToEnvPropertyDefinition = new HashMap<String, PropertyDefinition>();
         this.rules = new ArrayList<>();
-        this.termination = null;
+        this.loadWorldDefintion(prdWorld);
     }
 
-
-    private void resetWorld() {
-        this.entityDefinitions = new HashMap<String, EntityDefinition>();
-        this.envVariableManager = new EnvVariableManagerImpl();
-        this.rules = new ArrayList<>();
-        this.termination = null;
-    }
-
-
-    //TODO: remove load defintion and the validation funciton from here
     @Override
     public void loadWorldDefintion(PRDWorld prdWorld) {
-        this.resetWorld();
         for (PRDEntity prdEntity : prdWorld.getPRDEntities().getPRDEntity()) {
             EntityDefinition entityDefinition = JaxbConverter.convertEntity(prdEntity);
             this.addEntityDefinition(entityDefinition);
         }
         for (PRDEnvProperty prdEnvProperty : prdWorld.getPRDEnvironment().getPRDEnvProperty()) {
-            if (envVariableManager.getEnvVariable(prdEnvProperty.getPRDName()) != null) {
+            if (envPropertyNameToEnvPropertyDefinition.containsKey(prdEnvProperty.getPRDName())) {
                 throw new IllegalArgumentException("Environment variable with name " + prdEnvProperty.getPRDName() + " already exists");
             }
-            PropertyDefinition propertyDefinition = JaxbConverter.convertEnvProperty(prdEnvProperty);
-            this.addEnvPropertyDefinition(propertyDefinition);
+            else {
+                PropertyDefinition propertyDefinition = JaxbConverter.convertEnvProperty(prdEnvProperty);
+                envPropertyNameToEnvPropertyDefinition.put(propertyDefinition.getName(), propertyDefinition);
+            }
         }
         for (PRDRule prdRule : prdWorld.getPRDRules().getPRDRule()) {
             validateRuleActions(prdWorld.getPRDEntities(), prdRule);
             Rule rule = JaxbConverter.convertRule(prdRule, this.entityDefinitions);
             this.addRule(rule);
         }
-//        this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
+        this.gridDefinition = JaxbConverter.convertGrid(prdWorld.getPRDGrid());
+        this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
     }
 
 
@@ -94,8 +86,8 @@ public class WorldDefinitionImpl implements WorldDefinition {
         return entityDefinitions;
     }
 
-    public EnvVariablesManager getEnvVariablesManager() {
-        return envVariableManager;
+    public HashMap<String, PropertyDefinition> getEnvVariables() {
+        return envPropertyNameToEnvPropertyDefinition;
     }
 
     public ArrayList<Rule> getRules() {
@@ -106,10 +98,6 @@ public class WorldDefinitionImpl implements WorldDefinition {
         entityDefinitions.put(entityDefinition.getName(), entityDefinition);
     }
 
-    public void addEnvPropertyDefinition(PropertyDefinition propertyDefinition) {
-        envVariableManager.addEnvironmentVariable(propertyDefinition);
-    }
-
     public void addRule(Rule rule) {
         rules.add(rule);
     }
@@ -118,13 +106,8 @@ public class WorldDefinitionImpl implements WorldDefinition {
         return this.termination;
     }
 
-    @Override
-    public String toString() {
-        return "World Definition:\n" +
-                "Entity Definitions:" + entityDefinitions + "\n" +
-                "Env Variables:" + envVariableManager + "\n" +
-                "Rules: " + rules + "\n" +
-                "Termination = " + termination + "\n";
+    public GridDefinition getGridDefinition() {
+        return this.gridDefinition;
     }
 
 }

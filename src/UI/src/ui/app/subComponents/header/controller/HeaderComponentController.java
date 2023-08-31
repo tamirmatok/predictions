@@ -3,7 +3,6 @@ package ui.app.subComponents.header.controller;
 import dto.impl.MessageDTO;
 import dto.impl.PrdWorldDTO;
 import engine.impl.Engine;
-import engine.schema.generated.PRDWorld;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,16 +10,13 @@ import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ui.app.controller.AppController;
-
 import java.io.File;
 
 public class HeaderComponentController {
     private AppController mainController;
     @FXML private Label filePathLabel;
-
     @FXML private  Label infoLabel;
     private final SimpleStringProperty filaPathProperty;
-
 
 
     public HeaderComponentController() {
@@ -49,7 +45,7 @@ public class HeaderComponentController {
             MessageDTO messageDTO = engine.loadSystemWorldFromXmlFile(filaPathProperty.get());
             this.mainController.setSystemLoaded(messageDTO.isSuccess());
             if (messageDTO.isSuccess()) {
-                PrdWorldDTO prdWorldDTO = this.mainController.getEngine().getSimulationState();
+                PrdWorldDTO prdWorldDTO = this.mainController.getEngine().getLoadedWorldDetails();
                 if (prdWorldDTO.isSuccess()) {
                     this.mainController.setDetails(prdWorldDTO.getPrdWorld());
                     infoLabel.setText("File loaded successfully");

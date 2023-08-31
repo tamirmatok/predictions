@@ -5,17 +5,15 @@ import dto.impl.PRDEnvDTO;
 import dto.impl.PrdWorldDTO;
 import dto.impl.PropertiesDTO;
 
-public interface EngineInterface {
-    MessageDTO loadSystemWorldFromXmlFile(String xmlFilePath);
-    PrdWorldDTO getSimulationState();
+import java.util.HashMap;
 
+public interface EngineInterface {
+
+    MessageDTO runSimulation(HashMap<String, Object> envPropertyNameToEnvPropertyValue);
+    MessageDTO loadSystemWorldFromXmlFile(String xmlFilePath);
+    PrdWorldDTO getLoadedWorldDetails();
     PRDEnvDTO getEnvState();
 
-    MessageDTO setEnvVariable(String envVariableName, Object value);
 
-    PropertiesDTO setEnvVariables();
 
-    MessageDTO resetActiveEnvironment();
-
-    MessageDTO startSimulation();
 }

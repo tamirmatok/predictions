@@ -1,4 +1,4 @@
-package engine.simulator.impl;
+package engine.simulation.simulator.impl;
 
 import dto.impl.simulation.SimulationReport;
 import engine.action.api.Action;
@@ -12,26 +12,30 @@ import engine.execution.instance.environment.api.ActiveEnvironment;
 import engine.execution.instance.termination.impl.Termination;
 import engine.execution.instance.world.impl.WorldInstance;
 import engine.rule.Rule;
-import engine.simulator.api.SimulatorInterface;
+import engine.simulation.simulator.api.SimulatorInterface;
 
 import java.util.ArrayList;
 
-public class Simulator implements SimulatorInterface {
+public class Simulator implements Runnable {
 
     private int countTick;
     private long startTime;
-    private final WorldInstance worldInstance;
+    private final WorldDefinition worldDefinition;
+    private WorldInstance worldInstance;
+    private static int count=0;
+    private final int simulationId;
 
-    public Simulator(WorldInstance worldInstance) {
-        this.countTick = 0;
-        this.worldInstance = worldInstance;
-        this.startTime = 0;
+
+    public Simulator(WorldDefinition worldDefinition) {
+        this.worldDefinition = worldDefinition;
+        count++;
+        this.simulationId = count;
     }
-
     @Override
-    public SimulationReport runSimulation() {
+    public void run() {
+        this.worldInstance = new WorldInstance(worldDefinition);
+        this.countTick = 0;
         this.startTime = System.currentTimeMillis();
-        WorldDefinition worldDefinition = worldInstance.getWorldDefinition();
         EntityInstanceManager entityInstanceManager = worldInstance.getEntityInstanceManager();
         ActiveEnvironment activeEnvironment = worldInstance.getActiveEnvironment();
         SimulationReport simulationReport = new SimulationReport();
@@ -65,7 +69,6 @@ public class Simulator implements SimulatorInterface {
 
         String terminationCause = isFinish(worldInstance.getTermination());
         simulationReport.setFinalEntityReport(entityInstanceManager, terminationCause);
-        return simulationReport;
     }
 
 
@@ -81,6 +84,10 @@ public class Simulator implements SimulatorInterface {
         return null;
     }
 
+    public Integer getSimulationId(){
+        return simulationId;
+    }
+
 
     private void resetTick() {
         this.countTick = 1;
@@ -88,6 +95,10 @@ public class Simulator implements SimulatorInterface {
 
     private void increaseTick() {
         this.countTick++;
+    }
+
+    public WorldInstance getWorldInstance(){
+        return this.worldInstance;
     }
 
 
