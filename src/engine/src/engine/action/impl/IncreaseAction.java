@@ -1,0 +1,72 @@
+package engine.action.impl;
+
+import engine.action.api.AbstractAction;
+import engine.action.api.ActionType;
+import engine.definition.entity.EntityDefinition;
+import engine.definition.property.api.PropertyType;
+import engine.execution.context.Context;
+import engine.execution.expression.impl.ExpressionCalculator;
+import engine.execution.instance.property.PropertyInstance;
+
+public class IncreaseAction extends AbstractAction {
+
+    private final String property;
+    private final String byExpression;
+
+    public IncreaseAction(EntityDefinition mainEntityDefinition, String property, String byExpression) {
+        super(ActionType.INCREASE, mainEntityDefinition);
+        this.property = property;
+        this.byExpression = byExpression;
+    }
+
+    public IncreaseAction(EntityDefinition mainEntityDefinition, EntityDefinition secondaryEntityDefinition, String property, String byExpression) {
+        super(ActionType.DECREASE, mainEntityDefinition, secondaryEntityDefinition);
+        this.property = property;
+        this.byExpression = byExpression;
+    }
+
+    @Override
+    public void invoke(Context context) {
+        PropertyInstance propertyInstance = context.getPrimaryEntityInstance().getPropertyByName(property);
+        if (!verifyNumericPropertyTYpe(propertyInstance)) {
+            throw new IllegalArgumentException("increase action can't operate on a none number property " + property);
+        }
+        PropertyType propertyType = propertyInstance.getPropertyDefinition().getType();
+        ExpressionCalculator expressionCalculator = new ExpressionCalculator(byExpression, context, propertyType);
+        switch (propertyType) {
+            case FLOAT:
+                Float floatVal = PropertyType.FLOAT.convert(propertyInstance.getValue());
+                Float by = (Float) expressionCalculator.calculate();
+                Float result = floatVal + by;
+                if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
+                    float to = Float.parseFloat(propertyInstance.getPropertyDefinition().getValueGenerator().getTo().toString());
+                    if (to > result) {
+                        propertyInstance.updateValue(result);
+                    }
+                } else {
+                    propertyInstance.updateValue(result);
+                }
+                break;
+            case DECIMAL:
+                Integer intVal = PropertyType.DECIMAL.convert(propertyInstance.getValue());
+                Integer byInt = (Integer) expressionCalculator.calculate();
+                Integer resultInt = intVal + byInt;
+                if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
+                    int to = Integer.parseInt(propertyInstance.getPropertyDefinition().getValueGenerator().getTo().toString());
+                    if (to > resultInt) {
+                        propertyInstance.updateValue(resultInt);
+                    }
+                } else {
+                    propertyInstance.updateValue(resultInt);
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("increase action can't operate on a none number property " + property);
+        }
+    }
+
+    private boolean verifyNumericPropertyTYpe(PropertyInstance propertyValue) {
+        return
+                PropertyType.DECIMAL.equals(propertyValue.getPropertyDefinition().getType()) || PropertyType.FLOAT.equals(propertyValue.getPropertyDefinition().getType());
+    }
+}

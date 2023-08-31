@@ -1,0 +1,13 @@
+#propertyCard {
+    -fx-border-color: #000000;
+    -fx-border-width: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: px;
+    -fx-cursor: hand;
+}
+
+.label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+}

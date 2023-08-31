@@ -1,0 +1,9 @@
+#detailsViewContainer {
+    -fx-spacing: 20px;
+    -fx-padding: 10px;
+    -fx-background-color: #cfefed;
+    -fx-border-color: #000000;
+    -fx-background-radius: 2px;
+    -fx-border-radius: 2px;
+    -fx-alignment: center;
+}

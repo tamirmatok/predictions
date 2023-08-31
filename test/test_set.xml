@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PRD-world xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Downloads/predictions-v1.xsd">
+    <PRD-evironment>
+        <PRD-env-property type="decimal">
+            <PRD-name>cigarets-increase-non-smoker</PRD-name>
+            <PRD-range from="1" to="10"/>
+        </PRD-env-property>
+    </PRD-evironment>
+    <PRD-entities>
+        <PRD-entity name="ent-1">
+            <PRD-population>1</PRD-population>
+            <PRD-properties>
+                <PRD-property type="decimal">
+                    <PRD-name>isDecimal</PRD-name>
+                    <PRD-range to="20" from="0"/>
+                    <PRD-value random-initialize="false" init="10"/>
+                </PRD-property>
+            </PRD-properties>
+        </PRD-entity>
+    </PRD-entities>
+    <PRD-rules>
+        <PRD-rule name="testSuccessfulSet">
+            <PRD-actions>
+                <PRD-action type="set" entity="ent-1" property="isDecimal" value="random(3)"/>
+            </PRD-actions>
+        </PRD-rule>
+        <PRD-rule name="testInvalidSet">
+            <PRD-actions>
+                <PRD-action type="set" entity="ent-1" property="isDecimal" value="5.2"/>
+            </PRD-actions>
+        </PRD-rule>
+    </PRD-rules>
+    <PRD-termination>
+        <PRD-by-ticks count="100000000"/>
+        <PRD-by-second count="10"/>
+    </PRD-termination>
+</PRD-world>
