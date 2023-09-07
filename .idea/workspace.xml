@@ -9,20 +9,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8eafd101-34f6-485a-a252-bb13f7284b7b" name="Changes" comment="simulation">
-      <change afterPath="$PROJECT_DIR$/src/engine/src/engine/definition/grid/GridDefinition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/src/engine/execution/instance/grid/Grid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/src/engine/execution/instance/grid/GridCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/engine/src/engine/execution/task/RunSimulationTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/grid/gridCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/rule/action/actionCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/rule/action/actionCard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/rule/action/controller/ActionCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/rule/controller/RuleCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/rule/ruleCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/rule/ruleCard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/termination/controller/TerminationCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/termination/terminationCard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/termination/terminationCard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/UserInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/UserInterfaceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/api/EngineInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/api/EngineInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/definition/world/api/WorldDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/definition/world/api/WorldDefinition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/definition/world/impl/WorldDefinitionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/definition/world/impl/WorldDefinitionImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/execution/instance/world/impl/WorldInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/execution/instance/world/impl/WorldInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/factory/impl/JaxbConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/factory/impl/JaxbConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/app.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/controller/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/controller/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/EntityCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/EntityCardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/entityCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/entityCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/entityCard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/entity/entityCard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/grid/gridCard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/grid/gridCard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/property/propertyCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/property/propertyCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/property/propertyCard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/cards/property/propertyCard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/controller/DetailsComponentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/controller/DetailsComponentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/detailsComponent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/details/detailsComponent.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/header.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/definition/entity/EntityDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/definition/entity/EntityDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/definition/grid/GridDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/definition/grid/GridDefinition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/engine/src/engine/impl/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/impl/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/simulator/api/SimulatorInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/simulation/simulator/api/SimulatorInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/engine/src/engine/simulator/impl/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/engine/src/engine/simulation/simulator/impl/Simulator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +210,9 @@
       <workItem from="1693243767659" duration="15000" />
       <workItem from="1693460604107" duration="39029000" />
       <workItem from="1693515309512" duration="47000" />
-      <workItem from="1693515375693" duration="2612000" />
+      <workItem from="1693515375693" duration="2935000" />
+      <workItem from="1693548515508" duration="3864000" />
+      <workItem from="1693984346748" duration="32442000" />
     </task>
     <task id="LOCAL-00001" summary="initProject">
       <created>1691136704701</created>
@@ -346,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693492966844</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="simulation">
+      <created>1693518299485</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693518299485</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -405,7 +427,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/UI/src/ui/app/subComponents/header/controller/HeaderComponentController.java</url>
-          <line>58</line>
+          <line>54</line>
           <option name="timeStamp" value="316" />
         </line-breakpoint>
       </breakpoints>
@@ -423,11 +445,6 @@
         <PinnedItemInfo parentTag="java.lang.ClassCastException" memberName="stackTrace" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="((EntityInstanceManagerImpl)this).instances" custom="engine.execution.instance.enitty.manager.EntityInstanceManagerImpl" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

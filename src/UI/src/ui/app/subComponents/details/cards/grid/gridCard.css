@@ -1,6 +1,6 @@
-#entityCard{
+#gridCard {
     -fx-border-color: black;
-    -fx-border-width: 3px;
+    -fx-border-width: 5px;
     -fx-background-color: #bbf3e9;
     -fx-background-radius: 5px;
 }
@@ -15,14 +15,3 @@
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
 }
-
-#entityPropertiesList{
-    -fx-background-color: #b2adad;
-    -fx-background-radius: 5px;
-}
-
-#propertyCardArea{
-    -fx-border-color: black;
-    -fx-border-width: 5px;
-}
-

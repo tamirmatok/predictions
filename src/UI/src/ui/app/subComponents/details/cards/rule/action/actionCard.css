@@ -1,0 +1,20 @@
+#actionCard {
+ -fx-background-color: #c2c5c5;
+ -fx-border-radius: 5px;
+ -fx-border-width: 2px;
+ -fx-border-color: #000000;
+ -fx-background-radius: 5px;
+
+}
+
+.label{
+ -fx-font-size: 15px;
+ -fx-font-weight: bold;
+ -fx-text-fill: #000000;
+ -fx-background-color: #eaf5cb;
+ -fx-padding: 5px;
+ -fx-border-color: #dcd9d9;
+ -fx-border-width: 2px;
+ -fx-border-radius: 5px;
+ -fx-background-radius: 5px;
+}

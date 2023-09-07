@@ -106,9 +106,5 @@ public class Engine implements EngineInterface {
         this.isWorldLoaded = false;
     }
 
-//    public SimulationDTO getSimulationReports(){
-//        return new SimulationDTO(true, simulationReports);
-//    }
-
 
 }

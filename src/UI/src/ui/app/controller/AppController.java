@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import ui.app.subComponents.header.controller.HeaderComponentController;
 import ui.app.subComponents.details.controller.DetailsComponentController;

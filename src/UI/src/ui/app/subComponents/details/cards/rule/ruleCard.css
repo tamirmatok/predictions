@@ -1,9 +1,10 @@
-#entityCard{
+#ruleCard {
     -fx-border-color: black;
-    -fx-border-width: 3px;
+    -fx-border-width: 5px;
     -fx-background-color: #bbf3e9;
     -fx-background-radius: 5px;
 }
+
 
 .label{
     -fx-font-size: 19px;
@@ -16,13 +17,12 @@
     -fx-border-radius: 5px;
 }
 
-#entityPropertiesList{
-    -fx-background-color: #b2adad;
-    -fx-background-radius: 5px;
-}
-
-#propertyCardArea{
-    -fx-border-color: black;
+#actionList{
+    -fx-background-color: #eaf5cb;
     -fx-border-width: 5px;
+    -fx-border-color: black;
 }
 
+.text-field{
+    -fx-editable: false;
+}

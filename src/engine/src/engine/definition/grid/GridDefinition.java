@@ -1,8 +1,8 @@
 package engine.definition.grid;
 
 public class GridDefinition {
-    private int numRows;
-    private int numCols;
+    private final int numRows;
+    private final int numCols;
 
     public GridDefinition(int numRows, int numCols) {
         this.numRows = numRows;
