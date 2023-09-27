@@ -1,0 +1,12 @@
+.label{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #eaf5cb;
+    -fx-border-color: #050505;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-min-width: 100px;
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}

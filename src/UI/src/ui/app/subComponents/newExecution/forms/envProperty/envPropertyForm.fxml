@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="envPropertyForm" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="253.0" prefWidth="423.0" stylesheets="@envPropertyForm.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.app.subComponents.newExecution.forms.envProperty.EnvPropertyFormController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="202.0" prefWidth="202.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="300.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="42.0" prefWidth="156.0" text="Env Property name">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </GridPane.margin></Label>
+        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="127.0" text="Env Property type" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </GridPane.margin></Label>
+        <TextField fx:id="propertyNameTextField" editable="false" prefHeight="27.0" prefWidth="291.0" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets left="10.0" right="10.0" />
+            </GridPane.margin>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <TextField fx:id="propertyTypeTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets left="10.0" right="10.0" />
+            </GridPane.margin>
+        </TextField>
+        <Label fx:id="propertyRangeLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="138.0" text="Env Property Range" GridPane.rowIndex="2">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </GridPane.margin></Label>
+        <TextField fx:id="propertyRangeTextField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <GridPane.margin>
+                <Insets left="10.0" right="10.0" />
+            </GridPane.margin>
+        </TextField>
+        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="19.0" prefWidth="158.0" text="Set random " GridPane.rowIndex="3">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </GridPane.margin></Label>
+        <CheckBox fx:id="setRandomCheckBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="56.0" selected="true" text="True" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </GridPane.margin>
+        </CheckBox>
+        <Label fx:id="setValueLabel" disable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="19.0" prefWidth="158.0" text="Set value " GridPane.rowIndex="4">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+            <GridPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </GridPane.margin>
+        </Label>
+        <TextField fx:id="setValueTextField" disable="true" prefWidth="188.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <GridPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </GridPane.margin>
+        </TextField>
+    </children>
+</GridPane>

@@ -5,6 +5,6 @@ import engine.definition.property.api.PropertyDefinition;
 public interface PropertyInstance {
     PropertyDefinition getPropertyDefinition();
     Object getValue();
-    void updateValue(Object val);
-
+    void updateValue(Object val, int currentTick);
+    Integer getTicksCount(int currentTick);
 }

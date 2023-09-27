@@ -4,17 +4,21 @@ import dto.api.AbstractDTO;
 
 import java.util.ArrayList;
 
-public class SimulationDTO extends AbstractDTO<ArrayList<SimulationReport>> {
-    public SimulationDTO(boolean success, ArrayList<SimulationReport> data) {
+public class SimulationDTO extends AbstractDTO<SimulationExecutionDetails> {
+
+    private String errorMessage;
+    public SimulationDTO(boolean success, SimulationExecutionDetails data) {
         super(success, data);
     }
-
-    public SimulationDTO(String errorMessage) {super(errorMessage);}
-
-
-    public ArrayList<SimulationReport> getSimulations() {
+    public SimulationExecutionDetails getSimulationExecutionDetails() {
         return data;
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 }

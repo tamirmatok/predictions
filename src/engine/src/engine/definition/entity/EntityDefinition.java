@@ -8,6 +8,5 @@ public interface EntityDefinition {
     String getName();
     int getPopulation();
     List<PropertyDefinition> getProps();
-
     void setPopulation(int population);
 }

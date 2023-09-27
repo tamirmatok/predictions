@@ -40,6 +40,7 @@ public class MultipleCondition extends Condition{
     }
 
 
+    @Override
     public boolean calcCondition(Context context) {
         boolean result = this.initResult();
 

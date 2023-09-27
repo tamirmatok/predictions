@@ -2,10 +2,13 @@ package engine.action.impl.calculation;
 
 import engine.action.api.AbstractAction;
 import engine.action.api.ActionType;
+import engine.action.impl.SecondaryEntityDefinition;
 import engine.definition.entity.EntityDefinition;
 import engine.definition.property.api.PropertyType;
 import engine.execution.context.Context;
+import engine.execution.context.ContextImpl;
 import engine.execution.expression.impl.ExpressionCalculator;
+import engine.execution.instance.enitty.EntityInstance;
 
 public class CalculationAction extends AbstractAction {
 
@@ -15,6 +18,12 @@ public class CalculationAction extends AbstractAction {
 
     public CalculationAction(EntityDefinition entityDefinition, String resultProp, Operation operation) {
         super(ActionType.CALCULATION, entityDefinition);
+        this.resultProp = resultProp;
+        this.operation = operation;
+    }
+
+    public CalculationAction(EntityDefinition entityDefinition, SecondaryEntityDefinition secondaryEntityDefinition, String resultProp, Operation operation) {
+        super(ActionType.CALCULATION, entityDefinition, secondaryEntityDefinition);
         this.resultProp = resultProp;
         this.operation = operation;
     }
@@ -53,16 +62,17 @@ public class CalculationAction extends AbstractAction {
             switch (propertyType) {
                 case DECIMAL:
                     Integer resultInt = Math.round(Float.parseFloat(result.toString()));
-                    context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(resultInt);
+                    context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(resultInt, context.getCurrentTick());
                     break;
                 case FLOAT:
                     Float resultFloat = Float.parseFloat(result.toString());
-                    context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(resultFloat);
+                    context.getPrimaryEntityInstance().getPropertyByName(resultProp).updateValue(resultFloat, context.getCurrentTick());
                     break;
                 default:
                     throw new IllegalArgumentException("opertation" + operation.getOperation() + "can't operate on a none number property " + resultProp);
             }
         }
+        invokeOnSecondary(context);
     }
 
 }

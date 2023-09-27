@@ -3,7 +3,12 @@
     -fx-padding: 10px;
     -fx-background-color: #cfefed;
     -fx-border-color: #000000;
+    -fx-border-width: 3px;
     -fx-background-radius: 2px;
     -fx-border-radius: 2px;
     -fx-alignment: center;
+}
+
+#detailsViewContainer{
+    -fx-content-display: grid;
 }

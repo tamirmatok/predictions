@@ -1,26 +1,28 @@
 #entityCard{
     -fx-border-color: black;
-    -fx-border-width: 1px;
-    -fx-border-radius: 5px;
-    -fx-background-color: #f5f5f5;
+    -fx-border-width: 3px;
+    -fx-background-color: #bbf3e9;
     -fx-background-radius: 5px;
 }
 
+.label{
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #eaf5cb;
+    -fx-padding: 5px;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
 #entityPropertiesList{
-    -fx-background-color: #eea4a4;
+    -fx-background-color: #b2adad;
     -fx-background-radius: 5px;
 }
-#propertyCardArea {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f5f5f5;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+
+#propertyCardArea{
+    -fx-border-color: black;
+    -fx-border-width: 5px;
 }
 

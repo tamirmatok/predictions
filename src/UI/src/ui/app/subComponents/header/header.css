@@ -1,22 +1,31 @@
 .button {
     -fx-background-color: #33b249;
     -fx-cursor: hand;
-    -fx-min-width: 134;
+    -fx-font-size: 14px;
 }
 
 .button:hover {
     -fx-background-color: #77e1ff
 }
 
-
 .label{
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-background-color: #f8f6f6;
-    -fx-font-weight: bold;
-    -fx-border-color: black;
-    -fx-text-fill: #050505;
+    -fx-text-fill: #000000;
+    -fx-background-color: #eaf5cb;
+    -fx-padding: 5px;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
 }
 
-.header {
+
+#infoLabel{
+    -fx-background-color: #cbf8f7;
+}
+
+.text-field:readonly{
+    -fx-border-color: #a0bbb7;
+    -fx-border-width: 2px;
+    -fx-background-color: #dcd9d9;
 }

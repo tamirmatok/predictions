@@ -8,7 +8,7 @@ import engine.execution.expression.impl.ExpressionCalculator;
 public class SingleCondition extends Condition{
 
     String entityName;
-    String propertyName;
+    String property;
     String operator;
 
     String valueExpression;
@@ -17,7 +17,7 @@ public class SingleCondition extends Condition{
     public SingleCondition(String entityName, String propertyName, String operator, String valueExpression) {
         super(ConditionType.SINGLE);
         this.entityName = entityName;
-        this.propertyName = propertyName;
+        this.property = propertyName;
         this.operator = operator;
         this.valueExpression = valueExpression;
         this.isValid();
@@ -27,7 +27,7 @@ public class SingleCondition extends Condition{
         if (entityName == null || entityName.isEmpty()) {
             throw new IllegalArgumentException("Single condition error - Entity name cannot be null or empty");
         }
-        if (propertyName == null || propertyName.isEmpty()) {
+        if (property == null || property.isEmpty()) {
             throw new IllegalArgumentException("Single condition error - Property name cannot be null or empty");
         }
         if (operator == null || operator.isEmpty()) {
@@ -49,35 +49,36 @@ public class SingleCondition extends Condition{
     }
 
 
+    @Override
     public boolean calcCondition(Context context) {
-        PropertyType propertyType = context.getPrimaryEntityInstance().getPropertyByName(propertyName).getPropertyDefinition().getType();
-        ExpressionCalculator expressionCalculator = new ExpressionCalculator(valueExpression, context, propertyType);
+        Object properyValue;
+        Object expressionValue;
+        PropertyType propertyType;
+        if (context.getPrimaryEntityInstance().getPropertyByName(property) != null) {
+            properyValue = context.getPrimaryEntityInstance().getPropertyByName(property).getValue();
+            propertyType = context.getPrimaryEntityInstance().getPropertyByName(property).getPropertyDefinition().getType();
+            ExpressionCalculator expressionCalculator = new ExpressionCalculator(valueExpression, context, propertyType);
+            expressionValue = expressionCalculator.calculate();
+        } else {
+            propertyType = PropertyType.STRING;
+            ExpressionCalculator propertyExpressionCalculator = new ExpressionCalculator(property, context, propertyType);
+            properyValue = propertyExpressionCalculator.calculate();
+            ExpressionCalculator expressionCalculator = new ExpressionCalculator(valueExpression, context, propertyType);
+            expressionValue = expressionCalculator.calculate();
+        }
 
-        Object properyValue = context.getPrimaryEntityInstance().getPropertyByName(propertyName).getValue();
-        Object expressionValue = expressionCalculator.calculate();
-
-        switch (operator){
+        switch (operator) {
             case "=": {
                 return properyValue.equals(expressionValue);
             }
             case "!=": {
                 return !properyValue.equals(expressionValue);
             }
-            case "bt":{
-                switch (propertyType){
-                    case DECIMAL:
-                        return Integer.parseInt(properyValue.toString()) > Integer.parseInt(expressionValue.toString());
-                    case FLOAT:
-                        return Float.parseFloat(properyValue.toString()) > Float.parseFloat(expressionValue.toString());
-                }
+            case "bt": {
+                return Float.parseFloat(properyValue.toString()) > Float.parseFloat(expressionValue.toString());
             }
-            case "lt":{
-                switch (propertyType){
-                    case DECIMAL:
-                        return Integer.parseInt(properyValue.toString()) < Integer.parseInt(expressionValue.toString());
-                    case FLOAT:
-                        return Float.parseFloat(properyValue.toString()) < Float.parseFloat(expressionValue.toString());
-                }
+            case "lt": {
+            return Float.parseFloat(properyValue.toString()) < Float.parseFloat(expressionValue.toString());
             }
             default:{
                 throw new IllegalArgumentException("Invalid operator: " + operator);
@@ -91,7 +92,7 @@ public class SingleCondition extends Condition{
     }
 
     public String getPropName() {
-        return propertyName;
+        return property;
     }
 
     public String getOperator() {
@@ -104,7 +105,7 @@ public class SingleCondition extends Condition{
 
     @Override
     public String toString() {
-        return "SingleCondition [entityName=" + entityName + ", propName=" + propertyName + ", operator=" + operator
+        return "SingleCondition [entityName=" + entityName + ", propName=" + property + ", operator=" + operator
                 + ", valueExpression=" + valueExpression + "]";
     }
 

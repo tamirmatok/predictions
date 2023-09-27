@@ -4,20 +4,19 @@ import java.util.ArrayList;
 
 public class EntityReport {
     String entityName;
-    int initialPopulation;
-    int finalPopulation;
+    int population;
+    ArrayList<Integer> tickPopulationCounts;
     ArrayList<PropertyValueCount> propertyValueCounts;
 
-    public EntityReport(String entityName, int initialPopulation, ArrayList<String> propertyNames) {
+    public EntityReport(String entityName, int population, ArrayList<String> propertyNames) {
         this.entityName = entityName;
-        this.initialPopulation = initialPopulation;
+        this.population = population;
         this.propertyValueCounts = new ArrayList<PropertyValueCount>();
-        this.setCounts(propertyNames);
+        this.tickPopulationCounts = new ArrayList<Integer>();
+        this.setInitialCounts(propertyNames);
     }
 
-
-
-    private void setCounts(ArrayList<String> propertyNames) {
+    public void setInitialCounts(ArrayList<String> propertyNames) {
         for (String propertyName: propertyNames){
             PropertyValueCount propertyValueCount = new PropertyValueCount(propertyName);
             propertyValueCounts.add(propertyValueCount);
@@ -31,26 +30,26 @@ public class EntityReport {
             }
         }
     }
-
     public String getEntityName() {
         return entityName;
     }
-
-    public int getInitialPopulation() {
-        return initialPopulation;
-    }
-
-    public int getFinalPopulation() {
-        return finalPopulation;
-    }
-
-    public void setFinalPopulation(int finalPopulation) {
-        this.finalPopulation = finalPopulation;
-    }
-
     public ArrayList<PropertyValueCount> getPropertyValueCounts() {
         return propertyValueCounts;
     }
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+    public int getPopulation() {
+        return population;
+    }
+    public void setTickPopulation() {
+        this.tickPopulationCounts.add(population);
+    }
+    public ArrayList<Integer> getTickPopulationCounts() {
+        return tickPopulationCounts;
+    }
 
-
+    public void resetPropertyValueCount(){
+        this.propertyValueCounts = new ArrayList<PropertyValueCount>();
+    }
 }

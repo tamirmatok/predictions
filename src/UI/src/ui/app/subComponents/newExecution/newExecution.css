@@ -1,0 +1,44 @@
+#infoTextField{
+    -fx-font-size: 15px;
+    -fx-text-fill: #050505;
+}
+
+#newExecutionArea{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-background-color: #cfefed;
+}
+
+#entitiesPopulationArea{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-background-color: #cfefed;
+}
+
+#envPropertiesArea{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-background-color: #cfefed;
+}
+
+.button {
+    -fx-background-color: #33b249;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #77e1ff
+}
+
+
+.label{
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #eaf5cb;
+    -fx-padding: 5px;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}

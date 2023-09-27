@@ -7,10 +7,15 @@ public class Termination implements terminationInterface {
     int ticksCount;
     int bySecondsCount;
 
+    boolean byUser = false;
 
     public Termination(int ticksCount, int bySecondsCount) {
         this.ticksCount = ticksCount;
         this.bySecondsCount = bySecondsCount;
+    }
+
+    public Termination(boolean byUser){
+        this.byUser = true;
     }
 
     public Termination() {
@@ -33,12 +38,14 @@ public class Termination implements terminationInterface {
         this.ticksCount = ticksCount;
 
     }
-
     @Override
     public void setBySeconds(int bySecondsCount) {
         this.bySecondsCount = bySecondsCount;
     }
 
+    public boolean isByUser() {
+        return byUser;
+    }
     @Override
     public void setTerminationCondition(int ticks, int seconds) {
 

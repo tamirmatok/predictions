@@ -8,6 +8,7 @@ public class PropertyInstanceImpl implements PropertyInstance {
 
     private PropertyDefinition propertyDefinition;
     private Object value;
+    private int tickCount = 0;
 
     public PropertyInstanceImpl(PropertyDefinition propertyDefinition, Object value) {
         this.propertyDefinition = propertyDefinition;
@@ -72,8 +73,13 @@ public class PropertyInstanceImpl implements PropertyInstance {
     }
 
     @Override
-    public void updateValue(Object val) {
+    public void updateValue(Object val, int currentTick){
+        this.tickCount = currentTick;
         this.value = val;
     }
 
+    @Override
+    public Integer getTicksCount(int currentTick) {
+        return currentTick - this.tickCount;
+    }
 }
