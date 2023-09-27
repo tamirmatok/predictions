@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public interface WorldDefinition {
 
-    void loadWorldDefintion(PRDWorld prdWorld);
+    void loadWorldDefinition(PRDWorld prdWorld);
 
     GridDefinition getGridDefinition();
     HashMap<String, EntityDefinition> getEntityDefinitions();

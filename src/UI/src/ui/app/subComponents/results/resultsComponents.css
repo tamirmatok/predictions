@@ -1,0 +1,22 @@
+.label{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #eaf5cb;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}
+
+
+#executionDetailsArea{
+    -fx-border-width: 2px;
+    -fx-border-color: #090909;
+}
+
+#executionResultsArea{
+    -fx-border-width: 2px;
+    -fx-border-color: #090909;
+}

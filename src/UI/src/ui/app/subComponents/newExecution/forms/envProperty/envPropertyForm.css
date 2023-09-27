@@ -1,0 +1,17 @@
+.label{
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #eaf5cb;
+    -fx-padding: 2px;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+#envPropertyForm{
+    -fx-border-color: black;
+    -fx-border-width: 3px;
+    -fx-background-radius: 5px;
+}
+

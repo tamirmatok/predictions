@@ -5,8 +5,12 @@ import engine.action.api.ActionType;
 import engine.definition.entity.EntityDefinition;
 import engine.definition.property.api.PropertyType;
 import engine.execution.context.Context;
+import engine.execution.context.ContextImpl;
 import engine.execution.expression.impl.ExpressionCalculator;
+import engine.execution.instance.enitty.EntityInstance;
 import engine.execution.instance.property.PropertyInstance;
+
+import java.util.ArrayList;
 
 public class DecreaseAction extends AbstractAction {
 
@@ -19,7 +23,7 @@ public class DecreaseAction extends AbstractAction {
         this.byExpression = byExpression;
     }
 
-    public DecreaseAction(EntityDefinition mainEntityDefinition, EntityDefinition secondaryEntityDefinition, String property, String byExpression) {
+    public DecreaseAction(EntityDefinition mainEntityDefinition, SecondaryEntityDefinition secondaryEntityDefinition, String property, String byExpression) {
         super(ActionType.DECREASE, mainEntityDefinition, secondaryEntityDefinition);
         this.property = property;
         this.byExpression = byExpression;
@@ -41,10 +45,10 @@ public class DecreaseAction extends AbstractAction {
                 if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
                     float from = Float.parseFloat(propertyInstance.getPropertyDefinition().getValueGenerator().getFrom().toString());
                     if (from < result) {
-                        propertyInstance.updateValue(result);
+                        propertyInstance.updateValue(result, context.getCurrentTick());
                     }
                 } else {
-                    propertyInstance.updateValue(result);
+                    propertyInstance.updateValue(result, context.getCurrentTick());
                 }
                 break;
             case DECIMAL:
@@ -54,15 +58,17 @@ public class DecreaseAction extends AbstractAction {
                 if (propertyInstance.getPropertyDefinition().getValueGenerator().hasRange()) {
                     int from = Integer.parseInt(propertyInstance.getPropertyDefinition().getValueGenerator().getFrom().toString());
                     if (from < resultInt) {
-                        propertyInstance.updateValue(resultInt);
+                        propertyInstance.updateValue(resultInt, context.getCurrentTick());
                     }
                 } else {
-                    propertyInstance.updateValue(resultInt);
+                    propertyInstance.updateValue(resultInt, context.getCurrentTick());
                 }
                 break;
             default:
                 throw new IllegalArgumentException("decrease action can't operate on a none number property " + property);
         }
+
+        invokeOnSecondary(context);
     }
 
     private boolean verifyNumericPropertyTYpe(PropertyInstance propertyValue) {

@@ -22,8 +22,17 @@ public class GridCell {
         return entityInstance;
     }
 
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
     public void setOccupied(EntityInstance entityInstance){
         this.entityInstance = entityInstance;
         this.isOccupied = true;
     }
+    public void setAvailable(){
+        this.entityInstance = null;
+        this.isOccupied = false;
+    }
+
 }

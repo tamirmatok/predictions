@@ -24,11 +24,11 @@ public class WorldDefinitionImpl implements WorldDefinition {
         this.entityDefinitions = new HashMap<String, EntityDefinition>();
         this.envPropertyNameToEnvPropertyDefinition = new HashMap<String, PropertyDefinition>();
         this.rules = new ArrayList<>();
-        this.loadWorldDefintion(prdWorld);
+        this.loadWorldDefinition(prdWorld);
     }
 
     @Override
-    public void loadWorldDefintion(PRDWorld prdWorld) {
+    public void loadWorldDefinition(PRDWorld prdWorld) {
         for (PRDEntity prdEntity : prdWorld.getPRDEntities().getPRDEntity()) {
             EntityDefinition entityDefinition = JaxbConverter.convertEntity(prdEntity);
             this.addEntityDefinition(entityDefinition);
@@ -36,52 +36,19 @@ public class WorldDefinitionImpl implements WorldDefinition {
         for (PRDEnvProperty prdEnvProperty : prdWorld.getPRDEnvironment().getPRDEnvProperty()) {
             if (envPropertyNameToEnvPropertyDefinition.containsKey(prdEnvProperty.getPRDName())) {
                 throw new IllegalArgumentException("Environment variable with name " + prdEnvProperty.getPRDName() + " already exists");
-            }
-            else {
+            } else {
                 PropertyDefinition propertyDefinition = JaxbConverter.convertEnvProperty(prdEnvProperty);
                 envPropertyNameToEnvPropertyDefinition.put(propertyDefinition.getName(), propertyDefinition);
             }
         }
         for (PRDRule prdRule : prdWorld.getPRDRules().getPRDRule()) {
-            validateRuleActions(prdWorld.getPRDEntities(), prdRule);
             Rule rule = JaxbConverter.convertRule(prdRule, this.entityDefinitions);
             this.addRule(rule);
         }
         this.gridDefinition = JaxbConverter.convertGrid(prdWorld.getPRDGrid());
         this.termination = JaxbConverter.convertTermination(prdWorld.getPRDTermination());
+
     }
-
-
-    public void validateRuleActions(PRDEntities prdEntities, PRDRule prdRule) {
-        for (PRDAction prdAction : prdRule.getPRDActions().getPRDAction()) {
-            boolean entityFound = false;
-            for (PRDEntity prdEntity : prdEntities.getPRDEntity()) {
-                if (prdEntity.getName().equals(prdAction.getEntity())) {
-                    entityFound = true;
-                }
-                if (entityFound){
-                    boolean propertyFound = false;
-                    String propertyName = prdAction.getProperty();
-                    if (propertyName != null){
-                        for (PRDProperty prdProperty: prdEntity.getPRDProperties().getPRDProperty()){
-                            if (prdProperty.getPRDName().equals(propertyName)){
-                                propertyFound = true;
-                            }
-                        }
-                        if (!propertyFound){
-                            throw new IllegalArgumentException("Rule " + prdRule.getName() + " -   un exist property '"+ propertyName + "'" + "for entity '" + prdEntity.getName());
-                        }
-                    }
-
-                }
-            }
-            if (!entityFound) {
-                throw new IllegalArgumentException("Rule '" + prdRule.getName() + "' contain non exist entity '" + prdAction.getEntity() + "'");
-            }
-        }
-    }
-
-
     public HashMap<String, EntityDefinition> getEntityDefinitions() {
         return entityDefinitions;
     }

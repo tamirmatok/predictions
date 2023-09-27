@@ -3,7 +3,6 @@ package dto.impl.simulation;
 import java.util.HashMap;
 
 public class PropertyValueCount {
-
     String propertyName;
     HashMap<String, Integer> propertyValueToCount;
 

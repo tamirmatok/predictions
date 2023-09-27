@@ -76,6 +76,7 @@ public class DetailsComponentController {
     }
 
     public void setDetails(PRDWorld prdWorld){
+        this.setTreeItems();
         this.setEnvironmentView(prdWorld.getPRDEnvironment());
         this.setGridView(prdWorld.getPRDGrid());
         this.setEntitiesView(prdWorld.getPRDEntities());
@@ -95,6 +96,7 @@ public class DetailsComponentController {
     }
 
     private void setEntitiesView(PRDEntities prdEntities) {
+        entityNameToEntityCardLayout.clear();
         prdEntities.getPRDEntity().forEach(prdEntity -> {
             try {
                 String entityName = prdEntity.getName();
@@ -112,6 +114,7 @@ public class DetailsComponentController {
     }
 
     private void setEnvironmentView(PRDEnvironment prdEnvironment){
+        envPropertyNameToEnvPropertyCardLayout.clear();
         prdEnvironment.getPRDEnvProperty().forEach(prdEnvProperty -> {
             try {
                 String envPropertyName = prdEnvProperty.getPRDName();
@@ -157,6 +160,7 @@ public class DetailsComponentController {
 
 
     private void setRulesView(PRDRules prdRules){
+        ruleNameToRuleCardLayout.clear();
         try {
             for (PRDRule prdRule : prdRules.getPRDRule()) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/app/subComponents/details/cards/rule/ruleCard.fxml"));
@@ -181,10 +185,13 @@ public class DetailsComponentController {
         TreeItem<String> rulesTreeItem = new TreeItem<>("Rules");
         TreeItem<String> gridTreeItem = new TreeItem<>("Grid");
         TreeItem<String> terminationTreeItem = new TreeItem<>("Termination");
+        environmentTreeItem.setExpanded(true);
+        entitiesTreeItem.setExpanded(true);
+        rulesTreeItem.setExpanded(true);
         rootItem.getChildren().addAll(environmentTreeItem,entitiesTreeItem, rulesTreeItem, gridTreeItem,  terminationTreeItem);
+        // delete prev view
         treeView.setRoot(rootItem);
         treeView.setShowRoot(false);
-        treeView.getSelectionModel().select(rootItem);
     }
 
 }

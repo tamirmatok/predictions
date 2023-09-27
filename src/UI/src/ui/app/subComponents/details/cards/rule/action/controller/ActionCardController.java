@@ -58,7 +58,8 @@ public class ActionCardController {
                         argumentsGridPane.addRow(rowIndex++, new TextField("multiple action count"), new TextField(prdAction.getPRDCondition().getPRDCondition().size() + ""));
                 }
                 argumentsGridPane.addRow(rowIndex++, new TextField("then action count"), new TextField(prdAction.getPRDThen().getPRDAction().size() + ""));
-                argumentsGridPane.addRow(rowIndex, new TextField("else action count"), new TextField(prdAction.getPRDElse().getPRDAction().size() + ""));
+                if (prdAction.getPRDElse() != null)
+                    argumentsGridPane.addRow(rowIndex, new TextField("else action count"), new TextField(prdAction.getPRDElse().getPRDAction().size() + ""));
                 break;
             case "replace":
                 argumentsGridPane.addRow(1, new TextField("kill"), new TextField(prdAction.getKill()));
@@ -69,8 +70,8 @@ public class ActionCardController {
                 argumentsGridPane.addRow(1, new TextField("source-entity"), new TextField(prdAction.getPRDBetween().getSourceEntity()));
                 argumentsGridPane.addRow(2, new TextField("target-entity"), new TextField(prdAction.getPRDBetween().getTargetEntity()));
                 argumentsGridPane.addRow(3, new TextField("env-depth-of"), new TextField(prdAction.getPRDEnvDepth().getOf()));
-                argumentsGridPane.addRow(4, new TextField("operator"), new TextField(prdAction.getPRDActions().getPRDAction().size() + ""));
-                argumentsGridPane.addRow(5, new TextField("value"), new TextField(prdAction.getValue()));
+                argumentsGridPane.addRow(4, new TextField("action count"), new TextField(prdAction.getPRDActions().getPRDAction().size() + ""));
+
                 break;
             default:
                 break;

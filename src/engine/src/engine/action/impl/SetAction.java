@@ -5,7 +5,9 @@ import engine.action.api.ActionType;
 import engine.definition.entity.EntityDefinition;
 import engine.definition.property.api.PropertyType;
 import engine.execution.context.Context;
+import engine.execution.context.ContextImpl;
 import engine.execution.expression.impl.ExpressionCalculator;
+import engine.execution.instance.enitty.EntityInstance;
 
 public class SetAction extends AbstractAction {
 
@@ -18,8 +20,7 @@ public class SetAction extends AbstractAction {
         this.valueExpression = valueExpression;
     }
 
-
-    public SetAction(EntityDefinition entityDefinition, EntityDefinition secondaryEntityDefinition, String propertyName, String valueExpression) {
+    public SetAction(EntityDefinition entityDefinition, SecondaryEntityDefinition secondaryEntityDefinition, String propertyName, String valueExpression) {
         super(ActionType.SET, entityDefinition, secondaryEntityDefinition);
         this.propertyName = propertyName;
         this.valueExpression = valueExpression;
@@ -34,21 +35,22 @@ public class SetAction extends AbstractAction {
             switch (propertyType) {
                 case DECIMAL:
                     Integer intVal = Integer.parseInt(value.toString());
-                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(intVal);
+                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(intVal, context.getCurrentTick());
                     break;
                 case FLOAT:
                     Float floatVal = Float.parseFloat(value.toString());
-                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(floatVal);
+                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(floatVal, context.getCurrentTick());
                     break;
                 case BOOLEAN:
                     Boolean boolVal = Boolean.parseBoolean(value.toString());
-                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(boolVal);
+                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(boolVal, context.getCurrentTick());
                     break;
                 case STRING:
                     String stringVal = value.toString();
-                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(stringVal);
+                    context.getPrimaryEntityInstance().getPropertyByName(propertyName).updateValue(stringVal, context.getCurrentTick());
                     break;
             }
+            invokeOnSecondary(context);
         }
         catch (Exception e){
             throw new IllegalArgumentException("Failed execute set action - " + valueExpression + " is not of type " + propertyType.toString());

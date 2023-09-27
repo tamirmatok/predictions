@@ -1,8 +1,12 @@
 package ui.app.subComponents.details.cards.termination.controller;
 
+import engine.schema.generated.PRDBySecond;
+import engine.schema.generated.PRDByTicks;
 import engine.schema.generated.PRDTermination;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
+import java.util.List;
 
 public class TerminationCardController {
     @FXML
@@ -27,13 +31,22 @@ public class TerminationCardController {
 
     public void setTermination(PRDTermination prdTermination) {
         if (prdTermination.getPRDByUser() == null) {
-            this.setByTicks(prdTermination.getPRDBySecondOrPRDByTicks().get(0).toString());
-            this.setBySeconds(prdTermination.getPRDBySecondOrPRDByTicks().get(1).toString());
+            this.setByUser("No");
+            List<Object> terminationConditions = prdTermination.getPRDBySecondOrPRDByTicks();
+            for (Object terminationCondition : terminationConditions) {
+                if (terminationCondition instanceof PRDByTicks) {
+                    int ticks = ((PRDByTicks) terminationCondition).getCount();
+                    this.setByTicks(String.valueOf(ticks));
+                } else if (terminationCondition instanceof PRDBySecond) {
+                    int seconds = ((PRDBySecond) terminationCondition).getCount();
+                    this.setBySeconds(String.valueOf(seconds));
+                }
+            }
         }
         else{
-            this.setByUser("True");
-            this.setByTicks("False");
-            this.setBySeconds("False");
+            this.setByUser("Yes");
+            this.setByTicks("unlimited");
+            this.setBySeconds("unlimited");
         }
     }
 

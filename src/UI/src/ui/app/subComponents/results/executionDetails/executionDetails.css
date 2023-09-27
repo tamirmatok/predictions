@@ -1,0 +1,64 @@
+.label{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #eaf5cb;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}
+
+.button {
+    -fx-background-color: #33b249;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.button:hover {
+    -fx-background-color: #77e1ff
+}
+
+#simulationPercentsLabel{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #adecea;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}
+
+#tickPercentLabel{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #adecea;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}
+
+#secondPercentLabel{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-background-color: #adecea;
+    -fx-border-color: #dcd9d9;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-alignment: center;
+    -fx-padding: 2px;
+}
+
+.gridPane{
+    -fx-border-color: black;
+    -fx-border-width: 5px;
+    -fx-background-color: #bbf3e9;
+    -fx-background-radius: 5px;
+}

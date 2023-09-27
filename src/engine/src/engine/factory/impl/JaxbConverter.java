@@ -37,9 +37,14 @@ public class JaxbConverter {
             // Decimal and float has optinal range value.
             case "decimal":
                 if (prdProperty.getPRDValue().isRandomInitialize()) {
-                    int from = (int) prdProperty.getPRDRange().getFrom();
-                    int to = (int) prdProperty.getPRDRange().getTo();
-                    return new IntegerPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomInteger(from, to));
+                    if (prdProperty.getPRDRange() != null) {
+                        int from = (int) prdProperty.getPRDRange().getFrom();
+                        int to = (int) prdProperty.getPRDRange().getTo();
+                        return new IntegerPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomInteger(from, to));
+                    }
+                    else{
+                        return new IntegerPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomInteger(0, 1000));
+                    }
 
                 } else { // we should set range
                     int value = Integer.parseInt(prdProperty.getPRDValue().getInit());
@@ -59,10 +64,14 @@ public class JaxbConverter {
                 }
             case "float":
                 if (prdProperty.getPRDValue().isRandomInitialize()) {
-                    float from = (float) prdProperty.getPRDRange().getFrom();
-                    float to = (float) prdProperty.getPRDRange().getTo();
-                    return new FloatPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomFloat(from, to));
-
+                    if (prdProperty.getPRDRange() != null) {
+                        float from = (float) prdProperty.getPRDRange().getFrom();
+                        float to = (float) prdProperty.getPRDRange().getTo();
+                        return new FloatPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomFloat(from, to));
+                    }
+                    else{
+                        return new FloatPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createRandomFloat(0f, 1000f));
+                    }
                 } else { // we should set range
                     float value = Float.parseFloat(prdProperty.getPRDValue().getInit());
                     return new FloatPropertyDefinition(prdProperty.getPRDName(), ValueGeneratorFactory.createFixed(value));
@@ -97,8 +106,7 @@ public class JaxbConverter {
     }
 
     public static EntityDefinition convertEntity(PRDEntity prdEntity) {
-        //TODO: take from the user the population and update the value.
-        EntityDefinition entityDefinition = new EntityDefinitionImpl(prdEntity.getName(), 1);
+        EntityDefinition entityDefinition = new EntityDefinitionImpl(prdEntity.getName(), 0);
         ArrayList<String> propertyNames = new ArrayList<>();
         for (PRDProperty prdProperty : prdEntity.getPRDProperties().getPRDProperty()) {
             if (propertyNames.contains(prdProperty.getPRDName())) {
@@ -111,15 +119,13 @@ public class JaxbConverter {
     }
 
 
-    public static Rule convertRule(PRDRule prdRule, HashMap<String, EntityDefinition> entityDefinition) {
+    public static Rule convertRule(PRDRule prdRule, HashMap<String, EntityDefinition> entityNameToEntityDefinition) {
         Rule rule = new RuleImpl(prdRule.getName());
         ActivationImpl activation = convertActivation(prdRule.getPRDActivation());
         rule.setActivation(activation);
         for (PRDAction prdAction : prdRule.getPRDActions().getPRDAction()) {
-            if (entityDefinition.get(prdAction.getEntity()) == null) {
-                throw new IllegalArgumentException(" rule " + prdRule.getName() + " - no entity named " + prdAction.getEntity());
-            }
-            Action action = convertAction(prdAction, entityDefinition.get(prdAction.getEntity()));
+            validateRuleActions(entityNameToEntityDefinition, prdRule);
+            Action action = convertAction(prdAction, entityNameToEntityDefinition);
             rule.addAction(action);
         }
         return rule;
@@ -139,30 +145,66 @@ public class JaxbConverter {
         return activation;
     }
 
-    private static Action convertAction(PRDAction prdAction, EntityDefinition entityDefinition) {
+    private static Action convertAction(PRDAction prdAction, HashMap<String, EntityDefinition> entityNameToEntityDefinition) {
         String actionType = prdAction.getType();
+        String entityName;
+        boolean isCondition = actionType.equals("condition");
+        if (actionType.equals("proximity")){
+            entityName = prdAction.getPRDBetween().getSourceEntity();
+        }
+        else if (actionType.equals("replace")) {
+            entityName = prdAction.getKill();
+        }
+        else{
+            entityName = prdAction.getEntity();
+        }
+        EntityDefinition primaryEntityDefinition = entityNameToEntityDefinition.get(entityName);
+        if (primaryEntityDefinition == null && !isCondition){
+            throw new IllegalArgumentException(" rule " + prdAction.getType() + " - no entity named " + entityName + " in the system.");
+        }
+        EntityDefinition secondaryEntity;
+        SecondaryEntityDefinition secondaryEntityDefinition = null;
+
+        if (prdAction.getPRDSecondaryEntity() != null) {
+            secondaryEntity = entityNameToEntityDefinition.get(prdAction.getPRDSecondaryEntity().getEntity());
+            if (secondaryEntity == null) {
+                throw new IllegalArgumentException(" rule " + prdAction.getType() + " - no entity named " + prdAction.getPRDSecondaryEntity().getEntity() + " in the system.");
+            }
+            String count = prdAction.getPRDSecondaryEntity().getPRDSelection().getCount();
+            if ( prdAction.getPRDSecondaryEntity().getPRDSelection().getPRDCondition() != null) {
+                Condition condition = getCondition(prdAction.getPRDSecondaryEntity().getPRDSelection().getPRDCondition());
+                secondaryEntityDefinition = new SecondaryEntityDefinition(secondaryEntity, count, condition);
+            }
+            else{
+                secondaryEntityDefinition  = new SecondaryEntityDefinition(secondaryEntity, count, null);
+            }
+        }
         switch (actionType) {
             case "increase":
-                return new IncreaseAction(entityDefinition, prdAction.getProperty(), prdAction.getBy());
+                return new IncreaseAction(primaryEntityDefinition, secondaryEntityDefinition, prdAction.getProperty(), prdAction.getBy());
             case "decrease":
-                return new DecreaseAction(entityDefinition, prdAction.getProperty(), prdAction.getBy());
+                return new DecreaseAction(primaryEntityDefinition, secondaryEntityDefinition, prdAction.getProperty(), prdAction.getBy());
             case "calculation":
                 Operation operation = convertOperation(prdAction);
-                return new CalculationAction(entityDefinition, prdAction.getResultProp(), operation);
+                return new CalculationAction(primaryEntityDefinition, secondaryEntityDefinition, prdAction.getResultProp(), operation);
             case "condition":
-                return convertConditionAction(prdAction, entityDefinition);
+                return convertConditionAction(prdAction, primaryEntityDefinition, secondaryEntityDefinition, entityNameToEntityDefinition);
             case "set":
-                String entityName = prdAction.getEntity();
                 String propName = prdAction.getProperty();
                 String valueExpression = prdAction.getValue();
-                return new SetAction(entityDefinition, propName, valueExpression);
+                return new SetAction(primaryEntityDefinition, secondaryEntityDefinition, propName, valueExpression);
             case "kill":
-                return new KillAction(entityDefinition);
-            //TODO: implement;
-//            case "replace":
-//                return new ReplaceAction(entityDefinition, prdAction.getProperty(), prdAction.getBy());
-//            case "proximity":
-//                return new ProximityAction(entityDefinition);
+                if (entityNameToEntityDefinition.get(prdAction.getEntity()) == null) {
+                    throw new IllegalArgumentException(" rule kill - no entity name " +prdAction.getEntity());
+                }
+                return new KillAction(primaryEntityDefinition, secondaryEntityDefinition);
+            case "replace":
+                return new ReplaceAction(entityNameToEntityDefinition.get(prdAction.getKill()), secondaryEntityDefinition, prdAction.getKill(), prdAction.getCreate(), prdAction.getMode());
+            case "proximity":
+                EntityDefinition targetEntityDefinition = entityNameToEntityDefinition.get(prdAction.getPRDBetween().getTargetEntity());
+                secondaryEntityDefinition = new SecondaryEntityDefinition(targetEntityDefinition, "all", null);
+                ArrayList <Action> thanActions = getThenActions(prdAction, entityNameToEntityDefinition);
+                return new ProximityAction(entityNameToEntityDefinition.get(prdAction.getPRDBetween().getSourceEntity()), secondaryEntityDefinition, prdAction.getPRDBetween().getTargetEntity(), prdAction.getPRDEnvDepth().getOf(), thanActions);
             default:
                 throw new java.lang.IllegalArgumentException("Unexpected action type value: " + actionType);
         }
@@ -170,13 +212,13 @@ public class JaxbConverter {
     }
 
 
-    private static ConditionAction convertConditionAction(PRDAction prdAction, EntityDefinition entityDefinition) {
-        ArrayList<Action> thanActions = getThenActions(entityDefinition, prdAction);
-        ArrayList<Action> elseActions = getElseActions(entityDefinition, prdAction);
+    private static ConditionAction convertConditionAction(PRDAction prdAction, EntityDefinition entityDefinition, SecondaryEntityDefinition secondaryEntityDefinition, HashMap<String, EntityDefinition> entityNameToEntityDefinition) {
+        ArrayList<Action> thanActions = getThenActions(prdAction, entityNameToEntityDefinition);
+        ArrayList<Action> elseActions = getElseActions(prdAction, entityNameToEntityDefinition);
         if (Objects.equals(prdAction.getPRDCondition().getSingularity(), "single")) {
-            return getSingleConditionAction(entityDefinition, prdAction.getPRDCondition(), thanActions, elseActions);
+            return getSingleConditionAction(entityDefinition, secondaryEntityDefinition, prdAction.getPRDCondition(), thanActions, elseActions);
         } else if (Objects.equals(prdAction.getPRDCondition().getSingularity(), "multiple")) {
-            return getMultipleConditionAction(entityDefinition, prdAction.getPRDCondition(), thanActions, elseActions);
+            return getMultipleConditionAction(entityDefinition, secondaryEntityDefinition, prdAction.getPRDCondition(), thanActions, elseActions);
         } else {
             throw new IllegalArgumentException(" rule " + prdAction.getEntity() + " - no valid singularity for condition action");
         }
@@ -200,19 +242,19 @@ public class JaxbConverter {
     }
 
 
-    private static SingleConditionAction getSingleConditionAction(EntityDefinition entityDefinition, PRDCondition prdCondition, ArrayList<Action> thenActions, ArrayList<Action> elseActions) {
+    private static SingleConditionAction getSingleConditionAction(EntityDefinition entityDefinition,  SecondaryEntityDefinition secondaryEntityDefinition, PRDCondition prdCondition, ArrayList<Action> thenActions, ArrayList<Action> elseActions) {
         SingleCondition singleCondition = (SingleCondition) getCondition(prdCondition);
-        return new SingleConditionAction(entityDefinition, singleCondition, thenActions, elseActions);
+        return new SingleConditionAction(entityDefinition,secondaryEntityDefinition, singleCondition, thenActions, elseActions);
     }
 
-    private static MultipleConditionAction getMultipleConditionAction(EntityDefinition entityDefinition, PRDCondition prdCondition, ArrayList<Action> thenActions, ArrayList<Action> elseActions) {
+    private static MultipleConditionAction getMultipleConditionAction(EntityDefinition entityDefinition, SecondaryEntityDefinition secondaryEntityDefinition, PRDCondition prdCondition, ArrayList<Action> thenActions, ArrayList<Action> elseActions) {
         // validate logical
         String logical = prdCondition.getLogical();
         if (logical == null || logical.isEmpty()) {
             throw new IllegalArgumentException("Multiple condition error - Logical operator cannot be null or empty");
         }
         MultipleCondition multipleCondition = (MultipleCondition) getCondition(prdCondition);
-        return new MultipleConditionAction(entityDefinition, multipleCondition, thenActions, elseActions);
+        return new MultipleConditionAction(entityDefinition, secondaryEntityDefinition, multipleCondition, thenActions, elseActions);
     }
 
 
@@ -240,11 +282,11 @@ public class JaxbConverter {
         }
     }
 
-    private static ArrayList<Action> getElseActions(EntityDefinition entityDefinition, PRDAction prdAction) {
+    private static ArrayList<Action> getElseActions(PRDAction prdAction, HashMap<String, EntityDefinition> entityNameToEntityDefinition) {
         ArrayList<Action> elseActions = new ArrayList<>();
         if (prdAction.getPRDElse() != null) {
             for (PRDAction action : prdAction.getPRDElse().getPRDAction()) {
-                elseActions.add(convertAction(action, entityDefinition));
+                elseActions.add(convertAction(action, entityNameToEntityDefinition));
             }
             return elseActions;
         }
@@ -252,10 +294,16 @@ public class JaxbConverter {
     }
 
 
-    private static ArrayList<Action> getThenActions(EntityDefinition entityDefinition, PRDAction prdAction) {
+    private static ArrayList<Action> getThenActions(PRDAction prdAction, HashMap<String, EntityDefinition> entityNameToEntityDefinition) {
         ArrayList<Action> thenActions = new ArrayList<>();
+        if (prdAction.getType().equals("proximity")) {
+            for (PRDAction action : prdAction.getPRDActions().getPRDAction()) {
+                thenActions.add(convertAction(action, entityNameToEntityDefinition));
+            }
+            return thenActions;
+        }
         for (PRDAction action : prdAction.getPRDThen().getPRDAction()) {
-            thenActions.add(convertAction(action, entityDefinition));
+            thenActions.add(convertAction(action, entityNameToEntityDefinition));
         }
         return thenActions;
     }
@@ -266,6 +314,9 @@ public class JaxbConverter {
         }
         int rows = prdGrid.getRows();
         int cols = prdGrid.getColumns();
+        if (rows < 10 || cols < 10 || rows > 100 || cols > 100) {
+            throw new IllegalArgumentException("Grid rows and columns must be between 10 to 100.");
+        }
         return new GridDefinition(rows, cols);
     }
 
@@ -277,7 +328,7 @@ public class JaxbConverter {
             throw new IllegalArgumentException("Termination is null");
         }
         else if (prdTermination.getPRDByUser() != null){
-            return new Termination();
+            return new Termination(true);
         }
         List<Object> terminationConditions = prdTermination.getPRDBySecondOrPRDByTicks();
         for (Object terminationCondition : terminationConditions) {
@@ -289,5 +340,66 @@ public class JaxbConverter {
         }
         return new Termination(ticks, seconds);
     }
+
+    public static void validateRuleActions(HashMap<String, EntityDefinition> entityNameToEntityDefinition, PRDRule prdRule) {
+        for (PRDAction prdAction : prdRule.getPRDActions().getPRDAction()) {
+            boolean primaryEntityFound = false;
+            boolean targetEntityFound = false;
+            boolean isProximity = prdAction.getType().equals("proximity");
+            boolean isReplace = prdAction.getType().equals("replace");
+            boolean isCondition = prdAction.getType().equals("condition");
+            String primaryEntity;
+            String targetEntity = "";
+
+            if (isProximity) {
+                primaryEntity = prdAction.getPRDBetween().getSourceEntity();
+                targetEntity = prdAction.getPRDBetween().getTargetEntity();
+            }
+            else if (isReplace) {
+                primaryEntity = prdAction.getKill();
+            }
+            else if (isCondition){
+                return;
+            } else {
+                primaryEntity = prdAction.getEntity();
+            }
+            for (String entityName : entityNameToEntityDefinition.keySet()) {
+                if (entityName.equals(primaryEntity)) {
+                    primaryEntityFound = true;
+                }
+                if (isProximity){
+                    String targetEntityName = prdAction.getPRDBetween().getTargetEntity();
+                    if (entityName.equals(targetEntityName)){
+                        targetEntityFound = true;
+                    }
+                }
+                if (primaryEntityFound){
+                    String propertyName = prdAction.getProperty();
+                    if (propertyName != null){
+                        boolean propertyFound = false;
+                        for (PropertyDefinition propertyDefinition: entityNameToEntityDefinition.get(primaryEntity).getProps()){
+                            if (propertyName.equals(propertyDefinition.getName())){
+                                propertyFound = true;
+                            }
+                        }
+                        if (!propertyFound){
+                            throw new IllegalArgumentException("Rule " + prdRule.getName() + " -   un exist property '"+ propertyName + "'" + "for entity '" + primaryEntity);
+                        }
+                    }
+                    break;
+                }
+            }
+            if (!primaryEntityFound) {
+                throw new IllegalArgumentException("Rule '" + prdRule.getName() + "' contain non exist entity '" + primaryEntity + "'");
+            }
+            if ((isProximity && !targetEntityFound)) {
+                throw new IllegalArgumentException("Rule '" + prdRule.getName() + "' contain non exist entity '" + targetEntity + "'");
+            }
+        }
+    }
+
 }
+
+
+
 
